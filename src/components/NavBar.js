@@ -4,12 +4,18 @@ import './NavBar.css';
 
 function NavBar() {
   return (
-    <div class="d-flex flex-row">
+    <div className="d-flex flex-row">
       <div>
         <Nav className='NavBar p-2 d-flex align-items-center' style={{height:"10vh", width:"20vw"}}>
         <Nav.Item>
           <NavLink className='navbar-brand'>
-            SurvivalPrep
+          <img
+              src="/BrandLogo.png"
+              width="155"
+              height="40"
+              className="d-inline-block"
+              alt="SurvivalPrep logo"
+            />
           </NavLink>
         </Nav.Item>
         </Nav>
