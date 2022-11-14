@@ -1,16 +1,19 @@
 .MainContainer {
+    display: inline-block;
     border-radius: 25px;
     background: rgba(14,97,0,.57); 
     box-shadow: 1px 1px 5px rgba(1, 2, 3, 0.30);
   }
 
 .SecondaryContainer {
+    display: inline-block;
     border-radius: 12px;
     background: rgba(0,3,77,.45);
     box-shadow: 1px 1px 5px rgba(1, 2, 3, 0.30);
   }
 
 .RounderSecondaryContainer {
+    display: inline-block;
     border-radius: 22px;
     background: rgba(0,3,77,.45);
     box-shadow: 1px 1px 5px rgba(1, 2, 3, 0.30);

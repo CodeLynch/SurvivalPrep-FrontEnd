@@ -6,7 +6,6 @@ import Button from 'react-bootstrap/Button';
 function LandingPage() {
   return (
     <div className='container'>
-        <div className="d-flex flex-row align-items-center justify-content-center" style={{height:'90vh'}}>
             <div style={{width:'30vw'}}>
                 <h1>Stay <strong>Updated</strong> and <strong>Connected</strong> with your <strong>Family</strong> and <strong>Community.</strong></h1>
                 <p>SurvivalPrep allows you to keep track of your family and community</p>
@@ -32,7 +31,6 @@ function LandingPage() {
                     <p className='text-center'>Don't have an account? <a href='/' style={{textDecoration:'none', color:'white'}}><strong>Register Here</strong></a></p>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
   );
