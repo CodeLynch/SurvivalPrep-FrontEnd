@@ -8,7 +8,7 @@ function LandingPage() {
     <div className='container'>
         <div className="d-flex flex-row align-items-center justify-content-center" style={{height:'90vh'}}>
             <div style={{width:'30vw'}}>
-                <h1>Stay <strong>Updated</strong> and <strong>Connected</strong> with your Family and Community.</h1>
+                <h1>Stay <strong>Updated</strong> and <strong>Connected</strong> with your <strong>Family</strong> and <strong>Community.</strong></h1>
                 <p>SurvivalPrep allows you to keep track of your family and community</p>
             </div>
             <div className="d-flex justify-content-center" style={{width:'50vw'}}>
