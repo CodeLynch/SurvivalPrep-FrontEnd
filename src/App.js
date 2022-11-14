@@ -8,8 +8,14 @@ function App() {
   return (
     <div className='App'>
       <div className='App-container'>
+<<<<<<< Updated upstream
         <NavBar />
         <LandingPage />
+=======
+        <NavBar/>
+        <LandingPage/>
+        <Register/>
+>>>>>>> Stashed changes
       </div>
     </div>
   );
