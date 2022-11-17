@@ -12,7 +12,10 @@ function App() {
       <div className='App-container'>
         <NavBar/>
         {/* <Register/> */}
-       <Registration/>
+      <Registration/> 
+      <ProfilePage/>
+     
+
        
       </div>
     </div>
