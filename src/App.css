@@ -1,4 +1,6 @@
 .App {
+  width: 100%;
+  height: 100%;
   background-image: linear-gradient(rgb(62, 14, 255), rgb(105, 254, 92));;
 }
 
@@ -17,7 +19,6 @@
   width: 100vw;
   height: 100vh;
   color: white;
-  background-image: linear-gradient(rgb(62, 14, 255), 70%, rgb(105, 254, 92));;
 }
 
 .App-link {

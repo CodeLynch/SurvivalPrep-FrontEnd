@@ -1,42 +1,46 @@
-
 import './containerStyles.css';
 import Form from 'react-bootstrap/Form';
-import { Button } from 'react-bootstrap';
+import { Button, FormSelect } from 'react-bootstrap';
 
-function Register() {
+function Registration() {
   return (
     <div className='container'>
         <div className="d-flex flex-row align-items-center justify-content-center" style={{height:'90vh'}}>
             <div className='px-3 py-3 MainContainer' style={{width:'50vw'}}>
-                    <h1>Registration</h1>
+                    <h1>REGISTER</h1>
                     <Form.Control
                     type="text"
                     id="inputText"
-                    placeholder='placeholderText'
+                    placeholder='Firstname'
                     className='mt-2'
                     />
                     <Form.Control
                     type="text"
                     id="inputText"
-                    placeholder='placeholderText'
+                    placeholder='Lastname'
                     className='mt-2'
                     />
                     <Form.Control
                     type="text"
                     id="inputText"
-                    placeholder='placeholderText'
+                    placeholder='Username'
                     className='mt-2'
                     />
                     <Form.Control
                     type="text"
                     id="inputText"
-                    placeholder='placeholderText'
+                    placeholder='Email'
                     className='mt-2'
+                    />
+                    <FormSelect
+                    value =" Community"
+                    placeholder='Community'
+                    className = 'mt-2'
                     />
                     <Form.Control
                     type="text"
                     id="inputText"
-                    placeholder='placeholderText'
+                    placeholder='Password'
                     className='mt-2'
                     />
                     <Button variant="primary" className="mt-3">REGISTER</Button>
@@ -46,5 +50,4 @@ function Register() {
     </div>
   );
 }
-
-export default Register;
+export default Registration;

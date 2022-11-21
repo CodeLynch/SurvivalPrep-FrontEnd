@@ -3,9 +3,9 @@ import './containerStyles.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-function LandingPage() {
+export default function LandingPage() {
   return (
-    <div className='container'>
+    <div className='container d-flex flex-row justify-content-center align-items-center' style={{height:"90vh", width:"100vw"}}>
             <div style={{width:'30vw'}}>
                 <h1>Stay <strong>Updated</strong> and <strong>Connected</strong> with your <strong>Family</strong> and <strong>Community.</strong></h1>
                 <p>SurvivalPrep allows you to keep track of your family and community</p>
@@ -35,5 +35,3 @@ function LandingPage() {
     </div>
   );
 }
-
-export default LandingPage;
