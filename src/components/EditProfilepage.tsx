@@ -17,10 +17,9 @@ function EditProfilePage(){
                             // borderRadius ="50%"
                             // objectFit = "cover"
                             // border =" 4px solid black"
-                             
                             // src ={profile} alt =""
                             /> 
-                            <h5> Change Profile </h5>
+                            <h6> Change Profile </h6>
                         </div>
                     </div>
 

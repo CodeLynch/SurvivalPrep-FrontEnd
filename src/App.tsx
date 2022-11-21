@@ -4,8 +4,10 @@ import NavBar from './components/NavBar';
 import LandingPage from './components/LandingPage';
 import Registration from './components/Registration';
 import ForumsPage from './components/ForumsPage';
-import ProfilePage from './components/EditProfilepage';
+import ProfilePage from './components/ProfilePage';
 import EditProfilePage from './components/EditProfilepage';
+
+
 
 
 export default function App() {
@@ -13,10 +15,10 @@ export default function App() {
     <div className='App'>
       <div className='App-container'>
         <NavBar/>
-        {/* <LandingPage/>
+         {/* <LandingPage/>
         <Registration/> */}
-        <EditProfilePage/>
-        {/* <ProfilePage/> */}
+        <ProfilePage/>
+        {/* <EditProfilePage/> */}
       </div>
     </div>
   );
