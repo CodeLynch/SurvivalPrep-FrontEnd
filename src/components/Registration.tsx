@@ -33,7 +33,6 @@ function Registration() {
                     className='mt-2'
                     />
                     <FormSelect
-                    value =" Community"
                     placeholder='Community'
                     className = 'mt-2'
                     />
