@@ -29,7 +29,7 @@ export default function LandingPage() {
                     <a href='/' style={{textDecoration:'none', color:'white'}}><p>Forgot password?</p></a>
                     <div style={{width:'100%'}}>
                     <Button variant="primary" style={{width:'100%'}} className="mb-3">LOGIN</Button>
-                    <p className='text-center'>Don't have an account? <a href='/' style={{textDecoration:'none', color:'white'}}><strong>Register Here</strong></a></p>
+                    <p className='text-center'>Don't have an account? <a href='/register' style={{textDecoration:'none', color:'white'}}><strong>Register Here</strong></a></p>
                     </div>
                 </div>
         </div>

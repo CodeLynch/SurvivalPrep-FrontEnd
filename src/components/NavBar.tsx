@@ -8,7 +8,7 @@ function NavBar() {
       <div>
         <Nav className='NavBar p-2 d-flex align-items-center' style={{height:"10vh", width:"20vw"}}>
         <Nav.Item>
-          <NavLink className='navbar-brand'>
+          <NavLink className='navbar-brand' href='/'>
           <img
               src="/BrandLogo.png"
               width="155"
