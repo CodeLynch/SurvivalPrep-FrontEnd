@@ -4,7 +4,7 @@ import './NavBar.css';
 
 function NavBar() {
   return (
-    <div className="d-flex flex-row">
+    <div className="d-flex flex-row" style={{color:"white"}}>
       <div>
         <Nav className='NavBar p-2 d-flex align-items-center' style={{height:"10vh", width:"20vw"}}>
         <Nav.Item>
@@ -21,7 +21,7 @@ function NavBar() {
         </Nav>
       </div>
        <div>
-        <Nav className='NavBar justify-content-end d-flex align-items-center' style={{height:"10vh",width:"80vw"}}>
+        <Nav className='NavBar justify-content-end d-flex align-items-center' style={{height:"10vh",width:"80vw", color:"white"}}>
           <Nav.Item>
             <Nav.Link className="LinksColor">Forums</Nav.Link>
           </Nav.Item>

@@ -4,13 +4,20 @@ import NavBar from './components/NavBar';
 import LandingPage from './components/LandingPage';
 import Registration from './components/Registration';
 import ForumsPage from './components/ForumsPage';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 export default function App() {
   return (
     <div className='App'>
       <div className='App-container'>
-        <NavBar/>
-        <LandingPage/>
+        <Router>
+            <Routes>
+              <Route path="/" element={<div><NavBar/><LandingPage/></div>}></Route>
+            </Routes>
+            <Routes>
+              <Route path="/register" element={<div><NavBar/><Registration/></div>}></Route>
+            </Routes>  
+        </Router>
       </div>
     </div>
   );
