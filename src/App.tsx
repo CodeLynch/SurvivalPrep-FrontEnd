@@ -5,6 +5,11 @@ import LandingPage from './components/LandingPage';
 import Registration from './components/Registration';
 import ForumsPage from './components/ForumsPage';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ProfilePage from './components/ProfilePage';
+import EditProfilePage from './components/EditProfilepage';
+
+
+
 
 export default function App() {
   return (
