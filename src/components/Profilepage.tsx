@@ -13,7 +13,8 @@ import './containerStyles.css';
                         //borderRadius ="50%"
                          //objectFit = "cover"
                         //border =" 4px solid black"
-                        //src ={profile} alt =""
+                        //src ={profile} 
+                        alt ="Profile Pic"
                         />  <h1> Gelyn</h1>
                         <h6>Delete Profile</h6>
                         <h6> Edit Profile</h6>

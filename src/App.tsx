@@ -3,9 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './components/NavBar';
 import LandingPage from './components/LandingPage';
 import Registration from './components/Registration';
-import ForumsPage from './components/ForumsPage';
-import ProfilePage from './components/Profilepage';
-import EditProfilePage from './components/EditProfilepage';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 
