@@ -18,3 +18,12 @@
     background: rgba(0,3,77,.45);
     box-shadow: 1px 1px 5px rgba(1, 2, 3, 0.30);
   }
+
+.imgFixedSize {
+  height: 40px;
+  width: 40px;
+}
+
+.contentText {
+  font-size: x-small;
+}

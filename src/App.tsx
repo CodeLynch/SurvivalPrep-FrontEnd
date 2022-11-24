@@ -4,6 +4,7 @@ import NavBar from './components/NavBar';
 import LandingPage from './components/LandingPage';
 import Registration from './components/Registration';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import FamilyPage from './components/FamilyPage';
 
 
 
@@ -11,14 +12,13 @@ export default function App() {
 
     return (
       <div className='App'>
-        <div className='App-container'>
+        <div className='App-container' style={{overflow:"hidden"}}>
           <Router>
               <Routes>
                 <Route path="/" element={<div><NavBar/><LandingPage/></div>}></Route>
-              </Routes>
-              <Routes>
                 <Route path="/register" element={<div><NavBar/><Registration/></div>}></Route>
-              </Routes>  
+                <Route path="/family" element={<div><NavBar/><FamilyPage/></div>}></Route>
+              </Routes>
           </Router>
         </div>
       </div>

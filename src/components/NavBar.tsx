@@ -26,7 +26,7 @@ function NavBar() {
             <Nav.Link className="LinksColor">Forums</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link className="LinksColor" eventKey="">Family</Nav.Link>
+            <Nav.Link className="LinksColor" eventKey="" href='/family'>Family</Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link className="LinksColor" eventKey="">News</Nav.Link>
