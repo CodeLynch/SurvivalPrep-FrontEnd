@@ -1,9 +1,12 @@
 import './containerStyles.css';
-import React from "react";
+import React, { useState } from "react";
 import { Form } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 
 function EditProfilePage(){
+    const[username,setUsername] = useState('')
+    const[image,setImages]= useState([])
+
     return(
         <div className= "container">
             <div className="d-flex flex-row align-items-center justify-content-center" style={{height:'90vh'}}>
@@ -11,19 +14,14 @@ function EditProfilePage(){
                 <h1>Edit Profile</h1>
                     <div className='profile_img text-center p-4'>
                         <div className='flex flex-column justify-content-center align-items-center'>
-                            <img
-                            width= "100px"
-                            height = "100x"
-                            // borderRadius ="50%"
-                            // objectFit = "cover"
-                            // border =" 4px solid black"
-                            // src ={profile} alt =""
-                            /> 
+                            <img 
+                            // src={image}
+                             alt="Profile Pic"
+                              className="rounded-circle"
+                            />
                             <h6> Change Profile </h6>
                         </div>
-                    </div>
-
-                   
+                    </div>      
                     <h6> Change Username</h6>
                     <Form.Control
                     type="text"
