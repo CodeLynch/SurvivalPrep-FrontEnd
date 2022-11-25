@@ -1,9 +1,6 @@
 import './containerStyles.css';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import { isMemberName } from 'typescript';
 
-type familyMemberType = {
+export type familyMemberType = {
     firstname: string,
     lastname: string,
     contactno: string,

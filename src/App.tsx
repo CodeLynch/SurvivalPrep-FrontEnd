@@ -12,7 +12,7 @@ export default function App() {
 
     return (
       <div className='App'>
-        <div className='App-container' style={{overflow:"hidden"}}>
+        <div className='App-container'>
           <Router>
               <Routes>
                 <Route path="/" element={<div><NavBar/><LandingPage/></div>}></Route>
