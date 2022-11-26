@@ -7,17 +7,17 @@ import './containerStyles.css';
     
     return(
     <div className= "container">
-        <div className="d-flex flex-row align-items-center justify-content-center" style={{height:'90vh'}}>
-            <div className='px-3 py-3 MainContainer' style={{width:'50vw'}}>
+        <div className="d-flex flex-row align-items-center justify-content-center" style={{height:'50vh'}}>
+            <div className='px-2 py-2 MainContainer' style={{width:'50%', height:'auto', maxHeight:'80vh'}}>
                 <div className='profile_img text-left p-4'>
-                    <div className='flex flex-column justify-content-center align-items-center'>
+                    <div className='d-flex'>
                         <img 
-                         style={{ width: '120px' }}
-                         src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-2.webp"
-                         alt="Profile Picture"
-                         className="rounded-circle"
-                         />
-                         <div className='align-middle'>
+                        style={{ width: '120px' }}
+                        src=""
+                        alt="Profile Picture"
+                        className="rounded-circle"
+                        /> 
+                        <div className="flex-grow-1 ms-3">
                             <h2> Gelyn</h2>
                             <h6>Delete Profile</h6>
                             <h6> Edit Profile</h6>
@@ -27,13 +27,15 @@ import './containerStyles.css';
                     </div>
                 </div>
             </div>
-        <div className="d-flex flex-column align-bottom">
+            <div className="d-flex flex-row align-items-center justify-content-evenly" style={{height:'5vh'}}>
             <h1> Posts</h1>
-         </div>
+        </div>
+        <div className="d-flex flex-columnalign-items-bottom justify-content-sm-center">
         <div className= "px-3 py-3 MainContainer justify-content-center align-items-center" style={{width:'40vw'}}>
-                <h3> Thread Title</h3>
-            </div>
-         </div>             
+            <h3> Thread Title</h3>
+        </div>
+    </div>
+</div>             
     );
 }
 export default Profilepage;
