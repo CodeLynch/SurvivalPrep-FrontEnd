@@ -4,9 +4,9 @@ import './NavBar.css';
 
 function NavBar() {
   return (
-    <div className="d-flex flex-row" style={{color:"white"}}>
-      <div>
-        <Nav className='NavBar p-2 d-flex align-items-center' style={{height:"10vh", width:"20vw"}}>
+    <div className="d-flex flex-row" style={{color:"white", width:"100%"}}>
+      <div className='flex-fill'>
+        <Nav className='NavBar p-2 d-flex align-items-center' style={{height:"10vh", width:"100%"}}>
         <Nav.Item>
           <NavLink className='navbar-brand' href='/'>
           <img
@@ -20,10 +20,10 @@ function NavBar() {
         </Nav.Item>
         </Nav>
       </div>
-       <div>
-        <Nav className='NavBar justify-content-end d-flex align-items-center' style={{height:"10vh",width:"80vw", color:"white"}}>
+       <div className='flex-fill'>
+        <Nav className='NavBar justify-content-end d-flex align-items-center' style={{height:"10vh",width:"100%", color:"white"}}>
           <Nav.Item>
-            <Nav.Link className="LinksColor">Forums</Nav.Link>
+            <Nav.Link className="LinksColor"  eventKey="" href='/forums'>Forums</Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link className="LinksColor" eventKey="" href='/family'>Family</Nav.Link>

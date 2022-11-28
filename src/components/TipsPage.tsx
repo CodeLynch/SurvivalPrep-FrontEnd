@@ -6,6 +6,7 @@ import Tips, { tipDetails } from './Tips';
 import { useState } from 'react';
 
 export default function TipsPage() {
+  
   const [TipsList, setTipsList] = useState<tipDetails[]>([
     { tipid: 1, tipcategory: "earthquake", tipcontent: "duck adsfasdf adsfasdf adfasdf adsfasdf adsfasdf asdfasdf adsfasdf adsfadsfa adsfasdf adsfasdfasdfasdfadsfasdfasdfasdfasdfasdfasdfasdfas" },
     { tipid: 2, tipcategory: "earthquake", tipcontent: "cover" },

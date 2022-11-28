@@ -6,17 +6,21 @@ import { Button, Form, InputGroup } from 'react-bootstrap';
 
 
 export default function FamilyPage() {
-  const [hasNoFamily, setNoFamily] = useState(false);
+  //const [hasNoFamily, setNoFamily] = useState(false);
   const [FamilyMembers, setFamily] = useState<familyMemberType[]>([
     {firstname: "John", lastname: "Doe", contactno: "0921123490", isCreator: true},
     {firstname: "Jane", lastname: "Doe", contactno: "0912127490", isCreator: false},
     {firstname: "Jill", lastname: "Doe", contactno: "0922789491", isCreator: false},
     {firstname: "Jack", lastname: "Doe", contactno: "0921889492", isCreator: false},
+    {firstname: "Jess", lastname: "Doe", contactno: "0921889492", isCreator: false},
+    {firstname: "Jeff", lastname: "Doe", contactno: "0921889492", isCreator: false},
+    {firstname: "Jaffar", lastname: "Doe", contactno: "0921889492", isCreator: false},
+    
   ])
       return (
         <div className='container' style={{height:"auto", minHeight:"90vh"}}>
           <h1><strong>My Family</strong></h1>
-          <div className="MainContainer p-3 " style={{minHeight:"75vh", width:"90vw", height:'auto'}}>
+          <div className="MainContainer p-3 " style={{minHeight:"75vh", width:"100%", height:'auto'}}>
             {
               //change display depending if user has family members
               FamilyMembers.length === 0?  
@@ -53,8 +57,8 @@ export default function FamilyPage() {
                   <p className='m-0' style={{fontSize:"14px"}}>Add Family Member</p>
                 </div>
               </div>
-              <div className='container' style={{height:"90%"}}>
-                  <div className='row d-flex flex-wrap pl-5' style={{height:"auto", maxHeight:'100%', width:"100%"}}>
+              <div className='container d-flex justify-content-center' style={{height:"90%"}}>
+                  <div className='row d-flex flex-wrap' style={{height:"auto", maxHeight:'100%', width:"100%"}}>
                     {FamilyMembers.map((member, i) => 
                       <div className="col-auto">
                       <FamilyMember firstname={member.firstname} 
