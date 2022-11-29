@@ -15,7 +15,7 @@ function EditProfilePage(this: any){
         event.preventDefault(); 
     }
     return(
-        <div className= "container">
+        <div className= "container p-5">
             <div className="d-flex flex-row align-items-center justify-content-center" style={{height:'90vh'}}>
                 <div className='px-3 py-3 MainContainer' style={{width:'50vw'}}>
                 <h1>Edit Profile</h1>

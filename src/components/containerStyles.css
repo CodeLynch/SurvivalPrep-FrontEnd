@@ -1,7 +1,7 @@
 .MainContainer {
     display: inline-block;
     border-radius: 25px;
-    background: rgba(14,97,0,.57); 
+    background: rgba(14,97,0,.57);  
     box-shadow: 1px 1px 5px rgba(1, 2, 3, 0.30);
   }
 
