@@ -60,11 +60,12 @@ export default function FamilyPage() {
               <div className='container d-flex justify-content-center' style={{height:"90%"}}>
                   <div className='row d-flex flex-wrap' style={{height:"auto", maxHeight:'100%', width:"100%"}}>
                     {FamilyMembers.map((member, i) => 
-                      <div className="col-auto">
+                      <div className="col-auto" key={i}>
                       <FamilyMember firstname={member.firstname} 
                                     lastname={member.lastname} 
                                     contactno={member.contactno} 
-                                    isCreator={member.isCreator} />
+                                    isCreator={member.isCreator}  
+                                    key={i}/>
                       </div>   
                     )
                     }

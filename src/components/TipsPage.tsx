@@ -33,13 +33,13 @@ export default function TipsPage() {
           <h4>Earthquake Tips</h4>
           {TipsList.map((member, i) =>
             member.tipcategory === 'earthquake' ?
-              <div className="col-auto">
+              <div className="col-auto" key={i}>
                 <Tips tipid={member.tipid}
                   tipcategory={member.tipcategory}
                   tipcontent={member.tipcontent}
                   key={i} />
               </div>
-              : <div></div>
+              : <div  key={i} ></div>
           )
           }
         </div>
@@ -47,13 +47,13 @@ export default function TipsPage() {
           <h4>Typhoon Tips</h4>
           {TipsList.map((member, i) =>
             member.tipcategory === 'typhoon' ?
-              <div className="col-auto">
+              <div className="col-auto" key={i}>
                 <Tips tipid={member.tipid}
                   tipcategory={member.tipcategory}
                   tipcontent={member.tipcontent}
                   key={i} />
               </div>
-              : <div></div>
+              : <div  key={i} ></div>
           )
           }
         </div>
@@ -61,13 +61,13 @@ export default function TipsPage() {
           <h4>Fire Tips</h4>
           {TipsList.map((member, i) =>
             member.tipcategory === 'fire' ?
-              <div className="col-auto">
+              <div className="col-auto" key={i}>
                 <Tips tipid={member.tipid}
                   tipcategory={member.tipcategory}
                   tipcontent={member.tipcontent}
                   key={i} />
               </div>
-              : <div></div>
+              : <div  key={i} ></div>
           )
           }
         </div>

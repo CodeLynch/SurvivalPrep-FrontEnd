@@ -4,6 +4,7 @@ import { Button, FormSelect } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import CommunityService from '../services/CommunityService';
 import UserService from '../services/UserService';
+import { useNavigate } from 'react-router-dom';
 
 type CommunityType ={
   communityid: number;
@@ -21,6 +22,7 @@ function Registration() {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const [contact, setContact] = useState('');
+  const nav = useNavigate();
   
   useEffect(()=>{
     CommunityService.getCommunities().then((res) =>{
@@ -44,12 +46,16 @@ function Registration() {
       }
     setValidated(true);
     if(isValid){
-       alert("Can be registered!");
+       register()
     }      
   };
 
   const register = () => {
-    UserService.postUser(fname, lname, uname, email, selectValue, pass, contact);
+    UserService.postUser(fname, lname, uname, email, selectValue, pass, contact).then((res) => {
+      if(res !== null){
+        nav('/');
+      }
+    })
   };
   return (
     <div className='container'>
@@ -119,10 +125,10 @@ function Registration() {
                       />
                     </Form.Group>
 
-                      <FormSelect className = 'mt-2' onChange={(e)=>{SelectHandler(e)}} isValid={selectValue > -1}>
-                      <option value={-1}>Community</option>
+                      <FormSelect className = 'mt-2' onChange={(e)=>{SelectHandler(e);}} isValid={selectValue > -1}>
+                      <option value={0}>Community</option>
                       {communitiesData.map((community,i) =>{
-                        return <option value={i} key={i}>{community.communityname}</option>
+                        return <option value={i + 1} key={i}>{community.communityname}</option>
                       })}
                       </FormSelect>
                     

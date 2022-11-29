@@ -17,7 +17,7 @@ export default function ForumsPage(){
             {
                 ForumsArr.length !== 0 ?
                 ForumsArr.map((forum, i) =>
-                <ForumComp forumTitle={forum.forumTitle} forumDesc={forum.forumDesc} />
+                <ForumComp forumTitle={forum.forumTitle} forumDesc={forum.forumDesc} key={i}/>
                 )
                 :
                 <p className='d-flex justify-content-center'>There are no forums yet.</p>
