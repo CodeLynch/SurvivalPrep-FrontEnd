@@ -4,8 +4,13 @@
   }
 .linksColor {
     color: white;
+    text-decoration: none;
 }
 
 .linksColor:hover{
+  color: greenyellow;
+}
+
+.selected{
   color: greenyellow;
 }

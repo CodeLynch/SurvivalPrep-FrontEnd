@@ -8,13 +8,13 @@ import { Button, Form, InputGroup } from 'react-bootstrap';
 export default function FamilyPage() {
   //const [hasNoFamily, setNoFamily] = useState(false);
   const [FamilyMembers, setFamily] = useState<familyMemberType[]>([
-    // {firstname: "John", lastname: "Doe", contactno: "0921123490", isCreator: true},
-    // {firstname: "Jane", lastname: "Doe", contactno: "0912127490", isCreator: false},
-    // {firstname: "Jackie", lastname: "Doe", contactno: "0922789491", isCreator: false},
-    // {firstname: "Jack", lastname: "Doe", contactno: "0921889492", isCreator: false},
-    // {firstname: "Jess", lastname: "Doe", contactno: "0921889492", isCreator: false},
-    // {firstname: "Jeff", lastname: "Doe", contactno: "0921889492", isCreator: false},
-    // {firstname: "Jaffar", lastname: "Doe", contactno: "0921889492", isCreator: false},
+    {firstname: "John", lastname: "Doe", contactno: "0921123490", isCreator: true},
+    {firstname: "Jane", lastname: "Doe", contactno: "0912127490", isCreator: false},
+    {firstname: "Jackie", lastname: "Doe", contactno: "0922789491", isCreator: false},
+    {firstname: "Jack", lastname: "Doe", contactno: "0921889492", isCreator: false},
+    {firstname: "Jess", lastname: "Doe", contactno: "0921889492", isCreator: false},
+    {firstname: "Jeff", lastname: "Doe", contactno: "0921889492", isCreator: false},
+    {firstname: "Jaffar", lastname: "Doe", contactno: "0921889492", isCreator: false},
     
   ])
       return (

@@ -5,10 +5,10 @@ import { useState } from 'react';
 
 export default function ForumsPage(){
     const [ForumsArr, setForumArr] = useState<ForumType[]>([
-        // {forumTitle: "Announcements", forumDesc:"Find out what's happening in your community..." },
-        // {forumTitle: "Issues and Concerns", forumDesc:"Voice out your concerns and problems." },
-        // {forumTitle: "Lounge", forumDesc:"Random talks and discussions." },
-        // {forumTitle: "New Forum", forumDesc:"Another Forum" },
+        {forumTitle: "Announcements", forumDesc:"Find out what's happening in your community..." },
+        {forumTitle: "Issues and Concerns", forumDesc:"Voice out your concerns and problems." },
+        {forumTitle: "Lounge", forumDesc:"Random talks and discussions." },
+        {forumTitle: "New Forum", forumDesc:"Another Forum" },
       ])
     return(
     <div className='container' style={{height:"auto", minHeight:"90vh"}}>

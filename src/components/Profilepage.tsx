@@ -2,6 +2,8 @@ import { profile } from "console";
 import { useState } from "react";
 import "./containerStyles.css";
 import ProfilePost, { ProfilePostType } from "./ProfilePost";
+import './NavBar.css';
+import { Link } from "react-router-dom";
 
 function Profilepage() {
     const [PostArr, setPostArr] = useState<ProfilePostType[]>([
@@ -29,9 +31,9 @@ function Profilepage() {
                     
                     <div className="mt-3">
                     <h2 className="m-0" ><strong>Gelyn</strong></h2>
-                    <p className="m-0">Delete Profile</p>
-                    <p className="m-0"><a href='/editprofile' style={{textDecoration:'none', color:'white'}}> Edit Profile</a></p>
-                    <p className="m-0"><a href='/' style={{textDecoration:'none', color:'white'}}> Logout</a></p>
+                    <p className="m-0" style={{color:'red'}}>Delete Profile</p>
+                    <p className="m-0"><Link to='/editprofile' className="linksColor">Edit Profile</Link></p>
+                    <p className="m-0"><Link to='/' className="linksColor"> Logout</Link></p>
                     </div>
                 </div>
             </div>

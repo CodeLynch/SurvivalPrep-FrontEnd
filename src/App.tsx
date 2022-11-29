@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './components/NavBar';
 import LandingPage from './components/LandingPage';
 import Registration from './components/Registration';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import FamilyPage from './components/FamilyPage';
 import Profilepage from './components/Profilepage';
 import EditProfilepage from './components/EditProfilepage';
@@ -18,19 +18,17 @@ export default function App() {
     return (
       <div className='App'>
         <div className='App-container'>
-          { <Router>
+          <NavBar />
               <Routes>
-                <Route path="/" element={<div><NavBar/><LandingPage/></div>}></Route>
-                <Route path="/register" element={<div><NavBar/><Registration/></div>}></Route>
-                <Route path="/forums" element={<div><NavBar/><ForumsPage/></div>}></Route>
-                <Route path="/family" element={<div><NavBar/><FamilyPage/></div>}></Route>
-                <Route path="/tips" element={<div><NavBar/><TipsPage/></div>}></Route>
-                <Route path="/profile" element={<div><NavBar/><Profilepage/></div>}></Route>
-                <Route path="/editprofile" element ={<div><NavBar/><EditProfilepage/></div>}></Route>
-                <Route path="/" element ={<div><NavBar/><Profilepage/></div>}></Route>
+                <Route path="/" element={<LandingPage/>}></Route>
+                <Route path="/register" element={<Registration/>}></Route>
+                <Route path="/forums" element={<ForumsPage/>}></Route>
+                <Route path="/family" element={<FamilyPage/>}></Route>
+                <Route path="/tips" element={<TipsPage/>}></Route>
+                <Route path="/profile" element={<Profilepage/>}></Route>
+                <Route path="/editprofile" element ={<EditProfilepage/>}></Route>
+                <Route path="/" element ={<Profilepage/>}></Route>
               </Routes>
-          </Router> }
-         
         </div>
       </div>
     );
