@@ -37,7 +37,8 @@ export default function TipsPage() {
               <div className="col-auto">
                 <Tips tipid={member.tipid}
                   tipcategory={member.tipcategory}
-                  tipcontent={member.tipcontent} />
+                  tipcontent={member.tipcontent}
+                  key={i} />
               </div>
               : <div></div>
           )
@@ -50,7 +51,8 @@ export default function TipsPage() {
               <div className="col-auto">
                 <Tips tipid={member.tipid}
                   tipcategory={member.tipcategory}
-                  tipcontent={member.tipcontent} />
+                  tipcontent={member.tipcontent}
+                  key={i} />
               </div>
               : <div></div>
           )
@@ -63,7 +65,8 @@ export default function TipsPage() {
               <div className="col-auto">
                 <Tips tipid={member.tipid}
                   tipcategory={member.tipcategory}
-                  tipcontent={member.tipcontent} />
+                  tipcontent={member.tipcontent}
+                  key={i} />
               </div>
               : <div></div>
           )
