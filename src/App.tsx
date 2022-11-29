@@ -18,17 +18,17 @@ export default function App() {
     return (
       <div className='App'>
         <div className='App-container'>
-          <NavBar/>
-          {/* { <Router>
+          { <Router>
               <Routes>
                 <Route path="/" element={<div><NavBar/><LandingPage/></div>}></Route>
                 <Route path="/register" element={<div><NavBar/><Registration/></div>}></Route>
                 <Route path="/forums" element={<div><NavBar/><ForumsPage/></div>}></Route>
                 <Route path="/family" element={<div><NavBar/><FamilyPage/></div>}></Route>
                 <Route path="/tips" element={<div><NavBar/><TipsPage/></div>}></Route>
+                <Route path="/profile" element={<div><NavBar/><Profilepage/></div>}></Route>
               </Routes>
-          </Router> } */}
-          <Profilepage/>
+          </Router> }
+         
         </div>
       </div>
     );
