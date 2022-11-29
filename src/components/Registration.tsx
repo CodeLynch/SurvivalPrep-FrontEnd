@@ -108,7 +108,7 @@ function Registration() {
                     <Form.Group className="mt-2" >  
                       <Form.Control
                       required
-                      type="text"
+                      type="password"
                       id="inputText"
                       placeholder='Password'
                       onChange={(e)=>{setPass(e.target.value)}}
