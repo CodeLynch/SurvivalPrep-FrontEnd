@@ -7,8 +7,9 @@ function Profilepage() {
     const [PostArr, setPostArr] = useState<ProfilePostType[]>([
         {threadTitle: "Thread 1", post: "Hello, this is my first post", date:"11/29/2022", time:"9:00 AM"},
         {threadTitle: "Thread 2", post: "Hi, this is another post", date:"11/29/2022", time:"9:15 AM"},
-        // {threadTitle: "Thread 3", post: "Hey, it's a post", date:"11/30/2022", time:"12:01 AM"},
+        {threadTitle: "Thread 3", post: "Hey, it's me Angelyn Rabe", date:"11/30/2022", time:"12:01 AM"},
       ])
+
 
   return (
     <div className="container">
@@ -29,8 +30,8 @@ function Profilepage() {
                     <div className="mt-3">
                     <h2 className="m-0" ><strong>Gelyn</strong></h2>
                     <p className="m-0">Delete Profile</p>
-                    <p className="m-0"> Edit Profile</p>
-                    <p className="m-0">Logout</p>
+                    <p className="m-0"><a href='/editprofile' style={{textDecoration:'none', color:'white'}}> Edit Profile</a></p>
+                    <p className="m-0"><a href='/' style={{textDecoration:'none', color:'white'}}> Logout</a></p>
                     </div>
                 </div>
             </div>

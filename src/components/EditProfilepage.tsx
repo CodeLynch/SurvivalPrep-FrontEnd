@@ -6,8 +6,7 @@ import { Button } from 'react-bootstrap';
 
 
 function EditProfilePage(this: any){
-    const[username,setUsername] = useState('')
-    const[image,setImages]= useState([])
+    const[username,setUsername] = useState ('')
     const[currentpass,setCurrentpass] = useState('')
     const[newpassword,setNewpassword] = useState('')
     const [reenterpassword,setRenternewpassword] = useState('')
@@ -28,14 +27,11 @@ function EditProfilePage(this: any){
                             src='profileIcon.png'
                             alt="Profile Pic"
                             className="rounded-circle"
-                            // onChange={handleChange}
-
                             />
                             <h6> Change Profile </h6>
                         </div>
                     </div>      
                     <h6> Change Username</h6>
-
                     <Form.Control
                     type="text"
                     id="inputText"
@@ -43,13 +39,10 @@ function EditProfilePage(this: any){
                     className='mt-2'
                     onChange={(e) => setUsername(e.target.value)}
                     />
-
                     <div className="d-flex justify-content-end m-2">
                         <Button> confirm</Button>
                         </div>
-
                         <h6> Change Password</h6>
-
                         <Form.Control
                         type="text"
                         id="inputText"
