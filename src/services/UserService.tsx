@@ -5,10 +5,6 @@ import axios from "axios";
 class UserService{
 
     postUser(fname: string, lname: string, username: string, email:string, community: number, pass:string, contactno:string){
-        //get community by ID first then assign result to a variable
-        //axios.get()
-
-        //use community variable in community param
         return axios.post("http://localhost:8080/user/postUser",
         {
             username: username,
@@ -17,11 +13,11 @@ class UserService{
             email: email,
             password: pass,
             contactno: contactno,
-            community: community
+            community: { "communityid": community },
         }).then((res)=>{
-            console.log(res);
-            if(res.data){
-                alert("User Created!");
+                if(res.data){
+                alert("Registration Successful!");
+                return res.data;
             }
         }).catch(err =>{
             console.log(err);

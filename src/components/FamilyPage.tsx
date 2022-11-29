@@ -10,7 +10,7 @@ export default function FamilyPage() {
   const [FamilyMembers, setFamily] = useState<familyMemberType[]>([
     {firstname: "John", lastname: "Doe", contactno: "0921123490", isCreator: true},
     {firstname: "Jane", lastname: "Doe", contactno: "0912127490", isCreator: false},
-    {firstname: "Jill", lastname: "Doe", contactno: "0922789491", isCreator: false},
+    {firstname: "Jackie", lastname: "Doe", contactno: "0922789491", isCreator: false},
     {firstname: "Jack", lastname: "Doe", contactno: "0921889492", isCreator: false},
     {firstname: "Jess", lastname: "Doe", contactno: "0921889492", isCreator: false},
     {firstname: "Jeff", lastname: "Doe", contactno: "0921889492", isCreator: false},
@@ -60,11 +60,12 @@ export default function FamilyPage() {
               <div className='container d-flex justify-content-center' style={{height:"90%"}}>
                   <div className='row d-flex flex-wrap' style={{height:"auto", maxHeight:'100%', width:"100%"}}>
                     {FamilyMembers.map((member, i) => 
-                      <div className="col-auto">
+                      <div className="col-auto" key={i}>
                       <FamilyMember firstname={member.firstname} 
                                     lastname={member.lastname} 
                                     contactno={member.contactno} 
-                                    isCreator={member.isCreator} />
+                                    isCreator={member.isCreator}  
+                                    key={i}/>
                       </div>   
                     )
                     }
