@@ -22,8 +22,7 @@ export default function TipsPage() {
 
   useEffect(()=>{
     TipsService.getAllTips().then((response)=>{
-    console.log(response.data)
-    // setTipsList(response.data)
+    setTipsList(response.data)
   });},[])
 
   return (
