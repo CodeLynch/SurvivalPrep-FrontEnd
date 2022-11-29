@@ -46,7 +46,7 @@ function Profilepage() {
                 <ProfilePost threadTitle={post.threadTitle} post={post.post} date={post.date} time={post.time}></ProfilePost> 
                 )
                 :
-                <p className="text-center">This user has no posts.</p>
+                <p className="text-center">This user has no posts!</p>
             }
         </div>
       
