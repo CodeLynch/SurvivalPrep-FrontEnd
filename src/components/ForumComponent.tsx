@@ -1,5 +1,4 @@
 import './containerStyles.css';
-import Button from 'react-bootstrap/Button';
 
 export type ForumType = {
     forumTitle: string,

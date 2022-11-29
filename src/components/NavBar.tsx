@@ -23,19 +23,24 @@ function NavBar() {
        <div className='flex-fill'>
         <Nav className='NavBar justify-content-end d-flex align-items-center' style={{height:"10vh",width:"100%", color:"white"}}>
           <Nav.Item>
-            <Nav.Link className="LinksColor"  eventKey="" href='/forums'>Forums</Nav.Link>
+            <Nav.Link className='linksColor'  eventKey="" href='/forums'>Forums</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link className="LinksColor" eventKey="" href='/family'>Family</Nav.Link>
+            <Nav.Link className='linksColor' eventKey="" href='/family'>Family</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link className="LinksColor" eventKey="">News</Nav.Link>
+            <Nav.Link className='linksColor'  eventKey="">News</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link className="LinksColor" eventKey="">Emergency</Nav.Link>
+            <Nav.Link className='linksColor'  eventKey="">Emergency</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link className="LinksColor" eventKey="" href='/tips'>Tips</Nav.Link>
+            <Nav.Link className='linksColor'  eventKey="" href='/tips'>Tips</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="" href='/profile'>
+              <img className="imgFixedSize "src='profileIcon.png' alt="profile icon"></img>
+            </Nav.Link>
           </Nav.Item>
         </Nav>
         </div>

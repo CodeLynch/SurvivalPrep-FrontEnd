@@ -5,3 +5,7 @@
 .linksColor {
     color: white;
 }
+
+.linksColor:hover{
+  color: greenyellow;
+}
