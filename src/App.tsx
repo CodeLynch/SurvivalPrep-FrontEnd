@@ -26,6 +26,8 @@ export default function App() {
                 <Route path="/family" element={<div><NavBar/><FamilyPage/></div>}></Route>
                 <Route path="/tips" element={<div><NavBar/><TipsPage/></div>}></Route>
                 <Route path="/profile" element={<div><NavBar/><Profilepage/></div>}></Route>
+                <Route path="/editprofile" element ={<div><NavBar/><EditProfilepage/></div>}></Route>
+                <Route path="/" element ={<div><NavBar/><Profilepage/></div>}></Route>
               </Routes>
           </Router> }
          
