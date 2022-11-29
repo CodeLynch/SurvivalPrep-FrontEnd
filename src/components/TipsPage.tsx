@@ -17,7 +17,7 @@ export default function TipsPage() {
 
   return (
     <div className='container' style={{ minHeight: "80vh", width: '80vw' }}>
-      <h1>Tips</h1>
+      <h1><strong>Tips</strong></h1>
       <div className='MainContainer' style={{ height: 'auto', minHeight: '70vh', width: '80vw' }}>
         <div className='SecondaryContainer m-5 p-3' style={{ width: '90%' }}>
           <h4>Earthquake Tips</h4>
