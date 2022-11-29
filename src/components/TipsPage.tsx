@@ -3,17 +3,28 @@ import './containerStyles.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Tips, { tipDetails } from './Tips';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import TipsService from '../services/TipsService';
+
+type tipsType = {tipid:number, tipcategory:string, tipcontent:string, isdeleted:boolean}
 
 export default function TipsPage() {
-  
-  const [TipsList, setTipsList] = useState<tipDetails[]>([
-    { tipid: 1, tipcategory: "earthquake", tipcontent: "duck adsfasdf adsfasdf adfasdf adsfasdf adsfasdf asdfasdf adsfasdf adsfadsfa adsfasdf adsfasdfasdfasdfadsfasdfasdfasdfasdfasdfasdfasdfas" },
-    { tipid: 2, tipcategory: "earthquake", tipcontent: "cover" },
-    { tipid: 3, tipcategory: "earthquake", tipcontent: "hold" },
-    { tipid: 4, tipcategory: "typhoon", tipcontent: "hide" },
-    { tipid: 5, tipcategory: "fire", tipcontent: "run" }
+  // const [TipsList, setTipsList] = useState<tipDetails[]>([
+  //   { tipid: 1, tipcategory: "earthquake", tipcontent: "duck adsfasdf adsfasdf adfasdf adsfasdf adsfasdf asdfasdf adsfasdf adsfadsfa adsfasdf adsfasdfasdfasdfadsfasdfasdfasdfasdfasdfasdfasdfas" },
+  //   { tipid: 2, tipcategory: "earthquake", tipcontent: "cover" },
+  //   { tipid: 3, tipcategory: "earthquake", tipcontent: "hold" },
+  //   { tipid: 4, tipcategory: "typhoon", tipcontent: "hide" },
+  //   { tipid: 5, tipcategory: "fire", tipcontent: "run" }
+  // ])
+  const [TipsList, setTipsList] = useState<tipsType[]>([
+    
   ])
+
+  useEffect(()=>{
+    TipsService.getAllTips().then((response)=>{
+    console.log(response.data)
+    // setTipsList(response.data)
+  });},[])
 
   return (
     <div className='container' style={{ minHeight: "80vh", width: '80vw' }}>
