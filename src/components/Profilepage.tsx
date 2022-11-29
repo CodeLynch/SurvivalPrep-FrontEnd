@@ -1,6 +1,9 @@
-import { profile } from 'console';
+import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 import './containerStyles.css';
+
+
+
 
  function Profilepage(){
     const [images,setimages] = useState([]);
@@ -13,15 +16,15 @@ import './containerStyles.css';
                     <div className='d-flex'>
                         <img 
                         style={{ width: '120px' }}
-                        src=""
+                        src='profileIcon.png'
                         alt="Profile Picture"
                         className="rounded-circle"
                         /> 
                         <div className="flex-grow-1 ms-3">
                             <h2> Gelyn</h2>
                             <h6>Delete Profile</h6>
-                            <h6> Edit Profile</h6>
-                            <h6>Logout</h6>
+                            <h6><a href = '/EditProfilepage' style={{textDecoration:'none', color:'white'}}>Edit Profile</a> </h6>
+                            <h6 ><a href = '/LandingPage' style={{textDecoration:'none', color:'white'}}>Logout</a></h6>
                             </div>
                         </div>
                     </div>
