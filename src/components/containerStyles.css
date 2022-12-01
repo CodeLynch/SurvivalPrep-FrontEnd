@@ -28,3 +28,12 @@
   font-size: x-small;
 }
 
+.linkIconText {
+  text-decoration: none;
+  color: white;
+}
+.linkIconText :hover{
+  color: greenyellow;
+}
+
+

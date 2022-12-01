@@ -1,4 +1,4 @@
-import './containerStyles.css';
+import './containerStyles.css'
 import Button from 'react-bootstrap/Button';
 import ForumComp, { ForumType } from './ForumComponent';
 import { useState } from 'react';

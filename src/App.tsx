@@ -9,6 +9,7 @@ import Profilepage from './components/Profilepage';
 import EditProfilepage from './components/EditProfilepage';
 import TipsPage from './components/TipsPage';
 import ForumsPage from './components/ForumsPage';
+import Dashboard from './components/Dashboard';
 
 
 
@@ -20,7 +21,7 @@ export default function App() {
         <div className='App-container'>
           <NavBar />
               <Routes>
-                <Route path="/" element={<LandingPage/>}></Route>
+                <Route path="/" element={<Dashboard/>}></Route>
                 <Route path="/register" element={<Registration/>}></Route>
                 <Route path="/forums" element={<ForumsPage/>}></Route>
                 <Route path="/family" element={<FamilyPage/>}></Route>

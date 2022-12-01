@@ -1,9 +1,10 @@
 
-import './containerStyles.css';
+import '../componentStyles/containerStyles.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
-import './NavBar.css'
+import './componentSyles/containerStyles.css'
+
 
 
 export default function LandingPage() {
