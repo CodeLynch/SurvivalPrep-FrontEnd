@@ -10,7 +10,6 @@ function NavBar() {
 
   useEffect(()=>{
     setURL(loc.pathname);
-    console.log(currentURL);
   },[loc])
 
   return (
@@ -18,8 +17,7 @@ function NavBar() {
       <div className='flex-fill'>
         <Nav className='NavBar p-2 d-flex align-items-center' style={{height:"10vh", width:"100%"}}>
         <Nav.Item>
-          <NavLink className='navbar-brand'>
-            <Link to="/">
+            <Link className='navbar-brand' to="/">
           <img
               src="/BrandLogo.png"
               width="155"
@@ -28,33 +26,30 @@ function NavBar() {
               alt="SurvivalPrep logo"
             />
             </Link>
-          </NavLink>
         </Nav.Item>
         </Nav>
       </div>
        <div className='flex-fill'>
         <Nav className='NavBar justify-content-end d-flex align-items-center' style={{height:"10vh",width:"100%", color:"white"}}>
           <Nav.Item>
-            <Nav.Link eventKey=""><Link className={'linksColor' +  (currentURL === "/forums" ? " selected" : "")}  to="/forums">Forums</Link></Nav.Link>
+            <Link className={'mx-3 linksColor' +  (currentURL === "/forums" ? " selected" : "")}  to="/forums">Forums</Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="" ><Link className={'linksColor' +  (currentURL === "/family" ? " selected" : "")} to="/family">Family</Link></Nav.Link>
+            <Link className={'mx-3 linksColor' +  (currentURL === "/family" ? " selected" : "")} to="/family">Family</Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link className={'linksColor' +  (currentURL === "/news" ? " selected" : "")} eventKey="">News</Nav.Link>
+           <Link className={'mx-3 linksColor' +  (currentURL === "/#" ? " selected" : "")} to="#">News</Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link className={'linksColor' +  (currentURL === "/emergency" ? " selected" : "")}  eventKey="">Emergency</Nav.Link>
+            <Link className={'mx-3 linksColor' +  (currentURL === "/#" ? " selected" : "")} to="/#">Emergency</Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey=""><Link className={'linksColor' +  (currentURL === "/tips" ? " selected" : "")} to="/tips">Tips</Link></Nav.Link>
+            <Link className={'mx-3 linksColor' +  (currentURL === "/tips" ? " selected" : "")} to="/tips">Tips</Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="">
-              <Link className='linksColor' to="/profile">
+              <Link className='mx-3 linksColor' to="/profile">
                 <img className="imgFixedSize "src='profileIcon.png' alt="profile icon"></img>
               </Link>
-            </Nav.Link>
           </Nav.Item>
         </Nav>
         </div>

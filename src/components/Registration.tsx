@@ -63,7 +63,6 @@ function Registration() {
             <div className='px-3 py-3 MainContainer' style={{width:'50%', height:'auto', maxHeight:'80vh'}}>
                     <h1><strong>REGISTER</strong></h1>
                     <Form noValidate validated={validated} onChange={()=>{setValidated(false)}} onSubmit={handleSubmit}>
-                    
                     <Form.Group className="mt-2">
                       <Form.Control
                       required

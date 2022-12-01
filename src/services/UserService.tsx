@@ -23,6 +23,24 @@ class UserService{
             console.log(err);
         });
     }
+    Login(email:string, pass:string){
+        return axios.post("http://localhost:8080/user/postLogin",
+        {
+            email: email,
+            password: pass,
+        }).then((res)=>{
+            return res.data;
+        }).catch(err =>{
+            console.log(err);
+        });
+    }
+    getUserDetails(userid:number){
+        return axios.get(`http://localhost:8080/user/getUserById?id=${userid}`).then((res)=>{
+            return res.data;
+        }).catch(err =>{
+            console.log(err);
+        });
+    }
 }
 
 export default new UserService();
