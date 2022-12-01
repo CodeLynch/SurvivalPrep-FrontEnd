@@ -42,7 +42,7 @@ function Profilepage() {
                     </div>
                     
                     <div className="mt-3">
-                    <h2 className="m-0" ><strong>{firstname}&nbsp;{lastname}</strong></h2>
+                    <h2 className="m-0" ><strong>{firstname === undefined ? 'Gelyn' : firstname}&nbsp;{lastname}</strong></h2>
                     <p className="m-0" style={{color:'red'}}>Delete Profile</p>
                     <p className="m-0"><Link to='/editprofile' className="linksColor">Edit Profile</Link></p>
                     <p className="m-0"><Link to='/' className="linksColor"> Logout</Link></p>
