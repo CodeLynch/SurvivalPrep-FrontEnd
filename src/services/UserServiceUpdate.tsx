@@ -4,8 +4,13 @@ import axios from "axios";
 
 class UserServiceUpdate{
 
-    putUser(username: string){
+    putUser(username: string,password: string){
         return axios.put("http://localhost:8080/user/putUsername",
+        {
+            username: username,
+            password: password
+
+        }
         )
     }
 
