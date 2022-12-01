@@ -21,7 +21,7 @@ export default function App() {
         <div className='App-container'>
           <NavBar />
               <Routes>
-                <Route path="/" element={<Dashboard/>}></Route>
+                <Route path="/" element={<LandingPage/>}></Route>
                 <Route path="/register" element={<Registration/>}></Route>
                 <Route path="/forums" element={<ForumsPage/>}></Route>
                 <Route path="/family" element={<FamilyPage/>}></Route>
