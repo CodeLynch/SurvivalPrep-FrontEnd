@@ -124,7 +124,7 @@ function Registration() {
                       />
                     </Form.Group>
 
-                      <FormSelect className = 'mt-2' onChange={(e)=>{SelectHandler(e);}} isValid={selectValue > -1}>
+                      <FormSelect className = 'mt-2' onChange={(e)=>{SelectHandler(e);}} isValid={selectValue > 0}>
                       <option value={0}>Community</option>
                       {communitiesData.map((community,i) =>{
                         return <option value={i + 1} key={i}>{community.communityname}</option>

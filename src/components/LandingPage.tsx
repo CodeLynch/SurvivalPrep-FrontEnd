@@ -3,14 +3,15 @@ import './containerStyles.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Link, useNavigate } from 'react-router-dom';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import UserService from '../services/UserService';
-import { AcctContext } from '../contexts/AccountContext';
+import { useDispatch } from 'react-redux';
+import { loginReducer, userIdReducer } from '../features/LogInSlice';
 
 
 
 export default function LandingPage() {
-    const acctContext = useContext(AcctContext);
+    const dispatch = useDispatch()
     const [validated, setValidated] = useState(false);
     const [emailInput, setEmail] = useState('');
     const [passInput, setPass] = useState('');
@@ -21,7 +22,8 @@ export default function LandingPage() {
             if(res === "No User Found!" || res === "Incorrect Password!"){
               setAlert(res);
             }else{
-              acctContext?.updateUserId(Number(res));
+              dispatch(loginReducer());
+              dispatch(userIdReducer(Number(res)))
               nav('/');
             }
             

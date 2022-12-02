@@ -1,12 +1,17 @@
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
+import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
+import { RootState } from '../store';
+import { ProfileIcon } from './icons';
 import './NavBar.css';
 
 function NavBar() {
   const [currentURL, setURL] = useState('');
   const loc = useLocation();
+  const loginState = useSelector((store:RootState) => store.login.isLoggedIn)
+  
 
   useEffect(()=>{
     setURL(loc.pathname);
@@ -29,7 +34,9 @@ function NavBar() {
         </Nav.Item>
         </Nav>
       </div>
-       <div className='flex-fill'>
+      {
+        loginState?
+        <div className='flex-fill'>
         <Nav className='NavBar justify-content-end d-flex align-items-center' style={{height:"10vh",width:"100%", color:"white"}}>
           <Nav.Item>
             <Link className={'mx-3 linksColor' +  (currentURL === "/forums" ? " selected" : "")}  to="/forums">Forums</Link>
@@ -47,12 +54,15 @@ function NavBar() {
             <Link className={'mx-3 linksColor' +  (currentURL === "/tips" ? " selected" : "")} to="/tips">Tips</Link>
           </Nav.Item>
           <Nav.Item>
-              <Link className='mx-3 linksColor' to="/profile">
-                <img className="imgFixedSize "src='profileIcon.png' alt="profile icon"></img>
+              <Link className={'mx-3 linksColor' +  (currentURL === "/profile" ? " selected" : "")} to="/profile">
+                <ProfileIcon />
               </Link>
           </Nav.Item>
         </Nav>
         </div>
+        :
+        <></>
+      }
     </div>
   );
 }

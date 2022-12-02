@@ -2,6 +2,7 @@ import './containerStyles.css';
 import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { EmergencyIcon, FamilyIcon, ForumIcon, NewsIcon, TipsIcon } from './icons';
 
 export default function Dashboard(){
     return(
@@ -10,48 +11,28 @@ export default function Dashboard(){
         <div className='d-flex justify-content-center p-3'>
             <div className='d-flex flex-row'>
                 <Link to="/forums" className="linkIconText">
-                    <div>
-                        <img 
-                        src='mail-3-xxl.png'
-                        alt='forums'
-                        style={{height:"120px", width:"120px"}}
-                        className='mx-3 mt-2 mb-0'/>
+                    <div className='p-3 m-2 d-flex flex-column align-items-center'>
+                        <ForumIcon/>
                         <h3 className='text-center w-100'>FORUMS</h3>
                     </div>
                 </Link>
                 <Link to="/family" className="linkIconText">
-                    <div>
-                        <img 
-                        src='family-icon.png'
-                        alt='family'
-                        style={{height:"120px", width:"120px"}}
-                        className='mx-3 mt-2 mb-0'/>
+                    <div className='p-3 m-2 d-flex flex-column align-items-center'>
+                        <FamilyIcon/>
                         <h3 className='text-center w-100'>FAMILY</h3>
                     </div>
                 </Link>
-                <div>
-                    <img 
-                    src='newspaper-xxl.png'
-                    alt='news'
-                    style={{height:"120px", width:"120px"}}
-                    className='mx-3 mt-2 mb-0'/>
-                    <h3 className='text-center w-100'>FAMILY</h3>
+                <div className='p-3 m-2 d-flex flex-column align-items-center'>
+                    <NewsIcon/>
+                    <h3 className='text-center w-100'>NEWS</h3>
                 </div>
-                <div>
-                    <img 
-                    src='emergency-icon.png'
-                    alt='emergency'
-                    style={{height:"120px", width:"120px"}}
-                    className='mx-3 mt-2 mb-0'/>
+                <div className='p-3 m-2 d-flex flex-column align-items-center'>
+                    <EmergencyIcon/>
                     <h3 className='text-center w-100'>EMERGENCY</h3>
                 </div>
                 <Link to="/tips" className="linkIconText">
-                    <div>
-                        <img 
-                        src='idea-xxl.png'
-                        alt='tips'
-                        style={{height:"120px", width:"120px"}}
-                        className='mx-3 mt-2 mb-0'/>
+                    <div className='p-3 m-2 d-flex flex-column align-items-center'>
+                        <TipsIcon/>
                         <h3 className='text-center w-100'>TIPS</h3>
                     </div>
                 </Link>

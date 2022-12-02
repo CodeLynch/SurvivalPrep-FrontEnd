@@ -3,14 +3,18 @@ import { useContext, useEffect, useState } from "react";
 import "./containerStyles.css";
 import ProfilePost, { ProfilePostType } from "./ProfilePost";
 import './NavBar.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserService from "../services/UserService";
-import { AcctContext } from "../contexts/AccountContext";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../store";
+import { logoutReducer, userIdReducer } from "../features/LogInSlice";
 
 function Profilepage() {
-    const acctContext = useContext(AcctContext);
+    const dispatch = useDispatch()
+    const userIdState = useSelector((store:RootState) => store.login.userId)
     const [firstname, setFname] = useState('');
     const [lastname, setLname] = useState('');
+    const nav = useNavigate();
     
     const [PostArr, setPostArr] = useState<ProfilePostType[]>([
         {threadTitle: "Thread 1", post: "Hello, this is my first post", date:"11/29/2022", time:"9:00 AM"},
@@ -19,11 +23,17 @@ function Profilepage() {
       ])
 
       useEffect(() => {
-        UserService.getUserDetails(acctContext?.currentUserId!).then((res)=>{
+        UserService.getUserDetails(userIdState).then((res)=>{
             setFname(res.firstname);
             setLname(res.lastname);
         })
-      },[]);
+      },[userIdState]);
+
+      const logout = () => {
+        dispatch(logoutReducer());
+        dispatch(userIdReducer(0));
+        nav("/");
+      }
 
   return (
     <div className="container">
@@ -45,7 +55,7 @@ function Profilepage() {
                     <h2 className="m-0" ><strong>{firstname === undefined ? 'Gelyn' : firstname}&nbsp;{lastname}</strong></h2>
                     <p className="m-0" style={{color:'red'}}>Delete Profile</p>
                     <p className="m-0"><Link to='/editprofile' className="linksColor">Edit Profile</Link></p>
-                    <p className="m-0"><Link to='/' className="linksColor"> Logout</Link></p>
+                    <p className="m-0"><Link to="/" className="linksColor" onClick={logout}>Logout</Link></p>
                     </div>
                 </div>
             </div>

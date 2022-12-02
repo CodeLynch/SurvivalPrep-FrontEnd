@@ -10,19 +10,20 @@ import EditProfilepage from './components/EditProfilepage';
 import TipsPage from './components/TipsPage';
 import ForumsPage from './components/ForumsPage';
 import Dashboard from './components/Dashboard';
-import AcctProvider, { AcctContext } from './contexts/AccountContext';
-import { useContext } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from './store';
+
 
 
 
 export default function App() {
-    const acctcontext = useContext(AcctContext);
+    const loginState = useSelector((store:RootState) => store.login.isLoggedIn)
     return (
       <div className='App'>
         <div className='App-container'>
             <NavBar />
                 <Routes>
-                  <Route path="/" element={ acctcontext?.currentUserId === 0 ? <LandingPage/> : <Dashboard/>}></Route>
+                  <Route path="/" element={ loginState? <Dashboard/>:<LandingPage/>}></Route>
                   <Route path="/register" element={<Registration/>}></Route>
                   <Route path="/forums" element={<ForumsPage/>}></Route>
                   <Route path="/family" element={<FamilyPage/>}></Route>
