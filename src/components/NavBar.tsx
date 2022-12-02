@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { NavLink } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
+import UserService from '../services/UserService';
 import { RootState } from '../store';
 import { ProfileIcon } from './icons';
 import './NavBar.css';
@@ -11,11 +11,21 @@ function NavBar() {
   const [currentURL, setURL] = useState('');
   const loc = useLocation();
   const loginState = useSelector((store:RootState) => store.login.isLoggedIn)
+  const userIdState = useSelector((store:RootState) => store.login.userId)
+  const [firstname, setFName] = useState('');
+  const [lastname, setLName] = useState('');
   
 
   useEffect(()=>{
     setURL(loc.pathname);
   },[loc])
+
+  useEffect(() => {
+    UserService.getUserDetails(userIdState).then((res)=>{
+        setFName(res.firstname);
+        setLName(res.lastname);
+    })
+  },[userIdState]);
 
   return (
     <div className="d-flex flex-row" style={{color:"white", width:"100%"}}>
@@ -36,6 +46,18 @@ function NavBar() {
       </div>
       {
         loginState?
+        currentURL === "/"?
+        <div className='flex-fill'>
+          <Nav className='NavBar justify-content-end d-flex align-items-center' style={{height:"10vh",width:"100%", color:"white"}}>
+            <Nav.Item>
+              <Link className='mx-3 linksColor d-flex flex-row align-items-center' to="/profile">
+                  <p className='mt-3 mx-2'>{firstname}&nbsp;{lastname}</p>
+                  <ProfileIcon />
+              </Link>
+            </Nav.Item>
+          </Nav>
+        </div>
+        :
         <div className='flex-fill'>
         <Nav className='NavBar justify-content-end d-flex align-items-center' style={{height:"10vh",width:"100%", color:"white"}}>
           <Nav.Item>

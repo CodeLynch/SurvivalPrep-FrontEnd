@@ -1,13 +1,16 @@
 
 import './containerStyles.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import FamilyMember, { familyMemberType } from './FamilyMember';
 import { Button, Form, InputGroup } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 
 
 export default function FamilyPage() {
   //const [hasNoFamily, setNoFamily] = useState(false);
-  const [FamilyMembers, setFamily] = useState<familyMemberType[]>([
+  const [FamilyMembers, setFamily]= useState<familyMemberType[]>([
     {firstname: "John", lastname: "Doe", contactno: "0921123490", isCreator: true},
     {firstname: "Jane", lastname: "Doe", contactno: "0912127490", isCreator: false},
     {firstname: "Jackie", lastname: "Doe", contactno: "0922789491", isCreator: false},
@@ -15,8 +18,17 @@ export default function FamilyPage() {
     {firstname: "Jess", lastname: "Doe", contactno: "0921889492", isCreator: false},
     {firstname: "Jeff", lastname: "Doe", contactno: "0921889492", isCreator: false},
     {firstname: "Jaffar", lastname: "Doe", contactno: "0921889492", isCreator: false},
-    
   ])
+  const loginState = useSelector((store:RootState) => store.login.isLoggedIn)
+  const nav = useNavigate()
+
+  useEffect(()=>{
+    if(!loginState){
+      console.log(setFamily);  
+      nav('/');
+    }
+  },[loginState, nav]);
+
       return (
         <div className='container' style={{height:"auto", minHeight:"90vh"}}>
           <h1><strong>My Family</strong></h1>

@@ -1,29 +1,30 @@
-
 import './containerStyles.css';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Tips, { tipDetails } from './Tips';
+import Tips from './Tips';
 import { useEffect, useState } from 'react';
 import TipsService from '../services/TipsService';
+import { useNavigate } from 'react-router-dom';
+import { RootState } from '../store';
+import { useSelector } from 'react-redux';
 
 type tipsType = {tipid:number, tipcategory:string, tipcontent:string, isdeleted:boolean}
 
 export default function TipsPage() {
-  // const [TipsList, setTipsList] = useState<tipDetails[]>([
-  //   { tipid: 1, tipcategory: "earthquake", tipcontent: "duck adsfasdf adsfasdf adfasdf adsfasdf adsfasdf asdfasdf adsfasdf adsfadsfa adsfasdf adsfasdfasdfasdfadsfasdfasdfasdfasdfasdfasdfasdfas" },
-  //   { tipid: 2, tipcategory: "earthquake", tipcontent: "cover" },
-  //   { tipid: 3, tipcategory: "earthquake", tipcontent: "hold" },
-  //   { tipid: 4, tipcategory: "typhoon", tipcontent: "hide" },
-  //   { tipid: 5, tipcategory: "fire", tipcontent: "run" }
-  // ])
-  const [TipsList, setTipsList] = useState<tipsType[]>([
-    
+  const [TipsList, setTipsList] = useState<tipsType[]>([  
   ])
+  const loginState = useSelector((store:RootState) => (store.login.isLoggedIn))
+  const nav = useNavigate()
+
+  useEffect(()=>{
+    if(!loginState){
+      nav("/")
+    }
+  },[loginState, nav])
 
   useEffect(()=>{
     TipsService.getAllTips().then((response)=>{
     setTipsList(response.data)
   });},[])
+
 
   return (
     <div className='container' style={{ minHeight: "80vh", width: '80vw' }}>

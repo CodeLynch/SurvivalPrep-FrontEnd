@@ -1,6 +1,4 @@
 import './containerStyles.css';
-import Button from 'react-bootstrap/Button';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { EmergencyIcon, FamilyIcon, ForumIcon, NewsIcon, TipsIcon } from './icons';
 
@@ -8,7 +6,7 @@ export default function Dashboard(){
     return(
     <div className='container' style={{height:"auto", minHeight:"90vh"}}>
         <h1><strong>How can we help you?</strong></h1>
-        <div className='d-flex justify-content-center p-3'>
+        <div className='MainContainer d-flex justify-content-center p-3'>
             <div className='d-flex flex-row'>
                 <Link to="/forums" className="linkIconText">
                     <div className='p-3 m-2 d-flex flex-column align-items-center'>

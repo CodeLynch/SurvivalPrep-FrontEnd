@@ -1,4 +1,3 @@
-import { profile } from "console";
 import { useEffect, useState } from "react";
 import "./containerStyles.css";
 import ProfilePost, { ProfilePostType } from "./ProfilePost";
@@ -11,6 +10,7 @@ import { logoutReducer, userIdReducer } from "../features/LogInSlice";
 
 function Profilepage() {
     const dispatch = useDispatch()
+    const loginState = useSelector((store:RootState) => store.login.isLoggedIn)
     const userIdState = useSelector((store:RootState) => store.login.userId)
     const [firstname, setFname] = useState('');
     const [lastname, setLname] = useState('');
@@ -28,6 +28,13 @@ function Profilepage() {
             setLname(res.lastname);
         })
       },[userIdState]);
+
+      useEffect(()=>{
+        if(!loginState){
+            console.log(setPostArr)
+            nav('/');
+        }
+    },[loginState, nav]);
 
       const logout = () => {
         dispatch(logoutReducer());

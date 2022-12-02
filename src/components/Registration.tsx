@@ -38,7 +38,7 @@ function Registration() {
     event.preventDefault(); 
     let isValid = false;
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
+    if (form.checkValidity() === false || selectValue <= 0) {
         event.stopPropagation();
         isValid = false;
       }else{
@@ -60,10 +60,10 @@ function Registration() {
   return (
     <div className='container'>
         <div className="d-flex flex-row align-items-center justify-content-center p-2" style={{height:'auto'}}>
-            <div className='px-3 py-3 MainContainer' style={{width:'50%', height:'auto', maxHeight:'80vh'}}>
+            <div className='px-3 py-3 MainContainer' style={{width:'50%', height:'auto', maxHeight:'90vh'}}>
                     <h1><strong>REGISTER</strong></h1>
                     <Form noValidate validated={validated} onChange={()=>{setValidated(false)}} onSubmit={handleSubmit}>
-                    <Form.Group className="mt-2">
+                    <Form.Group className="mb-2">
                       <Form.Control
                       required
                       type="text"
@@ -73,7 +73,7 @@ function Registration() {
                       />
                     </Form.Group>
                     
-                    <Form.Group className="mt-2" >
+                    <Form.Group className="mb-2" >
                         <Form.Control
                         required
                         type="text"
@@ -83,7 +83,7 @@ function Registration() {
                         />
                     </Form.Group>
 
-                    <Form.Group className="mt-2" >
+                    <Form.Group className="mb-2" >
                       <Form.Control
                       required
                       type="text"
@@ -93,7 +93,7 @@ function Registration() {
                       />
                     </Form.Group>
 
-                    <Form.Group className="mt-2" >  
+                    <Form.Group className="mb-2" >  
                       <Form.Control
                       required
                       type="text"
@@ -104,7 +104,7 @@ function Registration() {
                       />
                     </Form.Group>
 
-                    <Form.Group className="mt-2" >  
+                    <Form.Group className="mb-2" >  
                       <Form.Control
                       required
                       type="password"
@@ -114,7 +114,7 @@ function Registration() {
                       />
                     </Form.Group>
                       
-                    <Form.Group className="mt-2">  
+                    <Form.Group className="mb-2">  
                       <Form.Control
                       required
                       type="text"
@@ -123,8 +123,8 @@ function Registration() {
                       onChange={(e)=>{setContact(e.target.value)}}
                       />
                     </Form.Group>
-
-                      <FormSelect className = 'mt-2' onChange={(e)=>{SelectHandler(e);}} isValid={selectValue > 0}>
+                      {validated && selectValue <= 0 ? <div className='alert alert-danger mb-0 mt-1'>Please select a community</div>:<></>}
+                      <FormSelect className = 'mb-2' onChange={(e)=>{SelectHandler(e);}} isValid={selectValue > 0}>
                       <option value={0}>Community</option>
                       {communitiesData.map((community,i) =>{
                         return <option value={i + 1} key={i}>{community.communityname}</option>
@@ -132,7 +132,7 @@ function Registration() {
                       </FormSelect>
                     
                       <div className="d-flex justify-content-end p-2">
-                      <Button variant="primary" className="mt-3" style={{width:'20vw'}} type="submit">REGISTER</Button>
+                      <Button variant="primary" className="mb-3" style={{width:'20vw'}} type="submit">REGISTER</Button>
                       </div>
 
                     </Form>

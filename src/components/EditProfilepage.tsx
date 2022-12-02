@@ -1,5 +1,5 @@
 import './containerStyles.css';
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Form } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 
@@ -7,17 +7,17 @@ import { Button } from 'react-bootstrap';
 
 
 function EditProfilePage(this: any){
-    const [userData,setUserData] = useState('')
     const[username,setUsername] = useState ('')
     const[currentpass,setCurrentpass] = useState('')
     const[newpassword,setNewpassword] = useState('')
     const [reenterpassword,setRenternewpassword] = useState('')
 
-    const ChangeUsername = () =>{
+    // const ChangeUsername = () =>{
 
-    }
+    // }
     const handleSubmit = (event:React.SyntheticEvent<HTMLFormElement>) => {
         event.preventDefault(); 
+        console.log(username, currentpass, newpassword, reenterpassword);
     }
   
     return(
