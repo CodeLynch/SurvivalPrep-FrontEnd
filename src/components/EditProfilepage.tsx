@@ -5,15 +5,21 @@ import { Button } from 'react-bootstrap';
 
 
 
+
 function EditProfilePage(this: any){
+    const [userData,setUserData] = useState('')
     const[username,setUsername] = useState ('')
     const[currentpass,setCurrentpass] = useState('')
     const[newpassword,setNewpassword] = useState('')
     const [reenterpassword,setRenternewpassword] = useState('')
-    
+
+    const ChangeUsername = () =>{
+
+    }
     const handleSubmit = (event:React.SyntheticEvent<HTMLFormElement>) => {
         event.preventDefault(); 
     }
+  
     return(
         <div className= "container p-5">
             <div className="d-flex flex-row align-items-center justify-content-center" style={{height:'90vh'}}>

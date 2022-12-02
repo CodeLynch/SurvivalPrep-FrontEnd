@@ -41,6 +41,12 @@ class UserService{
             console.log(err);
         });
     }
+    // ChangeUsername(username:string){
+    //     return axios.get(`http://localhost:8080/user/putUsername?id`).then((res)=>{
+    //         username: username
+    // })
+    // }
+   
 }
 
 export default new UserService();

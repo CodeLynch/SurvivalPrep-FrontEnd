@@ -1,5 +1,5 @@
 import { profile } from "console";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./containerStyles.css";
 import ProfilePost, { ProfilePostType } from "./ProfilePost";
 import './NavBar.css';
@@ -52,7 +52,7 @@ function Profilepage() {
                     </div>
                     
                     <div className="mt-3">
-                    <h2 className="m-0" ><strong>{firstname === undefined ? 'Gelyn' : firstname}&nbsp;{lastname}</strong></h2>
+                    <h2 className="m-0" ><strong>Gelyn</strong></h2>
                     <p className="m-0" style={{color:'red'}}>Delete Profile</p>
                     <p className="m-0"><Link to='/editprofile' className="linksColor">Edit Profile</Link></p>
                     <p className="m-0"><Link to="/" className="linksColor" onClick={logout}>Logout</Link></p>
@@ -68,7 +68,7 @@ function Profilepage() {
             {
                 PostArr.length !== 0 ?
                 PostArr.map((post, i) =>
-                <ProfilePost key={i} threadTitle={post.threadTitle} post={post.post} date={post.date} time={post.time}></ProfilePost> 
+                <ProfilePost threadTitle={post.threadTitle} post={post.post} date={post.date} time={post.time}></ProfilePost> 
                 )
                 :
                 <p className="text-center">This user has no posts!</p>
