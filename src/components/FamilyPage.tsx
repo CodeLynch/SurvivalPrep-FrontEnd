@@ -4,22 +4,21 @@ import { useEffect, useState } from 'react';
 import FamilyMember, { familyMemberType } from './FamilyMember';
 import { Button, Form, InputGroup } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
+import UserService from '../services/UserService';
+import FamilyService from '../services/FamilyService';
+import { familyIdReducer } from '../features/FamilySlice';
 
 
 export default function FamilyPage() {
-  //const [hasNoFamily, setNoFamily] = useState(false);
-  const [FamilyMembers, setFamily]= useState<familyMemberType[]>([
-    {firstname: "John", lastname: "Doe", contactno: "0921123490", isCreator: true},
-    {firstname: "Jane", lastname: "Doe", contactno: "0912127490", isCreator: false},
-    {firstname: "Jackie", lastname: "Doe", contactno: "0922789491", isCreator: false},
-    {firstname: "Jack", lastname: "Doe", contactno: "0921889492", isCreator: false},
-    {firstname: "Jess", lastname: "Doe", contactno: "0921889492", isCreator: false},
-    {firstname: "Jeff", lastname: "Doe", contactno: "0921889492", isCreator: false},
-    {firstname: "Jaffar", lastname: "Doe", contactno: "0921889492", isCreator: false},
-  ])
+  const dispatch = useDispatch()
+  const [hasNoFamily, setNoFamily] = useState(false);
+  const [FamilyMembers, setFamily]= useState<familyMemberType[]>([])
   const loginState = useSelector((store:RootState) => store.login.isLoggedIn)
+  const userIdState = useSelector((store:RootState) => store.login.userId)
+  const familyIdState = useSelector((store:RootState) => store.family.familyId)
+  const [familyCreator, setCreator] = useState(0);
   const nav = useNavigate()
 
   useEffect(()=>{
@@ -29,13 +28,47 @@ export default function FamilyPage() {
     }
   },[loginState, nav]);
 
+  useEffect(() => {
+    UserService.getUserDetails(userIdState).then((res)=>{
+      if(res.family !== null){
+        if(res.family.creator.userid === undefined){
+          setCreator(res.family.creator);
+        }else{
+
+          setCreator(res.family.creator.userid);
+        }
+        dispatch(familyIdReducer(res.family.familyid));
+      }
+      else{
+        setNoFamily(true);
+      }
+    })
+  },[userIdState]);
+
+  useEffect(()=>{
+    UserService.getFamilyMembers(familyIdState).then((res)=>{
+      let arr = [...res];
+      arr.map((member, i) =>{
+        if(member.userid === familyCreator){
+          arr[i] = {
+            "firstname": arr[i].firstname,
+            "lastname": arr[i].lastname,
+            "contactno": arr[i].contactno,
+            "isCreator": true
+          }
+        }
+      })
+      setFamily(arr);
+   })
+  },[familyCreator, familyIdState]);
+
       return (
         <div className='container' style={{height:"auto", minHeight:"90vh"}}>
           <h1><strong>My Family</strong></h1>
           <div className="MainContainer p-3 " style={{minHeight:"75vh", width:"100%", height:'auto'}}>
             {
               //change display depending if user has family members
-              FamilyMembers.length === 0?  
+              hasNoFamily ?  
               <div className='d-flex justify-content-center'>
                 <div className="d-flex flex-column align-items-center">
                   <h5>You're currently not a part of any family</h5>
