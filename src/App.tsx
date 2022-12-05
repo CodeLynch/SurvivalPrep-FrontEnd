@@ -12,6 +12,11 @@ import ForumsPage from './components/ForumsPage';
 import Dashboard from './components/Dashboard';
 import { useSelector } from 'react-redux';
 import { RootState } from './store';
+import NewsPage from './components/NewsPage';
+import EmergencyPage from './components/EmergencyPage';
+import ErrorPage from './components/ErrorPage';
+import CreateFamilyModal from './components/createFamilyModal';
+import JoinFamilyModal from './components/joinFamilyModal';
 
 
 
@@ -22,15 +27,28 @@ export default function App() {
       <div className='App'>
         <div className='App-container'>
             <NavBar />
-                <Routes>
-                  <Route path="/" element={ loginState? <Dashboard/>:<LandingPage/>}></Route>
+              {loginState?
+              <Routes>
+                  <Route path="/" element={<Dashboard/>}></Route>
                   <Route path="/register" element={<Registration/>}></Route>
                   <Route path="/forums" element={<ForumsPage/>}></Route>
-                  <Route path="/family" element={<FamilyPage/>}></Route>
+                  <Route path="/family" element={<FamilyPage/>}>
+                    <Route path="createFamily" element={<CreateFamilyModal/>}></Route>
+                    <Route path="joinFamily" element={<JoinFamilyModal/>}></Route>
+                  </Route>
+                  <Route path="/news" element ={<NewsPage/>}></Route>
+                  <Route path="/emergency" element ={<EmergencyPage/>}></Route>
                   <Route path="/tips" element={<TipsPage/>}></Route>
                   <Route path="/profile" element={<Profilepage/>}></Route>
                   <Route path="/editprofile" element ={<EditProfilepage/>}></Route>
-                </Routes>
+                  <Route path="*" element ={<ErrorPage/>}></Route>
+                </Routes>:
+                <Routes>
+                  <Route path="/" element={<LandingPage/>}></Route>
+                  <Route path="/register" element={<Registration/>}></Route>
+                  <Route path="*" element ={<ErrorPage/>}></Route>
+                </Routes>}
+                
         </div>
       </div>
     );

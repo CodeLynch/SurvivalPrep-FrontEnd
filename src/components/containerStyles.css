@@ -19,6 +19,13 @@
     box-shadow: 1px 1px 5px rgba(1, 2, 3, 0.30);
   }
 
+.popupContainer {
+  display: inline-block;
+    border-radius: 25px;
+    background: rgba(7,53,0,.83);  
+    box-shadow: 1px 1px 5px rgba(1, 2, 3, 0.30);
+  color: white;
+}
 .imgFixedSize {
   height: 40px;
   width: 40px;

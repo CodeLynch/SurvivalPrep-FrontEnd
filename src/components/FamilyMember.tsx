@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './containerStyles.css';
 
 export type familyMemberType = {
@@ -22,7 +23,7 @@ export default function FamilyMember(props: familyMemberType) {
             <p className="m-0 contentText">{props.isCreator ? 'Creator' : 'Member' }</p>
           </div>
           <div className='d-flex p-3 flex-column align-items-start'>
-            <p className="contentText">Remove</p>
+            <Link to="#" className="linksColor"><p className="contentText">Remove</p></Link>
           </div>
         </div>
       </div>

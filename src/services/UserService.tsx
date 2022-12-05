@@ -48,6 +48,19 @@ class UserService{
             console.log(err);
         });       
     }
+    putFamily(userId:number, familyId:number){
+        return axios.put(`http://localhost:8080/user/putFamily?id=${userId}`,
+        {
+            family:{
+                familyid: familyId
+            }
+        }).then((res)=>{
+            return res.data;
+        }).catch(err =>{
+            console.log(err);
+        });
+    }
+
     // ChangeUsername(username:string){
     //     return axios.get(`http://localhost:8080/user/putUsername?id`).then((res)=>{
     //         username: username

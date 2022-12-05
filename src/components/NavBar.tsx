@@ -67,10 +67,10 @@ function NavBar() {
             <Link className={'mx-3 linksColor' +  (currentURL === "/family" ? " selected" : "")} to="/family">Family</Link>
           </Nav.Item>
           <Nav.Item>
-           <Link className={'mx-3 linksColor' +  (currentURL === "/#" ? " selected" : "")} to="#">News</Link>
+           <Link className={'mx-3 linksColor' +  (currentURL === "/#" ? " selected" : "")} to="/news">News</Link>
           </Nav.Item>
           <Nav.Item>
-            <Link className={'mx-3 linksColor' +  (currentURL === "/#" ? " selected" : "")} to="/#">Emergency</Link>
+            <Link className={'mx-3 linksColor' +  (currentURL === "/#" ? " selected" : "")} to="/emergency">Emergency</Link>
           </Nav.Item>
           <Nav.Item>
             <Link className={'mx-3 linksColor' +  (currentURL === "/tips" ? " selected" : "")} to="/tips">Tips</Link>

@@ -20,14 +20,18 @@ export default function Dashboard(){
                         <h3 className='text-center w-100'>FAMILY</h3>
                     </div>
                 </Link>
-                <div className='p-3 m-2 d-flex flex-column align-items-center'>
-                    <NewsIcon/>
-                    <h3 className='text-center w-100'>NEWS</h3>
-                </div>
-                <div className='p-3 m-2 d-flex flex-column align-items-center'>
-                    <EmergencyIcon/>
-                    <h3 className='text-center w-100'>EMERGENCY</h3>
-                </div>
+                <Link to="/news" className="linkIconText">
+                    <div className='p-3 m-2 d-flex flex-column align-items-center'>
+                        <NewsIcon/>
+                        <h3 className='text-center w-100'>NEWS</h3>
+                    </div>
+                </Link>
+                <Link to="/emergency" className="linkIconText">
+                    <div className='p-3 m-2 d-flex flex-column align-items-center'>
+                        <EmergencyIcon/>
+                        <h3 className='text-center w-100'>EMERGENCY</h3>
+                    </div>
+                </Link>
                 <Link to="/tips" className="linkIconText">
                     <div className='p-3 m-2 d-flex flex-column align-items-center'>
                         <TipsIcon/>
