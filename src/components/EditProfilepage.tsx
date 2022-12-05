@@ -2,8 +2,7 @@ import './containerStyles.css';
 import React, { useState } from "react";
 import { Form } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
-
-
+import UserServiceUpdate from '../services/UserServiceUpdate';
 
 
 function EditProfilePage(this: any){
@@ -12,12 +11,16 @@ function EditProfilePage(this: any){
     const[newpassword,setNewpassword] = useState('')
     const [reenterpassword,setRenternewpassword] = useState('')
 
-    // const ChangeUsername = () =>{
+    const UserUpdate = () => {
+        UserServiceUpdate.putUsername (username,userId).then((res) =>{
+            res.data;
+        });
+    }
 
-    // }
+
     const handleSubmit = (event:React.SyntheticEvent<HTMLFormElement>) => {
         event.preventDefault(); 
-        console.log(username, currentpass, newpassword, reenterpassword);
+        // console.log(username, currentpass, newpassword, reenterpassword);
     }
   
     return(
@@ -46,7 +49,7 @@ function EditProfilePage(this: any){
                     onChange={(e) => setUsername(e.target.value)}
                     />
                     <div className="d-flex justify-content-end m-2">
-                        <Button> confirm</Button>
+                        <Button type = "submit"> confirm</Button>
                         </div>
                         <h6> Change Password</h6>
                         <Form.Control
