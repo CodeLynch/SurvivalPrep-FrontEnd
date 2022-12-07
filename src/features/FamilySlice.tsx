@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     familyId: 0,
+    creatorId: 0,
     showCreateFamilyModal: false,
     showAddFamilyMemberModal: false,
     showJoinFamilyModal: false,
@@ -14,6 +15,10 @@ const FamilySlice = createSlice({
         familyIdReducer: (state, action) =>{
             const id = action.payload
             state.familyId = id;
+        },
+        creatorIdReducer: (state, action) =>{
+            const id = action.payload
+            state.creatorId = id;
         },
         toggleCreateFamily: (state) => {
             state.showCreateFamilyModal = !state.showCreateFamilyModal;
@@ -28,4 +33,4 @@ const FamilySlice = createSlice({
 });
 
 export default FamilySlice.reducer
-export const { familyIdReducer, toggleAddFamilyMember, toggleCreateFamily, toggleJoinFamily } = FamilySlice.actions;
+export const { familyIdReducer, creatorIdReducer, toggleAddFamilyMember, toggleCreateFamily, toggleJoinFamily } = FamilySlice.actions;
