@@ -60,12 +60,15 @@ class UserService{
             console.log(err);
         });
     }
+    getPost(userId:number){
+        return axios.get(`http://localhost:8080/post/getAllPostsByUser?id=${userId}`).then((res) =>{
+            return res.data;
+        }).catch(err =>{
+            console.log(err);
+        })
+    }
 
-    // ChangeUsername(username:string){
-    //     return axios.get(`http://localhost:8080/user/putUsername?id`).then((res)=>{
-    //         username: username
-    // })
-    // }
+   
    
 }
 
