@@ -1,13 +1,18 @@
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { RootState } from '../store';
 import './containerStyles.css';
 
 export type familyMemberType = {
+    userid: number,
     firstname: string,
     lastname: string,
     contactno: string,
     isCreator: boolean
 }
 export default function FamilyMember(props: familyMemberType) {
+  const userIdState = useSelector((store:RootState) => store.login.userId)
+  const creatorIdState = useSelector((store:RootState) => store.family.creatorId)
   return (
     <div>
       <div className="SecondaryContainer m-1">
@@ -23,7 +28,16 @@ export default function FamilyMember(props: familyMemberType) {
             <p className="m-0 contentText">{props.isCreator ? 'Creator' : 'Member' }</p>
           </div>
           <div className='d-flex p-3 flex-column align-items-start'>
-            <Link to="#" className="linksColor"><p className="contentText">Remove</p></Link>
+            {
+              userIdState === creatorIdState?
+              <Link to="#" className="linksColor"><p className="contentText">Remove</p></Link>
+              :
+              userIdState === props.userid?
+              <Link to="#" className="linksColor"><p className="contentText">Remove</p></Link>
+              :
+              <></>
+            }
+            
           </div>
         </div>
       </div>

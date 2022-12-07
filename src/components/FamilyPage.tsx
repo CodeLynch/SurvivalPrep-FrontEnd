@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
 import UserService from '../services/UserService';
 import FamilyService from '../services/FamilyService';
-import { familyIdReducer, toggleCreateFamily, toggleJoinFamily } from '../features/FamilySlice';
+import { creatorIdReducer, familyIdReducer, toggleCreateFamily, toggleJoinFamily } from '../features/FamilySlice';
 import { CopyIcon, PlusIcon } from './icons';
 
 
@@ -38,8 +38,10 @@ export default function FamilyPage() {
         setNoFamily(false);
         setFamilyName(res.family.familyname);
         if(res.family.creator.userid === undefined){
+          dispatch(creatorIdReducer(res.family.creator));
           setCreator(res.family.creator);
         }else{
+          dispatch(creatorIdReducer(res.family.creator.userid));
           setCreator(res.family.creator.userid);
         }
         dispatch(familyIdReducer(res.family.familyid));
@@ -55,21 +57,24 @@ export default function FamilyPage() {
       let arr = [...res];
       arr.map((member, i) =>{
         if(member.userid === familyCreator){
-          arr[i] = {
+          return arr[i] = {
+            "userid": arr[i].userid,
             "firstname": arr[i].firstname,
             "lastname": arr[i].lastname,
             "contactno": arr[i].contactno,
             "isCreator": true
-          }
+          };
         }
         else if(member === familyCreator){
-          arr[i] = {
+          return arr[i] = {
+            "userid": arr[0].family.creator.userid,
             "firstname": arr[0].family.creator.firstname,
             "lastname": arr[0].family.creator.lastname,
             "contactno": arr[0].family.creator.contactno,
             "isCreator": true
-          }
+          };
         }
+        return null;
       })
       setFamily(arr);
    })
@@ -144,11 +149,13 @@ export default function FamilyPage() {
                   <div className='row d-flex flex-wrap' style={{height:"auto", maxHeight:'100%', width:"100%"}}>
                     {FamilyMembers.map((member, i) => 
                       <div className="col-auto" key={i}>
-                      <FamilyMember firstname={member.firstname} 
+                      <FamilyMember userid={member.userid}
+                                    firstname={member.firstname} 
                                     lastname={member.lastname} 
                                     contactno={member.contactno} 
-                                    isCreator={member.isCreator}  
-                                    key={i}/>
+                                    isCreator={member.isCreator} 
+                                    key={i}
+                                    />
                       </div>   
                     )
                     }
