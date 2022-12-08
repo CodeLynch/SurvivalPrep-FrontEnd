@@ -7,6 +7,7 @@ import UserService from "../services/UserService";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
 import { logoutReducer, userIdReducer } from "../features/LogInSlice";
+import { familyIdReducer } from "../features/FamilySlice";
 
 function Profilepage() {
     const dispatch = useDispatch()
@@ -39,6 +40,7 @@ function Profilepage() {
       const logout = () => {
         dispatch(logoutReducer());
         dispatch(userIdReducer(0));
+        dispatch(familyIdReducer(0));
         nav("/");
       }
 

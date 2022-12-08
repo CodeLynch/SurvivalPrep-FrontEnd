@@ -3,9 +3,21 @@ import { Link } from 'react-router-dom';
 import { EmergencyIcon, FamilyIcon, ForumIcon, NewsIcon, TipsIcon } from './icons';
 import { useState } from 'react';
 import MemberInvite, { inviteMemberType } from './MemberInvite';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 
 export default function Dashboard(){
-    const [invitesList, setInvites] = useState<inviteMemberType[]>([]);
+    const [invitesList, setInvites] = useState<inviteMemberType[]>([
+        { inviteid: 1, inviteeFirstname: "Jane", inviteeLastname: "Doe", familyName: "Doe Family", datetime:"2022-12-07T09:46:29" },
+        { inviteid: 2, inviteeFirstname: "John", inviteeLastname: "Doe", familyName: "Doe Family", datetime:"2022-12-08T09:46:29" },
+        { inviteid: 1, inviteeFirstname: "Jane", inviteeLastname: "Doe", familyName: "Doe Family", datetime:"2022-12-07T09:46:29" },
+        { inviteid: 2, inviteeFirstname: "John", inviteeLastname: "Doe", familyName: "Doe Family", datetime:"2022-12-08T09:46:29" },
+        { inviteid: 1, inviteeFirstname: "Jane", inviteeLastname: "Doe", familyName: "Doe Family", datetime:"2022-12-07T09:46:29" },
+        { inviteid: 2, inviteeFirstname: "John", inviteeLastname: "Doe", familyName: "Doe Family", datetime:"2022-12-08T09:46:29" },
+        { inviteid: 1, inviteeFirstname: "Jane", inviteeLastname: "Doe", familyName: "Doe Family", datetime:"2022-12-07T09:46:29" },
+        { inviteid: 2, inviteeFirstname: "John", inviteeLastname: "Doe", familyName: "Doe Family", datetime:"2022-12-08T09:46:29" }
+    ]);
+    const familyIdState = useSelector((store:RootState) => store.family.familyId)
 
     return(
     <>
@@ -45,19 +57,30 @@ export default function Dashboard(){
                     </Link>
                 </div>
             </div>
-            <div
-            style={{ height: "5vh" }}
-            >
-                <h1><strong>Invites</strong></h1>
+            <div>
                 {
-                    invitesList.length !== 0 ?
-                    invitesList.map((invite, i) =>
-                    <MemberInvite inviteid={invite.inviteid} inviteeFirstname={invite.inviteeFirstname} inviteeLastname={invite.inviteeLastname}
-                    familyName ={invite.familyName} datetime={invite.datetime} key={i}/>
-                    )
+                    familyIdState === 0?
+                    <>
+                    <h1><strong>Family Invites</strong></h1>
+                    <div className='row d-flex flex-wrap w-100' style={{height:"auto", maxHeight:'100%'}}>
+                        {
+                        invitesList.length !== 0 ?
+                        invitesList.map((invite, i) =>
+                        <div className="col-auto" key={i}>
+                        <MemberInvite inviteid={invite.inviteid} inviteeFirstname={invite.inviteeFirstname} inviteeLastname={invite.inviteeLastname}
+                        familyName ={invite.familyName} datetime={invite.datetime} key={i}/>
+                        </div>
+                        )
+                        :
+                        <p className="text-center">you have no family invites!</p>
+                        } 
+                    </div>
+                    </>
                     :
-                    <p className="text-center">you have no family invites!</p>
+                    <></>
                 }
+                
+                
              </div>
         </div>
     </>

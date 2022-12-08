@@ -11,11 +11,11 @@ function EditProfilePage(this: any){
     const[newpassword,setNewpassword] = useState('')
     const [reenterpassword,setRenternewpassword] = useState('')
 
-    const UserUpdate = () => {
-        UserServiceUpdate.putUsername (username,userId).then((res) =>{
-            res.data;
-        });
-    }
+    // const UserUpdate = () => {
+    //     UserServiceUpdate.putUsername (username,userId).then((res) =>{
+    //         res.data;
+    //     });
+    // }
 
 
     const handleSubmit = (event:React.SyntheticEvent<HTMLFormElement>) => {
