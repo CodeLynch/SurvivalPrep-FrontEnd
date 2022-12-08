@@ -18,9 +18,9 @@ function Profilepage() {
     const nav = useNavigate();
     
     const [PostArr, setPostArr] = useState<ProfilePostType[]>([
-        {threadTitle: "Thread 1", post: "Hello, this is my first post", date:"11/29/2022", time:"9:00 AM"},
-        {threadTitle: "Thread 2", post: "Hi, this is another post", date:"11/29/2022", time:"9:15 AM"},
-        {threadTitle: "Thread 3", post: "Hey, it's me Angelyn Rabe", date:"11/30/2022", time:"12:01 AM"},
+        // {threadTitle: "Thread 1", post: "Hello, this is my first post", date:"11/29/2022", time:"9:00 AM"},
+        // {threadTitle: "Thread 2", post: "Hi, this is another post", date:"11/29/2022", time:"9:15 AM"},
+        // {threadTitle: "Thread 3", post: "Hey, it's me Angelyn Rabe", date:"11/30/2022", time:"12:01 AM"},
       ])
 
       useEffect(() => {
@@ -43,6 +43,12 @@ function Profilepage() {
         dispatch(familyIdReducer(0));
         nav("/");
       }
+
+    useEffect(()=>{
+        UserService.getPost(userIdState).then((response)=>{
+        setPostArr(response)
+        console.log(response);
+      });},[])
 
   return (
     <div className="container">
@@ -77,7 +83,7 @@ function Profilepage() {
             {
                 PostArr.length !== 0 ?
                 PostArr.map((post, i) =>
-                <ProfilePost threadTitle={post.threadTitle} post={post.post} date={post.date} time={post.time}></ProfilePost> 
+                <ProfilePost key={i} threadTitle={post.threadTitle} post={post.post} date={post.date} time={post.time}></ProfilePost> 
                 )
                 :
                 <p className="text-center">This user has no posts!</p>

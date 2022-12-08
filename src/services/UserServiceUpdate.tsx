@@ -4,13 +4,17 @@ import axios from "axios";
 
 class UserServiceUpdate{
 
-    // putUsername(inputUsername: string,userId:number){
-    //     return axios.put(`http://localhost:8080/user/putUsername?=${userId}`,
-    //     username: i
-    //     {
+    putUsername(username: string,userId:number){
+        return axios.put(`http://localhost:8080/user/putUsername?==${userId}`,
+        {
+            username:username
             
-    //     })
-    // }
+        }).then((res)=>{
+            return res.data;
+        }).catch(err =>{
+            console.log(err);
+        });
+    }
 
 }
 

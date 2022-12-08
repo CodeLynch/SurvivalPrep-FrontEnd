@@ -1,8 +1,9 @@
 import './containerStyles.css';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import UserServiceUpdate from '../services/UserServiceUpdate';
+import UserService from '../services/UserService';
 
 
 function EditProfilePage(this: any){
@@ -11,12 +12,24 @@ function EditProfilePage(this: any){
     const[newpassword,setNewpassword] = useState('')
     const [reenterpassword,setRenternewpassword] = useState('')
 
+
+    // useEffect(() => {
+    //     UserService.getUserDetails(userId).then((res)=>{
+    //     })
+    // })
     // const UserUpdate = () => {
-    //     UserServiceUpdate.putUsername (username,userId).then((res) =>{
+    //     UserServiceUpdate.putUsername(username,userId).then((res) =>{
     //         res.data;
     //     });
     // }
 
+    //     })
+    // })
+    // const UserUpdate = () => {
+    //     UserServiceUpdate.putUsername(username,userId).then((res) =>{
+    //         res.data;
+    //     });
+    // }
 
     const handleSubmit = (event:React.SyntheticEvent<HTMLFormElement>) => {
         event.preventDefault(); 
