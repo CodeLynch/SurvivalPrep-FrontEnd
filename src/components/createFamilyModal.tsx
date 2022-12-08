@@ -18,19 +18,22 @@ function CreateFamilyModal() {
     const nav = useNavigate();
 
     const createFamily = () => {
-        FamilyService.postFamily(familyName, userIdState).then((res) => {
-            UserService.putFamily(userIdState, res.familyid).then((resp) => {
-                dispatch(familyIdReducer(res.familyid));
-                dispatch(toggleCreateFamily());
-                nav("/family");
-            });
-        })
+        if(familyName !== ""){
+            FamilyService.postFamily(familyName, userIdState).then((res) => {
+                UserService.putFamily(userIdState, res.familyid).then((resp) => {
+                    dispatch(familyIdReducer(res.familyid));
+                    dispatch(toggleCreateFamily());
+                    nav("/family");
+                });
+            })
+        }
+        
     }
 
   return (
     <div className="container">
             <Modal show={showState} dialogClassName="modal-dialog modal-dialog-centered" contentClassName="popupContainer" onHide={()=>{dispatch(toggleCreateFamily())}}>
-            <Modal.Header closeButton className="border-0">
+            <Modal.Header className="border-0">
             <Modal.Title>Create a Family?</Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -49,7 +52,12 @@ function CreateFamilyModal() {
             <Button variant="secondary" onClick={()=>{dispatch(toggleCreateFamily())}}>
                 Close
             </Button>
-            <Button variant="primary" onClick={()=>{createFamily()}}>
+            <Button variant="primary" onClick={()=>{
+                if(familyName !== ""){createFamily()}
+                else{
+                    alert("Please input a Family Name");
+                }
+                }}>
                 Create Family
             </Button>
             </Modal.Footer>

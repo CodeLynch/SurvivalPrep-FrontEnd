@@ -20,6 +20,7 @@ class UserService{
                 return res.data;
             }
         }).catch(err =>{
+            alert(err.message);
             console.log(err);
         });
     }
@@ -31,13 +32,23 @@ class UserService{
         }).then((res)=>{
             return res.data;
         }).catch(err =>{
+            alert(err.message);
             console.log(err);
         });
     }
-    getUserDetails(userid:number){
-        return axios.get(`http://localhost:8080/user/getUserById?id=${userid}`).then((res)=>{
+    async getUserDetails(userid:number){
+        try {
+            const res = await axios.get(`http://localhost:8080/user/getUserById?id=${userid}`);
+            return res.data;
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    getUserDetailsByContactNo(contactNo:string){
+        return axios.get(`http://localhost:8080/user/getUserByNum?contactNo=${contactNo}`).then((res)=>{
             return res.data;
         }).catch(err =>{
+            alert(err.message);
             console.log(err);
         });
     }
@@ -45,6 +56,7 @@ class UserService{
         return axios.get(`http://localhost:8080/user/getFamilyMembers?familyid=${familyid}`).then((res)=>{
             return res.data;
         }).catch(err =>{
+            alert(err.message);
             console.log(err);
         });       
     }
@@ -57,6 +69,7 @@ class UserService{
         }).then((res)=>{
             return res.data;
         }).catch(err =>{
+            alert(err.message);
             console.log(err);
         });
     }
@@ -64,6 +77,7 @@ class UserService{
         return axios.get(`http://localhost:8080/post/getAllPostsByUser?id=${userId}`).then((res) =>{
             return res.data;
         }).catch(err =>{
+            alert(err.message);
             console.log(err);
         })
     }

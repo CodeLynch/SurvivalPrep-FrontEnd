@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
 import UserService from '../services/UserService';
 import FamilyService from '../services/FamilyService';
-import { creatorIdReducer, familyIdReducer, toggleCreateFamily, toggleJoinFamily } from '../features/FamilySlice';
+import { creatorIdReducer, familyIdReducer, toggleAddFamilyMember, toggleCreateFamily, toggleJoinFamily } from '../features/FamilySlice';
 import { CopyIcon, PlusIcon } from './icons';
 
 
@@ -140,7 +140,8 @@ export default function FamilyPage() {
                       <p className='m-0' style={{fontSize:"8px"}}>Copy Invite Link</p>
                     </Link>
                 </div>
-                  <Link to="#" className='linksColor d-flex flex-row align-items-end'>
+                  <Link to="addMember" className='linksColor d-flex flex-row align-items-end'
+                  onClick={()=>{dispatch(toggleAddFamilyMember())}}>
                     <PlusIcon/>
                     <p className='m-0' style={{fontSize:"14px"}}>Add Family Member</p>
                   </Link>

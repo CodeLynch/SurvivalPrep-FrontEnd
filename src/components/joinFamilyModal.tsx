@@ -43,7 +43,7 @@ function JoinFamilyModal() {
   return (
     <div className="container">
             <Modal show={showState} dialogClassName="modal-dialog modal-dialog-centered" contentClassName="popupContainer" onHide={()=>{dispatch(toggleCreateFamily())}}>
-            <Modal.Header closeButton className="border-0">
+            <Modal.Header className="border-0">
             <Modal.Title>Join Family?</Modal.Title>
             </Modal.Header>
             <Modal.Body>

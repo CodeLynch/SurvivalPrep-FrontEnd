@@ -1,23 +1,75 @@
 import './containerStyles.css';
 import { Link } from 'react-router-dom';
 import { EmergencyIcon, FamilyIcon, ForumIcon, NewsIcon, TipsIcon } from './icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import MemberInvite, { inviteMemberType } from './MemberInvite';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store';
+import UserService from '../services/UserService';
+import { familyIdReducer } from '../features/FamilySlice';
+import InviteService from '../services/InviteService';
 
 export default function Dashboard(){
     const [invitesList, setInvites] = useState<inviteMemberType[]>([
-        { inviteid: 1, inviteeFirstname: "Jane", inviteeLastname: "Doe", familyName: "Doe Family", datetime:"2022-12-07T09:46:29" },
-        { inviteid: 2, inviteeFirstname: "John", inviteeLastname: "Doe", familyName: "Doe Family", datetime:"2022-12-08T09:46:29" },
-        { inviteid: 1, inviteeFirstname: "Jane", inviteeLastname: "Doe", familyName: "Doe Family", datetime:"2022-12-07T09:46:29" },
-        { inviteid: 2, inviteeFirstname: "John", inviteeLastname: "Doe", familyName: "Doe Family", datetime:"2022-12-08T09:46:29" },
-        { inviteid: 1, inviteeFirstname: "Jane", inviteeLastname: "Doe", familyName: "Doe Family", datetime:"2022-12-07T09:46:29" },
-        { inviteid: 2, inviteeFirstname: "John", inviteeLastname: "Doe", familyName: "Doe Family", datetime:"2022-12-08T09:46:29" },
-        { inviteid: 1, inviteeFirstname: "Jane", inviteeLastname: "Doe", familyName: "Doe Family", datetime:"2022-12-07T09:46:29" },
-        { inviteid: 2, inviteeFirstname: "John", inviteeLastname: "Doe", familyName: "Doe Family", datetime:"2022-12-08T09:46:29" }
+        // { inviteid: 1, inviteeFirstname: "Jane", inviteeLastname: "Doe", familyName: "Doe Family", datetime:"2022-12-07T09:46:29" },
     ]);
     const familyIdState = useSelector((store:RootState) => store.family.familyId)
+    const userIdState = useSelector((store:RootState) => store.login.userId)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        InviteService.getInvites(userIdState).then((res)=>{
+
+            let arr = [...res];
+            const promiseArr = arr.map((item, i) =>{
+                let fname ='';
+                let lname ='';
+                if(item.inviter.firstname === undefined){
+                    return(
+                    UserService.getUserDetails(item.inviter).then((res)=>{
+                        fname = res.firstname;
+                        lname = res.lastname;
+                        arr[i] = ({
+                            inviteid: item.inviteid,
+                            inviterFirstname:fname,
+                            inviterLastname:lname,
+                            familyName:item.family.familyname,
+                            datetime:item.datetimeinvited
+                        }
+                        )
+                    }))
+                }else{
+                    return(
+                        UserService.getUserDetails(item.inviter.userid).then((res)=>{
+                            fname = res.firstname;
+                            lname = res.lastname;
+                            arr[i] = ({
+                                inviteid: item.inviteid,
+                                inviterFirstname:fname,
+                                inviterLastname:lname,
+                                familyName:item.family.familyname,
+                                datetime:item.datetimeinvited
+                            }
+                            )
+                        }))
+                }
+            })
+
+            Promise.all(promiseArr).then(()=>{
+                setInvites(arr);
+            }).catch((err)=>{
+                alert(err.message);
+            })
+        })
+      },[]);
+
+    //   useEffect(()=>{
+    //     //what
+    //     console.log("initial",initialList);
+    //     setInvites(initialList);
+    //     console.log("final",invitesList);
+    //   },[initialList])
+    
 
     return(
     <>
@@ -64,10 +116,10 @@ export default function Dashboard(){
                     <h1><strong>Family Invites</strong></h1>
                     <div className='row d-flex flex-wrap w-100' style={{height:"auto", maxHeight:'100%'}}>
                         {
-                        invitesList.length !== 0 ?
+                        invitesList.length > 0 ?
                         invitesList.map((invite, i) =>
                         <div className="col-auto" key={i}>
-                        <MemberInvite inviteid={invite.inviteid} inviteeFirstname={invite.inviteeFirstname} inviteeLastname={invite.inviteeLastname}
+                        <MemberInvite inviteid={invite.inviteid} inviterFirstname={invite.inviterFirstname} inviterLastname={invite.inviterLastname}
                         familyName ={invite.familyName} datetime={invite.datetime} key={i}/>
                         </div>
                         )

@@ -7,6 +7,7 @@ import { useState } from 'react';
 import UserService from '../services/UserService';
 import { useDispatch } from 'react-redux';
 import { loginReducer, userIdReducer } from '../features/LogInSlice';
+import { familyIdReducer } from '../features/FamilySlice';
 
 
 
@@ -24,6 +25,11 @@ export default function LandingPage() {
             }else{
               dispatch(loginReducer());
               dispatch(userIdReducer(Number(res)))
+              UserService.getUserDetails(Number(res)).then((response)=>{
+                if(response.family !== null){
+                  dispatch(familyIdReducer(response.family.familyid));
+                }
+              })
               nav('/');
             }
             

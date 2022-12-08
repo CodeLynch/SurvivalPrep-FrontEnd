@@ -6,6 +6,7 @@ const initialState = {
     showCreateFamilyModal: false,
     showAddFamilyMemberModal: false,
     showJoinFamilyModal: false,
+    showRemoveMemberModal: false,
 }
 
 const FamilySlice = createSlice({
@@ -28,9 +29,12 @@ const FamilySlice = createSlice({
         },
         toggleJoinFamily: (state) => {
             state.showJoinFamilyModal = !state.showJoinFamilyModal;
+        },
+        toggleRemoveMember: (state) => {
+            state.showRemoveMemberModal = !state.showRemoveMemberModal;
         }
     }
 });
 
 export default FamilySlice.reducer
-export const { familyIdReducer, creatorIdReducer, toggleAddFamilyMember, toggleCreateFamily, toggleJoinFamily } = FamilySlice.actions;
+export const { familyIdReducer, creatorIdReducer, toggleAddFamilyMember, toggleCreateFamily, toggleJoinFamily, toggleRemoveMember} = FamilySlice.actions;

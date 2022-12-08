@@ -17,6 +17,8 @@ import EmergencyPage from './components/EmergencyPage';
 import ErrorPage from './components/ErrorPage';
 import CreateFamilyModal from './components/createFamilyModal';
 import JoinFamilyModal from './components/joinFamilyModal';
+import AddMemberModal from './components/addMemberModal';
+import RemoveMemberModal from './components/removeMemberModal';
 
 
 
@@ -35,6 +37,8 @@ export default function App() {
                   <Route path="/family" element={<FamilyPage/>}>
                     <Route path="createFamily" element={<CreateFamilyModal/>}></Route>
                     <Route path="joinFamily" element={<JoinFamilyModal/>}></Route>
+                    <Route path="addMember" element={<AddMemberModal/>}></Route>
+                    <Route path="removeMember/:memberid" element={<RemoveMemberModal/>}></Route>
                   </Route>
                   <Route path="/news" element ={<NewsPage/>}></Route>
                   <Route path="/emergency" element ={<EmergencyPage/>}></Route>
