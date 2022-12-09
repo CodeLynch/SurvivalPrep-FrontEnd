@@ -19,7 +19,7 @@ export default function FamilyMember(props: familyMemberType) {
 
   return (
     <div>
-      <div className="SecondaryContainer m-1">
+      <div className="SecondaryContainer m-1" style={{width:"25vw"}}>
         <div className='d-flex flex-row'>
           <div className='d-flex justify-content-center align-items-center p-2'>
             <img className="imgFixedSize "src='profileIcon.png' alt="profile icon"></img>

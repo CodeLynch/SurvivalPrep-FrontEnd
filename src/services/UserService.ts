@@ -73,6 +73,19 @@ class UserService{
             console.log(err);
         });
     }
+
+    leaveFamily(userId:number){
+        return axios.put(`http://localhost:8080/user/putFamily?id=${userId}`,
+        {
+            family: null
+        }).then((res)=>{
+            return res.data;
+        }).catch(err =>{
+            alert(err.message);
+            console.log(err);
+        });
+    }
+
     getPost(userId:number){
         return axios.get(`http://localhost:8080/post/getAllPostsByUser?id=${userId}`).then((res) =>{
             return res.data;

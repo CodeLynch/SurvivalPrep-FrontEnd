@@ -11,10 +11,11 @@ import { familyIdReducer } from "../features/FamilySlice";
 
 function Profilepage() {
     const dispatch = useDispatch()
-    const loginState = useSelector((store:RootState) => store.login.isLoggedIn)
     const userIdState = useSelector((store:RootState) => store.login.userId)
     const [firstname, setFname] = useState('');
     const [lastname, setLname] = useState('');
+    const [isProfileLoading, setProfileLoading] = useState(false);
+    const [isPostLoading, setPostLoading] = useState(false);
     const nav = useNavigate();
     
     const [PostArr, setPostArr] = useState<ProfilePostType[]>([
@@ -24,18 +25,13 @@ function Profilepage() {
       ])
 
       useEffect(() => {
+        setProfileLoading(true);
         UserService.getUserDetails(userIdState).then((res)=>{
             setFname(res.firstname);
             setLname(res.lastname);
+            setProfileLoading(false);
         })
       },[userIdState]);
-
-      useEffect(()=>{
-        if(!loginState){
-            console.log(setPostArr)
-            nav('/');
-        }
-    },[loginState, nav]);
 
       const logout = () => {
         dispatch(logoutReducer());
@@ -45,18 +41,30 @@ function Profilepage() {
       }
 
     useEffect(()=>{
+        setPostLoading(true);
         UserService.getPost(userIdState).then((response)=>{
         setPostArr(response)
+        setPostLoading(false);
         console.log(response);
       });},[])
 
   return (
     <div className="container">
+      <>
         <div className="d-flex justify-content-center p-3" style={{width:"100%"}}>
             <div
             className="p-2 MainContainer"
             style={{ width: "50%", height: "auto", maxHeight: "80vh" }}
             >
+              {
+                isProfileLoading?
+                <>
+                  <div className='d-flex justify-content-center'>
+                    <img className='App-logo' src='AppLogoSymbol.png' alt='spinner'/>
+                  </div> 
+                </>
+                :
+                <>
                 <div className="d-flex flex-row">
                     <div className="p-3">
                         <img
@@ -73,6 +81,9 @@ function Profilepage() {
                     <p className="m-0"><Link to="/" className="linksColor" onClick={logout}>Logout</Link></p>
                     </div>
                 </div>
+              </>
+              }
+              
             </div>
         </div>
         <div
@@ -81,6 +92,13 @@ function Profilepage() {
         >
             <h1><strong>Posts</strong></h1>
             {
+                isPostLoading?
+                <>
+                  <div className='d-flex justify-content-center'>
+                    <img className='App-logo' src='AppLogoSymbol.png' alt='spinner'/>
+                  </div>  
+                </>
+                :
                 PostArr.length !== 0 ?
                 PostArr.map((post, i) =>
                 <ProfilePost key={i} threadTitle={post.threadTitle} post={post.post} date={post.date} time={post.time}></ProfilePost> 
@@ -89,7 +107,7 @@ function Profilepage() {
                 <p className="text-center">This user has no posts!</p>
             }
         </div>
-      
+      </>
     </div>
   );
 }

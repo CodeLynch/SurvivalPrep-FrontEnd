@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { RootState } from "../store";
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import "./containerStyles.css";
 import './NavBar.css';
 import { toggleAddFamilyMember, toggleRemoveMember } from "../features/FamilySlice";
 import UserService from "../services/UserService";
-import InviteService from "../services/InviteService";
 
 function RemoveMemberModal() {
     const showState = useSelector((store:RootState) => store.family.showRemoveMemberModal);
@@ -23,7 +22,16 @@ function RemoveMemberModal() {
             setFname(res.firstname);
             setLname(res.lastname);
         })
-    },[])
+    },[memberid])
+
+    const removeMember = (userId: number) => {
+        UserService.leaveFamily(userId).then((res)=>{
+            console.log(res);
+            if(res !== null){
+                alert("User successfully removed from family!");
+            }
+        })
+    }
 
 
   return (
@@ -45,7 +53,7 @@ function RemoveMemberModal() {
                     <Button variant="secondary" onClick={()=>{dispatch(toggleRemoveMember()); nav('/family')}}>
                         No
                     </Button>
-                    <Button variant="danger" onClick={()=>{dispatch(toggleRemoveMember()); nav('/family')}}>
+                    <Button variant="danger" onClick={()=>{removeMember(Number(memberid)); dispatch(toggleRemoveMember()); nav('/family')}}>
                         Yes
                     </Button>
             </Modal.Footer>

@@ -57,7 +57,11 @@ function AddMemberModal() {
             </Modal.Header>
             <Modal.Body>
                 {isSearching?
-                <h3>Searching...</h3>:
+                <>
+                <div className='d-flex justify-content-center'>
+                    <img className='App-logo' src='AppLogoSymbol.png' alt='spinner'/>
+                </div>
+                </>:
                 !searched?
                 <>
                 <p>Enter the contact number of the member you want to add:</p>

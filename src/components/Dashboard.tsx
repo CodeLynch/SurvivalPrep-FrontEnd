@@ -1,25 +1,26 @@
 import './containerStyles.css';
+import '../App.css';
 import { Link } from 'react-router-dom';
 import { EmergencyIcon, FamilyIcon, ForumIcon, NewsIcon, TipsIcon } from './icons';
 import { useEffect, useState } from 'react';
 import MemberInvite, { inviteMemberType } from './MemberInvite';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { RootState } from '../store';
 import UserService from '../services/UserService';
-import { familyIdReducer } from '../features/FamilySlice';
 import InviteService from '../services/InviteService';
 
 export default function Dashboard(){
     const [invitesList, setInvites] = useState<inviteMemberType[]>([
         // { inviteid: 1, inviteeFirstname: "Jane", inviteeLastname: "Doe", familyName: "Doe Family", datetime:"2022-12-07T09:46:29" },
     ]);
+    const [isLoading, setLoading] = useState(true);
     const familyIdState = useSelector((store:RootState) => store.family.familyId)
     const userIdState = useSelector((store:RootState) => store.login.userId)
-    const dispatch = useDispatch()
+    //const dispatch = useDispatch()
 
     useEffect(() => {
+        setLoading(true);
         InviteService.getInvites(userIdState).then((res)=>{
-
             let arr = [...res];
             const promiseArr = arr.map((item, i) =>{
                 let fname ='';
@@ -33,6 +34,7 @@ export default function Dashboard(){
                             inviteid: item.inviteid,
                             inviterFirstname:fname,
                             inviterLastname:lname,
+                            familyid: item.family.familyid,
                             familyName:item.family.familyname,
                             datetime:item.datetimeinvited
                         }
@@ -47,6 +49,7 @@ export default function Dashboard(){
                                 inviteid: item.inviteid,
                                 inviterFirstname:fname,
                                 inviterLastname:lname,
+                                familyid: item.family.familyid,
                                 familyName:item.family.familyname,
                                 datetime:item.datetimeinvited
                             }
@@ -57,11 +60,12 @@ export default function Dashboard(){
 
             Promise.all(promiseArr).then(()=>{
                 setInvites(arr);
+                setLoading(false);
             }).catch((err)=>{
                 alert(err.message);
             })
         })
-      },[]);
+      },[userIdState]);
 
     //   useEffect(()=>{
     //     //what
@@ -112,6 +116,13 @@ export default function Dashboard(){
             <div>
                 {
                     familyIdState === 0?
+                    isLoading?
+                    <>
+                        <div className='d-flex justify-content-center'>
+                            <img className='App-logo' src='AppLogoSymbol.png' alt='spinner'/>
+                        </div>
+                    </>
+                    :
                     <>
                     <h1><strong>Family Invites</strong></h1>
                     <div className='row d-flex flex-wrap w-100' style={{height:"auto", maxHeight:'100%'}}>
@@ -120,7 +131,7 @@ export default function Dashboard(){
                         invitesList.map((invite, i) =>
                         <div className="col-auto" key={i}>
                         <MemberInvite inviteid={invite.inviteid} inviterFirstname={invite.inviterFirstname} inviterLastname={invite.inviterLastname}
-                        familyName ={invite.familyName} datetime={invite.datetime} key={i}/>
+                        familyName ={invite.familyName} familyid={invite.familyid} datetime={invite.datetime} key={i}/>
                         </div>
                         )
                         :
@@ -131,8 +142,6 @@ export default function Dashboard(){
                     :
                     <></>
                 }
-                
-                
              </div>
         </div>
     </>
