@@ -1,39 +1,50 @@
 import './containerStyles.css';
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { Form } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import UserServiceUpdate from '../services/UserServiceUpdate';
 import UserService from '../services/UserService';
+import { RootState } from '../store';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 
 function EditProfilePage(this: any){
     const[username,setUsername] = useState ('')
     const[currentpass,setCurrentpass] = useState('')
     const[newpassword,setNewpassword] = useState('')
-    const [reenterpassword,setRenternewpassword] = useState('')
+    const [reenterpassword,setRenternewpassword] = useState('')                  
+    const userIdState = useSelector((store:RootState) => store.login.userId)
+    const loginState = useSelector((store:RootState) => (store.login.isLoggedIn))
+    const nav = useNavigate();
 
+    useEffect(()=>{
+        if(!loginState){
+            nav("/")
+        }
+    },[loginState, nav])
+    
+    useEffect(() => {
+        UserService.getUserDetails(userIdState).then((res) => {
+            setUsername(res.data);
+        })
+    },[username]);
 
-    // useEffect(() => {
-    //     UserService.getUserDetails(userId).then((res)=>{
-    //     })
-    // })
-    // const UserUpdate = () => {
-    //     UserServiceUpdate.putUsername(username,userId).then((res) =>{
-    //         res.data;
-    //     });
-    // }
+    const UserUpdate = () => {
+        UserServiceUpdate.putUsername(username,userIdState).then((res) =>{
+            if(res.username!==null)
+             setUsername(res.username);
+             alert("Username successfully changed!");
+             nav("/editProfile");
+        });
+    }
 
-    //     })
-    // })
-    // const UserUpdate = () => {
-    //     UserServiceUpdate.putUsername(username,userId).then((res) =>{
-    //         res.data;
-    //     });
-    // }
 
     const handleSubmit = (event:React.SyntheticEvent<HTMLFormElement>) => {
+        // setUsername(e.target.value);
         event.preventDefault(); 
-        // console.log(username, currentpass, newpassword, reenterpassword);
+        const form = event.currentTarget;
+        console.log(username);
     }
   
     return(
@@ -43,16 +54,18 @@ function EditProfilePage(this: any){
                 <h1>Edit Profile</h1>
                     <div className='profile_img text-center '>
                         <div className='flex flex-column justify-content-center align-items-center'>
-                            <form onSubmit={handleSubmit}></form>
+                            
                             <img
                             style={{ width: '120px' }}
                             src='profileIcon.png'
                             alt="Profile Pic"
                             className="rounded-circle"
                             />
+                            <h1> {username}</h1>
                             <h6> Change Profile </h6>
                         </div>
-                    </div>      
+                    </div> 
+                    <form onSubmit={handleSubmit}></form>     
                     <h6> Change Username</h6>
                     <Form.Control
                     type="text"
@@ -60,9 +73,10 @@ function EditProfilePage(this: any){
                     placeholder='Username'
                     className='mt-2'
                     onChange={(e) => setUsername(e.target.value)}
+
                     />
                     <div className="d-flex justify-content-end m-2">
-                        <Button type = "submit"> confirm</Button>
+                        <Button type = "submit" onClick={()=>{UserUpdate()}} > confirm</Button>
                         </div>
                         <h6> Change Password</h6>
                         <Form.Control
