@@ -65,7 +65,7 @@ function Profilepage() {
             className="p-2 MainContainer"
             style={{ width: "50%", height: "auto", maxHeight: "80vh" }}
             >
-                <div className="d-flex flex-row">
+                <div className="d-flex flex-row align-items-center pb-3">
                     <div className="p-3">
                         <img
                         style={{width:"100px", height:"100px"}}

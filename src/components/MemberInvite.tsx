@@ -40,13 +40,20 @@ export default function MemberInvite(props: inviteMemberType) {
       }
     })
   }
+
+  const formatDateTime = (datetime:string) => {
+    let d = new Date(datetime);
+    return d.toLocaleString();
+  }
+  
   return (
     <div>
-       <div className="SecondaryContainer m-1" style={{height:"175px", width:"200px"}}>
-          <div className='d-flex justify-content-center align-items-center pt-2' style={{height:"30%"}}>
+       <div className="SecondaryContainer m-1" style={{height:"180px", width:"200px"}}>
+        <p className="m-0 p-2" style={{fontSize:"12px"}}>{formatDateTime(props.datetime)}</p>
+          <div className='d-flex justify-content-center align-items-center pt-2' style={{height:"20%"}}>
             <img className="imgFixedSize "src='profileIcon.png' alt="profile icon"></img>
           </div>
-          <div className='d-flex flex-column p-1' style={{height:"30%"}}>
+          <div className='d-flex flex-column p-1' style={{height:"25%"}}>
             <div className='d-flex justify-content-center flex-row m-0 p-0 w-100'>
               <p className="m-0 text-center"><strong>{props.inviterFirstname} {props.inviterLastname}</strong> is inviting you to join the <strong>{props.familyName}</strong></p>
             </div>

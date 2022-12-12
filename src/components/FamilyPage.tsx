@@ -68,6 +68,19 @@ export default function FamilyPage() {
                   "isCreator": true
                 })
             }))
+        }else if(member.userid === undefined){
+          setLoading(true);
+            return(
+            UserService.getUserDetails(member).then((res)=>{
+              setLoading(false);
+                arr[i] = ({
+                  "userid": res.userid,
+                  "firstname": res.firstname,
+                  "lastname": res.lastname,
+                  "contactno": res.contactno,
+                  "isCreator": false
+                })
+            }))
         }else if(member.userid === familyCreator){
           return(
             UserService.getUserDetails(member.userid).then((res)=>{
@@ -79,7 +92,7 @@ export default function FamilyPage() {
                   "isCreator": true
                 })
             }))
-        }else if(member.userid !== undefined){
+        }else{
           return(
             UserService.getUserDetails(member.userid).then((res)=>{
                 arr[i] = ({
@@ -90,8 +103,6 @@ export default function FamilyPage() {
                   "isCreator": false
                 })
             }))
-        }else{
-          return null;
         }
     })
 

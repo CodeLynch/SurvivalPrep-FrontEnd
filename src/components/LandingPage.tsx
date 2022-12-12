@@ -8,6 +8,7 @@ import UserService from '../services/UserService';
 import { useDispatch } from 'react-redux';
 import { loginReducer, userIdReducer } from '../features/LogInSlice';
 import { familyIdReducer } from '../features/FamilySlice';
+import { communityIdReducer } from '../features/ForumSlice';
 
 
 
@@ -28,6 +29,7 @@ export default function LandingPage() {
               UserService.getUserDetails(Number(res)).then((response)=>{
                 if(response.family !== null){
                   dispatch(familyIdReducer(response.family.familyid));
+                  dispatch(communityIdReducer(response.community.communityid));
                 }
               })
               nav('/');

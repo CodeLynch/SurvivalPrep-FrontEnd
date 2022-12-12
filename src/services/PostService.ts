@@ -1,7 +1,5 @@
 import axios from "axios";
 
-const TIPS_BASE_URL = "http://localhost:8080/post/postPost"
-
 class PostService {
     postPost(PostContent: string) {
         return axios.post("http://localhost:8080/post/postPost", {

@@ -4,6 +4,7 @@ import logInReducer from './features/LogInSlice'
 import FamilyReducer from './features/FamilySlice'
 import TipReducer from './features/TipSlice'
 import PostReducer from './features/PostSlice'
+import ForumReducer from './features/ForumSlice'
 
 
 
@@ -13,6 +14,7 @@ export const store = configureStore({
         family: FamilyReducer,
         tip: TipReducer,
         post: PostReducer,
+        forum: ForumReducer,
     },
 });
 

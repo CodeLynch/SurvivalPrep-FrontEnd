@@ -23,6 +23,8 @@ import AddTipModal from './components/addTipModal';
 import RemoveTipModal from './components/removeTipModal';
 import CreatePostModal from './components/createPostModal';
 import RemovePostModal from './components/RemovePostModal';
+import ThreadPage from './components/ThreadPage';
+import PostsPage from './components/PostsPage';
 
 
 
@@ -38,6 +40,8 @@ export default function App() {
                   <Route path="/" element={<Dashboard/>}></Route>
                   <Route path="/register" element={<Registration/>}></Route>
                   <Route path="/forums" element={<ForumsPage/>}></Route>
+                  <Route path="/threads" element={<ThreadPage/>}></Route>
+                  <Route path="/posts" element={<PostsPage/>}></Route>
                   <Route path="/family" element={<FamilyPage/>}>
                     <Route path="createFamily" element={<CreateFamilyModal/>}></Route>
                     <Route path="joinFamily" element={<JoinFamilyModal/>}></Route>
