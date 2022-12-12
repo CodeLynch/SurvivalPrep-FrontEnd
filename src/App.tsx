@@ -19,6 +19,10 @@ import CreateFamilyModal from './components/createFamilyModal';
 import JoinFamilyModal from './components/joinFamilyModal';
 import AddMemberModal from './components/addMemberModal';
 import RemoveMemberModal from './components/removeMemberModal';
+import AddTipModal from './components/addTipModal';
+import RemoveTipModal from './components/removeTipModal';
+import CreatePostModal from './components/createPostModal';
+import RemovePostModal from './components/RemovePostModal';
 
 
 

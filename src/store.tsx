@@ -2,6 +2,8 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import logInReducer from './features/LogInSlice'
 import FamilyReducer from './features/FamilySlice'
+import TipReducer from './features/TipSlice'
+import PostReducer from './features/PostSlice'
 
 
 
@@ -9,6 +11,8 @@ export const store = configureStore({
     reducer: {
         login: logInReducer,
         family: FamilyReducer,
+        tip: TipReducer,
+        post: PostReducer,
     },
 });
 
