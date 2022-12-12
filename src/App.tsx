@@ -19,8 +19,6 @@ import CreateFamilyModal from './components/createFamilyModal';
 import JoinFamilyModal from './components/joinFamilyModal';
 import AddMemberModal from './components/addMemberModal';
 import RemoveMemberModal from './components/removeMemberModal';
-import RemovePostModal from './components/RemovePostModal';
-import CreatePostModal from './components/createPostModal';
 
 
 
@@ -44,7 +42,10 @@ export default function App() {
                   </Route>
                   <Route path="/news" element ={<NewsPage/>}></Route>
                   <Route path="/emergency" element ={<EmergencyPage/>}></Route>
-                  <Route path="/tips" element={<TipsPage/>}></Route>
+                  <Route path="/tips" element={<TipsPage/>}>
+                    <Route path="addTip" element={<AddTipModal/>}></Route>
+                    <Route path="removeTip/:tipid" element={<RemoveTipModal/>}></Route>
+                  </Route>
                   <Route path="/profile" element={<Profilepage/>}></Route>
                   <Route path="/createPost" element={<CreatePostModal/>}></Route>
                     <Route path="/removePost/:postId" element={<RemovePostModal/>}></Route>
