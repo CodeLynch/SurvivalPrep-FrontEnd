@@ -2,17 +2,22 @@ import axios from "axios";
 
 class ForumService{
 
-    // postInvite(familyid:number, inviteeid:number, inviterid:number){
-    //     return axios.post("http://localhost:8080/invite/postInvite",
-    //     {family:{ "familyid": familyid},
-    //      inviter:{ "userid": inviterid},
-    //      invitee:{ "userid": inviteeid}})
-    //      .then((res) => {
-    //         return res.data
-    //      }).catch((err) =>{
-    //         alert(err.message)
-    //      })
-    // }
+    postForum(forumTitle:string, forumDesc:string, communityId:number, userId: number){
+        return axios.post("http://localhost:8080/forum/postForum",
+        {forumtitle: forumTitle,
+         forumdesc: forumDesc,
+         creator:{
+            userid: userId
+         },
+         community:{
+            communityid: communityId
+         }
+        }).then((res) => {
+            return res.data
+         }).catch((err) =>{
+            alert(err.message)
+         })
+    }
     async getCommunityForums(communityid: number){
         try {
             const res = await axios.get(`http://localhost:8080/forum/getAllForumsByCommunity?communityid=${communityid}`);

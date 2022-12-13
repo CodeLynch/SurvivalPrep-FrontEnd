@@ -4,6 +4,14 @@ const initialState = {
     communityid: 0,
     currentForumid: 0,
     currentThreadid: 0,
+    showAddForum: false,
+    showEditForum: false,
+    showDeleteForum: false,
+    showAddThread: false,
+    showEditThread: false,
+    showDeleteThread:false,
+    showEditPost: false,
+    showDeletePost: false
 }
 
 const ForumSlice = createSlice({
@@ -22,8 +30,33 @@ const ForumSlice = createSlice({
             const id = action.payload
             state.currentThreadid = id;
         },
+        toggleAddForum: (state) => {
+            state.showAddForum = !state.showAddForum;
+        },
+        toggleEditForum: (state) => {
+            state.showEditForum = !state.showEditForum;
+        },
+        toggleDeleteForum: (state) => {
+            state.showDeleteForum = !state.showDeleteForum;
+        },
+        toggleAddThread: (state) => {
+            state.showAddThread = !state.showAddThread;
+        },
+        toggleEditThread: (state) => {
+            state.showEditThread = !state.showEditThread;
+        },
+        toggleDeleteThread: (state) => {
+            state.showDeleteThread = !state.showDeleteThread;
+        },
+        toggleEditPost: (state) => {
+            state.showEditPost = !state.showEditPost;
+        },
+        toggleDeletePost: (state) => {
+            state.showDeletePost = !state.showDeletePost;
+        },
     }
 });
 
 export default ForumSlice.reducer
-export const { communityIdReducer, forumIdReducer, threadIdReducer } = ForumSlice.actions;
+export const { communityIdReducer, forumIdReducer, threadIdReducer, toggleAddForum, toggleAddThread, toggleDeleteForum, toggleDeletePost,
+toggleDeleteThread, toggleEditForum, toggleEditPost, toggleEditThread} = ForumSlice.actions;

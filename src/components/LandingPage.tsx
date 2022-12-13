@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import UserService from '../services/UserService';
 import { useDispatch } from 'react-redux';
-import { loginReducer, userIdReducer } from '../features/LogInSlice';
+import { adminReducer, loginReducer, userIdReducer } from '../features/LogInSlice';
 import { familyIdReducer } from '../features/FamilySlice';
 import { communityIdReducer } from '../features/ForumSlice';
 
@@ -30,6 +30,9 @@ export default function LandingPage() {
                 if(response.family !== null){
                   dispatch(familyIdReducer(response.family.familyid));
                   dispatch(communityIdReducer(response.community.communityid));
+                }
+                if(response.admin === true){
+                  dispatch(adminReducer(true));
                 }
               })
               nav('/');

@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import UserService from "../services/UserService";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
-import { logoutReducer, userIdReducer } from "../features/LogInSlice";
+import { adminReducer, logoutReducer, userIdReducer } from "../features/LogInSlice";
 import { familyIdReducer} from "../features/FamilySlice";
 import { PlusIcon } from "./icons";
 
@@ -34,17 +34,12 @@ function Profilepage() {
           })
       },[userIdState]);
 
-      useEffect(()=>{
-        if(!loginState){
-            console.log(setPostArr)
-            nav('/');
-        }
-    },[loginState, nav]);
 
       const logout = () => {
         dispatch(logoutReducer());
         dispatch(userIdReducer(0));
         dispatch(familyIdReducer(0));
+        dispatch(adminReducer(false));
         nav("/");
       }
 

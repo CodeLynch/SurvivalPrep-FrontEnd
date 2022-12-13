@@ -22,7 +22,6 @@ function AddMemberModal() {
     const [isSearching, setSearching] = useState(false);
     const dispatch = useDispatch();
     const nav = useNavigate();
-    // const loc = useLocation();
 
     const searchUser = (contactNo:string) => {
         setSearching(true)
@@ -59,7 +58,7 @@ function AddMemberModal() {
                 {isSearching?
                 <>
                 <div className='d-flex justify-content-center'>
-                    <img className='App-logo' src='AppLogoSymbol.png' alt='spinner'/>
+                    <img className='App-logo' src={require('../spinner/AppLogoSymbol.png')} alt='spinner'/>
                 </div>
                 </>:
                 !searched?

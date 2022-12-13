@@ -1,4 +1,6 @@
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { threadIdReducer } from '../features/ForumSlice';
 import './containerStyles.css';
 import { CommentsIcon } from './icons';
 
@@ -9,6 +11,8 @@ export type ThreadType = {
     threadDatetime: string,
 }
 export default function ThreadComp(props:ThreadType){
+
+    const dispatch = useDispatch();
 
     const formatDateTime = (datetime:string) => {
         let d = new Date(datetime);
@@ -21,8 +25,8 @@ export default function ThreadComp(props:ThreadType){
             <p className="m-0" style={{fontSize:"14px"}}>{formatDateTime(props.threadDatetime)}</p>
             <div className='d-flex flex-row'>
                 <div className='d-flex w-100 flex-column'>
-                    <Link to="/posts" state={{title: props.threadTitle}} className="linksColor w-100"><h1 className="m-0">{props.threadTitle}</h1></Link>
-                    <Link to="/posts" state={{title: props.threadTitle}} className="linksColor d-flex flex-row">
+                    <Link to="/posts" state={{title: props.threadTitle}} className="linksColor w-100" onClick={()=>{dispatch(threadIdReducer(props.threadId))}}><h1 className="m-0">{props.threadTitle}</h1></Link>
+                    <Link to="/posts" state={{title: props.threadTitle}} className="linksColor d-flex flex-row" onClick={()=>{dispatch(threadIdReducer(props.threadId))}}>
                         <CommentsIcon/>
                         <p className="m-0">0</p>
                     </Link>

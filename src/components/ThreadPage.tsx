@@ -61,7 +61,7 @@ export default function ThreadPage(){
     <div className='container' style={{height:"auto", minHeight:"90vh"}}>
         <h1><strong>{loc.state.title}</strong></h1>
         <div className='MainContainer p-3' style={{height:"auto", minHeight:"75vh", minWidth:"100%"}}>
-            <Link to="addMember" className='linksColor'>
+            <Link to="#" className='linksColor'>
                 <div className='d-flex flex-row justify-content-end mx-2 align-items-end'>
                     <PlusIcon/>
                     <p className='mb-0 pr-2' style={{fontSize:"14px"}}>Add a new thread</p>
