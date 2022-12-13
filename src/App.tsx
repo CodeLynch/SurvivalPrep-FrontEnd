@@ -26,6 +26,8 @@ import RemovePostModal from './components/RemovePostModal';
 import ThreadPage from './components/ThreadPage';
 import PostsPage from './components/PostsPage';
 import AddForumModal from './components/addForumModal';
+import DeleteForumModal from './components/DeleteForumModal';
+import UpdateForumModal from './components/UpdateForumModal';
 
 
 
@@ -42,6 +44,8 @@ export default function App() {
                   <Route path="/register" element={<Registration/>}></Route>
                   <Route path="/forums" element={<ForumsPage/>}>
                     <Route path="createForum" element={<AddForumModal/>}></Route>
+                    <Route path="deleteForum/:forumId" element={<DeleteForumModal/>}></Route>
+                    <Route path="editForum/:forumId" element={<UpdateForumModal/>}></Route>
                   </Route>
                   <Route path="/threads" element={<ThreadPage/>}></Route>
                   <Route path="/posts" element={<PostsPage/>}></Route>

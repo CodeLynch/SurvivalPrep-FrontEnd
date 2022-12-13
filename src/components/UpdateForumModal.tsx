@@ -1,41 +1,47 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { RootState } from "../store";
 import { Button, Form, Modal } from "react-bootstrap";
 import "./containerStyles.css";
 import './NavBar.css';
-import { toggleAddForum } from "../features/ForumSlice";
+import { toggleEditForum } from "../features/ForumSlice";
 import ForumService from "../services/ForumService";
 
-function AddForumModal() {
-    const userIdState = useSelector((store:RootState) => store.login.userId);
-    const communityIdState = useSelector((store:RootState) => store.forum.communityid);
-    const showState = useSelector((store:RootState) => store.forum.showAddForum);
+function UpdateForumModal() {
+    const showState = useSelector((store:RootState) => store.forum.showEditForum);
     const [forumTitle, setTitle] = useState('');
     const [forumDesc, setDesc] = useState('');
     const dispatch = useDispatch();
     const nav = useNavigate();
+    const {forumId} = useParams();
     const [isLoading, setLoading] = useState(false);
 
-    const createForum = () => {
+    useEffect(()=>{
+        setLoading(true);
+        ForumService.getForumById(Number(forumId)).then((res) =>{
+            setTitle(res.forumtitle);
+            setDesc(res.forumdesc);
+            setLoading(false);
+        })
+    },[])
+    const editForum = () => {
         if(forumTitle === '' || forumDesc === ''){
             alert("Please fill out both of the text fields")
         }else{
             setLoading(true);
-            ForumService.postForum(forumTitle, forumDesc, communityIdState, userIdState)
-        .then((res)=>{
+            ForumService.putForum(Number(forumId), forumTitle, forumDesc).then((res)=>{
             setLoading(false);
-            alert("Forum created successfully!")
+            alert("Forum updated successfully!")
         })
         }
         
     }
   return (
     <div className="container">
-            <Modal show={showState} dialogClassName="modal-dialog modal-dialog-centered" contentClassName="popupContainer" onHide={()=>{dispatch(toggleAddForum())}}>
+            <Modal show={showState} dialogClassName="modal-dialog modal-dialog-centered" contentClassName="popupContainer" onHide={()=>{dispatch(toggleEditForum())}}>
             <Modal.Header className="border-0">
-            <Modal.Title>Create Forum</Modal.Title>
+            <Modal.Title>Edit Forum</Modal.Title>
             </Modal.Header>
             <Modal.Body>
             {
@@ -52,6 +58,7 @@ function AddForumModal() {
                     type="text"
                     id="forumTitle"
                     placeholder='Forum Title'
+                    value={forumTitle}
                     onChange={(e)=>{setTitle(e.target.value)}}
                     />
                 </Form.Group>
@@ -60,6 +67,7 @@ function AddForumModal() {
                     required
                     type="text"
                     id="forumDesc"
+                    value={forumDesc}
                     placeholder='Forum Description'
                     onChange={(e)=>{setDesc(e.target.value)}}
                     />
@@ -68,15 +76,15 @@ function AddForumModal() {
             }
             </Modal.Body>
             <Modal.Footer className="border-0">
-                    <Button variant="secondary" disabled={isLoading} onClick={()=>{dispatch(toggleAddForum()); nav('/forums')}}>
+                    <Button variant="secondary" disabled={isLoading} onClick={()=>{dispatch(toggleEditForum()); nav('/forums')}}>
                         Close
                     </Button>
-                    <Button variant="primary" disabled={isLoading} onClick={()=>{createForum(); dispatch(toggleAddForum());nav('/forums')}}>
-                        Create
+                    <Button variant="primary" disabled={isLoading} onClick={()=>{editForum(); dispatch(toggleEditForum());nav('/forums')}}>
+                        Edit
                     </Button>
             </Modal.Footer>
             </Modal>
     </div>
   );
 }
-export default AddForumModal;
+export default UpdateForumModal;

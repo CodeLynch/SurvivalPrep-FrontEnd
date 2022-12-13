@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { forumIdReducer } from '../features/ForumSlice';
+import { forumIdReducer, toggleDeleteForum, toggleEditForum } from '../features/ForumSlice';
 import { RootState } from '../store';
 import './containerStyles.css';
 import { DeleteIcon, EditIcon } from './icons';
@@ -23,10 +23,10 @@ export default function ForumComp(props:ForumType){
             {
                 adminState?
                 <>
-                    <Link to="#" className="linksColor"
-                    onClick={()=>{}}><EditIcon /></Link>
-                    <Link to="#" className="linksColor"
-                    onClick={()=>{}}><DeleteIcon /></Link>  
+                    <Link to={"editForum/" + props.forumId} className="linksColor"
+                    onClick={()=>{dispatch(toggleEditForum())}}><EditIcon /></Link>
+                    <Link to={"deleteForum/" + props.forumId} className="linksColor"
+                    onClick={()=>{dispatch(toggleDeleteForum())}}><DeleteIcon /></Link>  
                 </>:
                 <>
                 </>
