@@ -5,7 +5,26 @@ class PostService {
         return axios.post("http://localhost:8080/post/postPost", {
             Postcontent: PostContent
         }).then((res) => {
-            console.log(res.data);
+            console.log("post post", res.data);
+            if (res.data) {
+                return res.data;
+            }
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+
+    async postThreadPost(PostContent: string, threadId: number, userId: number) {
+        return axios.post("http://localhost:8080/post/postPost", {
+            postcontent: PostContent,
+            thread:{
+                threadid:threadId
+            },
+            creator:{
+                userid:userId
+            }
+        }).then((res) => {
+            console.log("post thread post", res.data);
             if (res.data) {
                 return res.data;
             }
@@ -26,7 +45,7 @@ class PostService {
         });
     }
 
-    deletePost(postId:number){
+    async deletePost(postId:number){
         return axios.delete("http://localhost:8080/post/deletePost/"+postId
         ).then((res) => {
             console.log(res.data);

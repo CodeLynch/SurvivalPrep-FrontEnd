@@ -3,17 +3,20 @@ import ForumComp, { ForumType } from './ForumComponent';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import ForumService from '../services/ForumService';
 import ThreadComp, { ThreadType } from './ThreadComponent';
 import { PlusIcon } from './icons';
 import ThreadService from '../services/ThreadService';
 import UserService from '../services/UserService';
+import { useDispatch } from 'react-redux';
+import { toggleAddThread } from '../features/ForumSlice';
 
 export default function ThreadPage(){
     const forumState = useSelector((store:RootState)=> store.forum.currentForumid)
     const [ThreadsArr, setThreadArr] = useState<ThreadType[]>([])
     const [isLoading, setLoading] = useState(false);
+    const dispatch = useDispatch();
     const nav = useNavigate();
     const loc = useLocation();
 
@@ -58,10 +61,13 @@ export default function ThreadPage(){
         
     },[]);
     return(
+    <>
+    <Outlet/>
     <div className='container' style={{height:"auto", minHeight:"90vh"}}>
         <h1><strong>{loc.state.title}</strong></h1>
         <div className='MainContainer p-3' style={{height:"auto", minHeight:"75vh", minWidth:"100%"}}>
-            <Link to="#" className='linksColor'>
+            <Link to="createThread" state={{title: loc.state.title}} className='linksColor'
+            onClick={()=>{dispatch(toggleAddThread())}}>
                 <div className='d-flex flex-row justify-content-end mx-2 align-items-end'>
                     <PlusIcon/>
                     <p className='mb-0 pr-2' style={{fontSize:"14px"}}>Add a new thread</p>
@@ -85,5 +91,6 @@ export default function ThreadPage(){
             }
         </div>
     </div>
+    </>
     );
 }

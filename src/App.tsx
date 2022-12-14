@@ -28,6 +28,8 @@ import PostsPage from './components/PostsPage';
 import AddForumModal from './components/addForumModal';
 import DeleteForumModal from './components/DeleteForumModal';
 import UpdateForumModal from './components/UpdateForumModal';
+import AddThreadModal from './components/addThreadModal';
+import UpdateThreadModal from './components/UpdateThreadModal';
 
 
 
@@ -47,8 +49,12 @@ export default function App() {
                     <Route path="deleteForum/:forumId" element={<DeleteForumModal/>}></Route>
                     <Route path="editForum/:forumId" element={<UpdateForumModal/>}></Route>
                   </Route>
-                  <Route path="/threads" element={<ThreadPage/>}></Route>
-                  <Route path="/posts" element={<PostsPage/>}></Route>
+                  <Route path="/threads" element={<ThreadPage/>}>
+                    <Route path="createThread" element={<AddThreadModal/>}></Route>
+                  </Route>
+                  <Route path="/posts" element={<PostsPage/>}>
+                  <Route path="editThread/:threadid" element={<UpdateThreadModal/>}></Route>
+                  </Route>
                   <Route path="/family" element={<FamilyPage/>}>
                     <Route path="createFamily" element={<CreateFamilyModal/>}></Route>
                     <Route path="joinFamily" element={<JoinFamilyModal/>}></Route>
