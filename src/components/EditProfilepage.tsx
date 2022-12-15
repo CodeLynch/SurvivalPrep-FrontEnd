@@ -17,24 +17,23 @@ function EditProfilePage(this: any){
     const userIdState = useSelector((store:RootState) => store.login.userId)
     const loginState = useSelector((store:RootState) => (store.login.isLoggedIn))
     const nav = useNavigate();
-
-    useEffect(()=>{
-        if(!loginState){
-            nav("/")
-        }
-    },[loginState, nav])
     
     useEffect(() => {
         UserService.getUserDetails(userIdState).then((res) => {
             setUsername(res.data);
+        // UserServiceUpdate.getUserbyId(userIdState).then((res) =>{
+        //     setUsername(res.username);
+        //     })
+
         })
     },[username]);
 
     const UserUpdate = () => {
-        UserServiceUpdate.putUsername(username,userIdState).then((res) =>{
-            if(res.username!==null)
+        UserServiceUpdate.putUsername(username,userIdState).then((res) =>{ 
+            if(res.username!== '')
              setUsername(res.username);
              alert("Username successfully changed!");
+             
              nav("/editProfile");
         });
     }
@@ -53,8 +52,7 @@ function EditProfilePage(this: any){
                 <div className='px-3 py-3 MainContainer' style={{width:'50vw'}}>
                 <h1>Edit Profile</h1>
                     <div className='profile_img text-center '>
-                        <div className='flex flex-column justify-content-center align-items-center'>
-                            
+                        <div className='flex flex-column justify-content-center align-items-center'> 
                             <img
                             style={{ width: '120px' }}
                             src='profileIcon.png'
@@ -72,7 +70,7 @@ function EditProfilePage(this: any){
                     id="inputText"
                     placeholder='Username'
                     className='mt-2'
-                    onChange={(e) => setUsername(e.target.value)}
+                    onChange={(e) => {setUsername(e.target.value)}}
 
                     />
                     <div className="d-flex justify-content-end m-2">
@@ -101,7 +99,7 @@ function EditProfilePage(this: any){
                         onChange={(e) => setRenternewpassword(e.target.value)}
                         />
                          <div className="d-flex justify-content-end m-2">
-                            <Button> confirm</Button>
+                            <Button type ="submit" > confirm</Button>
                             </div>
                 </div>
             </div> 
