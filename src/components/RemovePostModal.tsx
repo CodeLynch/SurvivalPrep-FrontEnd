@@ -36,7 +36,7 @@ function RemovePostModal() {
                 <p>Are you sure you want to delete this post?</p>
             </Modal.Body>
             <Modal.Footer className="border-0">
-                    <Button variant="secondary" onClick={()=>{dispatch(toggleRemovePost()); nav('/profile')}}>
+                    <Button variant="secondary" onClick={()=>{dispatch(toggleRemovePost()); nav('/posts')}}>
                         No
                     </Button>
                     <Button variant="danger" onClick={()=>{Deletepost(Number(postId)); }}>

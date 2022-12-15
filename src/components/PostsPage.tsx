@@ -46,7 +46,8 @@ export default function PostsPage(){
                 postId: res[0].postid,
                 postContent: res[0].postcontent,
                 postCreator: res[0].creator.username,
-                postDatetime: res[0].datetimecreated
+                postDatetime: res[0].datetimecreated,
+                postCreatorId: res[0].creator.userid
             })
         }
         )
@@ -60,7 +61,8 @@ export default function PostsPage(){
                             postId: arr[i].postid,
                             postContent: arr[i].postcontent,
                             postCreator: resp.username,
-                            postDatetime: arr[i].datetimecreated
+                            postDatetime: arr[i].datetimecreated,
+                            postCreatorId: resp.userid
                         }
                     }))
                 }else{
@@ -69,7 +71,8 @@ export default function PostsPage(){
                             postId: arr[i].postid,
                             postContent: arr[i].postcontent,
                             postCreator: resp.username,
-                            postDatetime: arr[i].datetimecreated
+                            postDatetime: arr[i].datetimecreated,
+                            postCreatorId: resp.userid
                         }
                     }))
                 }
@@ -126,7 +129,6 @@ export default function PostsPage(){
                                         <Link to="#" className="linksColor d-flex align-items-center"
                                         onClick={()=>{}}><DeleteIcon /></Link>
                                     </div>
-                                      
                                 </div>
                                 <p className='m-0'>{firstPost? formatDateTime(firstPost.postDatetime):<></>}</p>  
                                 <p>{firstPost?.postContent}</p>  
@@ -156,7 +158,7 @@ export default function PostsPage(){
                 {PostsArr.length !== 0 ?
                     PostsArr.map((post, p)=>{
                        return (<PostComp key={p} postId={post.postId} postContent={post.postContent} postCreator={post.postCreator} 
-                        postDatetime={post.postDatetime}/>);
+                        postDatetime={post.postDatetime} postCreatorId={post.postCreatorId}/>);
                     })
                     :
                     <p className='d-flex justify-content-center'>There are no replies to this thread yet.</p>

@@ -13,17 +13,14 @@ import { PlusIcon } from "./icons";
 
 function Profilepage() {
     const dispatch = useDispatch()
-    const loginState = useSelector((store:RootState) => store.login.isLoggedIn)
     const userIdState = useSelector((store:RootState) => store.login.userId)
     const [firstname, setFname] = useState('');
     const [lastname, setLname] = useState('');
     const[username,setUsername] = useState('');
+    const [isLoading, setLoading] = useState(false);
     const nav = useNavigate();
     
     const [PostArr, setPostArr] = useState<ProfilePostType[]>([
-        // {threadTitle: "Thread 1", post: "Hello, this is my first post", date:"11/29/2022", time:"9:00 AM"},
-        // {threadTitle: "Thread 2", post: "Hi, this is another post", date:"11/29/2022", time:"9:15 AM"},
-        // {threadTitle: "Thread 3", post: "Hey, it's me Angelyn Rabe", date:"11/30/2022", time:"12:01 AM"},
       ])
 
       useEffect(() => {
@@ -44,14 +41,31 @@ function Profilepage() {
       }
 
     useEffect(()=>{
+      setLoading(true);
         UserService.getPost(userIdState).then((response)=>{
-        setPostArr(response)
-        console.log(response);
+        let arr = [...response];
+        arr.map((post, p)=>{
+            if(post.thread.isdeleted){
+              arr[p] = {
+                threadTitle: "DELETED",
+                threadId: post.thread.threadid,
+                post: post.postcontent,
+                datetime: post.datetimecreated,
+              }
+            }else{
+              arr[p] = {
+                threadTitle: post.thread.threadtitle,
+                threadId: post.thread.threadid,
+                post: post.postcontent,
+                datetime: post.datetimecreated,
+              }
+            }
+            
+        })
+        setPostArr(arr);
+        setLoading(false);
       });},[])
 
-  function toggleCreatePost(): any {
-    throw new Error("Function not implemented.");
-  }
 
   return (
     <div className="container">
@@ -84,15 +98,17 @@ function Profilepage() {
         style={{ height: "5vh" }}
         >
             <h1><strong>Posts</strong></h1>
-            <Link to="CreatePost" className='linksColor d-flex flex-row align-items-end'
-            onClick={()=>{dispatch(toggleCreatePost())}}>
-              <PlusIcon/>
-              <p className='m-0' style={{fontSize:"14px"}}>Create Post</p>
-              </Link>
             {
+              isLoading?
+              <>
+                <div className='d-flex justify-content-center'>
+                  <img className='App-logo' src='AppLogoSymbol.png' alt='spinner'/>
+                </div>
+              </>
+              :
                 PostArr.length !== 0 ?
                 PostArr.map((post, i) =>
-                <ProfilePost key={i} threadTitle={post.threadTitle} post={post.post} date={post.date} time={post.time}></ProfilePost> 
+                <ProfilePost key={i} threadTitle={post.threadTitle} threadId={post.threadId} post={post.post} datetime={post.datetime}></ProfilePost> 
                 )
                 :
                 <p className="text-center">This user has no posts!</p>

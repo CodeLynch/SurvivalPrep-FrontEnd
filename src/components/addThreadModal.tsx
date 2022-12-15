@@ -18,7 +18,6 @@ function AddThreadModal() {
     const [firstPost, setDesc] = useState('');
     const dispatch = useDispatch();
     const nav = useNavigate();
-    const loc = useLocation();
     const [isLoading, setLoading] = useState(false);
 
     const createThread = () => {
@@ -32,16 +31,19 @@ function AddThreadModal() {
                 PostService.postThreadPost(firstPost, res.threadid, userIdState)
                 .then((res)=>{
                     alert("Thread created successfully!");
-                    nav('/threads', {state:{title: loc.state.title}})
+                    dispatch(toggleAddThread());
+                    nav('/threads')
                 }).catch((err)=>{
                     alert("Error in posting the first post!")
                     console.log(err);
-                    nav('/threads', {state:{title: loc.state.title}})
+                    dispatch(toggleAddThread());
+                    nav('/threads')
                 })
             }).catch((err)=>{
                 alert("Error in posting thread!")
                 console.log(err);
-                nav('/threads', {state:{title: loc.state.title}})
+                dispatch(toggleAddThread());
+                nav('/threads')
             })
         }
         
@@ -83,10 +85,10 @@ function AddThreadModal() {
             }
             </Modal.Body>
             <Modal.Footer className="border-0">
-                    <Button variant="secondary" disabled={isLoading} onClick={()=>{dispatch(toggleAddThread()); nav('/threads', {state:{title: loc.state.title}})  }}>
+                    <Button variant="secondary" disabled={isLoading} onClick={()=>{dispatch(toggleAddThread()) }}>
                         Close
                     </Button>
-                    <Button variant="primary" disabled={isLoading} onClick={()=>{createThread(); dispatch(toggleAddThread());}}>
+                    <Button variant="primary" disabled={isLoading} onClick={()=>{createThread()}}>
                         Create
                     </Button>
             </Modal.Footer>

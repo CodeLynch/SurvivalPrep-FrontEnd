@@ -16,11 +16,18 @@ export default function ThreadPage(){
     const forumState = useSelector((store:RootState)=> store.forum.currentForumid)
     const [ThreadsArr, setThreadArr] = useState<ThreadType[]>([])
     const [isLoading, setLoading] = useState(false);
+    const [ForumTitle, setTitle] = useState('');
     const dispatch = useDispatch();
     const nav = useNavigate();
-    const loc = useLocation();
 
     useEffect(()=>{
+        ForumService.getForumById(forumState).then((res)=>{
+            setTitle(res.forumtitle);
+        }).catch((err)=>{
+            alert("error in fetching forum");
+            console.log("err");
+        })
+
         ThreadService.getThreadsofForum(forumState).then((res)=>{
             setLoading(true);
             let arr = [...res];
@@ -64,9 +71,9 @@ export default function ThreadPage(){
     <>
     <Outlet/>
     <div className='container' style={{height:"auto", minHeight:"90vh"}}>
-        <h1><strong>{loc.state.title}</strong></h1>
+        <h1><strong>{ForumTitle}</strong></h1>
         <div className='MainContainer p-3' style={{height:"auto", minHeight:"75vh", minWidth:"100%"}}>
-            <Link to="createThread" state={{title: loc.state.title}} className='linksColor'
+            <Link to="createThread" className='linksColor'
             onClick={()=>{dispatch(toggleAddThread())}}>
                 <div className='d-flex flex-row justify-content-end mx-2 align-items-end'>
                     <PlusIcon/>
