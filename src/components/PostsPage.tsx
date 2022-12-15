@@ -14,10 +14,13 @@ import { useDispatch } from 'react-redux';
 import { toggleEditThread } from '../features/ForumSlice';
 
 export default function PostsPage(){
+    const userIdState = useSelector((store:RootState)=> store.login.userId)
+
     const threadState = useSelector((store:RootState)=> store.forum.currentThreadid)
     const [PostsArr, setPosts] = useState<PostType[]>([])
     const [firstPost, setFirst] = useState<PostType>();
     const [isLoading, setLoading] = useState(false);
+    const [replyInput, setInput] = useState('');
     const [replyCount, setCount] = useState(0);
     const nav = useNavigate();
     const dispatch = useDispatch();
@@ -75,6 +78,11 @@ export default function PostsPage(){
         )
     },[]);
 
+    const createPost = (postContent: string) =>{
+        PostService.postThreadPost(postContent, threadState, userIdState).then((res)=>{
+            alert("Post successfully created!")
+        })
+    }
     const formatDateTime = (datetime:string) => {
         let d = new Date(datetime);
         return d.toLocaleString();
@@ -128,8 +136,11 @@ export default function PostsPage(){
                       <Form.Control
                         placeholder="Post a reply..."
                         aria-describedby="basic-addon2"
+                        onChange={(e)=>{setInput(e.target.value)}}
                       />
-                      <Button variant="primary" id="button-addon2">
+                      <Button variant="primary" id="button-addon2" onClick={(e)=>{
+                        createPost(replyInput);
+                      }}>
                         Post
                       </Button>
                     </InputGroup>

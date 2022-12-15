@@ -33,6 +33,18 @@ class PostService {
         });
     }
 
+    async getPost(userId: number) {
+        return axios.get(`http://localhost:8080/post/getPostById?id=${userId}`
+        ).then((res) => {
+            console.log("get post id", res.data);
+            if (res.data) {
+                return res.data;
+            }
+        }).catch(err => {
+            console.log(err);
+        });
+    }
+
     async getThreadPosts(threadid: number){
         return axios.get(`http://localhost:8080/post/getAllPostsByThread?id=${threadid}`)
         .then((res) => {
@@ -45,6 +57,15 @@ class PostService {
         });
     }
 
+    async putPost(postId:number, PostContent: string){
+        return axios.put(`http://localhost:8080/post/putPostContent?id=${postId}`,{
+            postcontent:PostContent
+        }).then((res)=>{
+            return res.data
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
     async deletePost(postId:number){
         return axios.delete("http://localhost:8080/post/deletePost/"+postId
         ).then((res) => {
