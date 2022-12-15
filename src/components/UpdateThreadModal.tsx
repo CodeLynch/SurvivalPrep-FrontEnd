@@ -5,8 +5,7 @@ import { RootState } from "../store";
 import { Button, Form, Modal } from "react-bootstrap";
 import "./containerStyles.css";
 import './NavBar.css';
-import { toggleEditForum, toggleEditThread } from "../features/ForumSlice";
-import ForumService from "../services/ForumService";
+import { toggleEditThread } from "../features/ForumSlice";
 import ThreadService from "../services/ThreadService";
 import PostService from "../services/PostService";
 
@@ -34,7 +33,7 @@ function UpdateThreadModal() {
         })
     },[])
 
-    const editForum = () => {
+    const editThread = () => {
         if(ThreadTitle === '' || firstPost === ''){
             alert("Please fill out both of the text fields")
         }else{
@@ -92,7 +91,7 @@ function UpdateThreadModal() {
                     <Button variant="secondary" disabled={isLoading} onClick={()=>{dispatch(toggleEditThread()); nav('/posts', {state:{title: loc.state.title}})}}>
                         Close
                     </Button>
-                    <Button variant="primary" disabled={isLoading} onClick={()=>{editForum();}}>
+                    <Button variant="primary" disabled={isLoading} onClick={()=>{editThread();}}>
                         Edit
                     </Button>
             </Modal.Footer>

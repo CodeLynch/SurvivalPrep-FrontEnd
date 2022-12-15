@@ -1,4 +1,7 @@
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { toggleEditPost } from '../features/ForumSlice';
+import { toggleRemovePost } from '../features/PostSlice';
 import './containerStyles.css';
 import { CommentsIcon, DeleteIcon, EditIcon } from './icons';
 
@@ -9,6 +12,7 @@ export type PostType = {
     postDatetime: string,
 }
 export default function PostComp(props:PostType){
+    const dispatch = useDispatch();
 
     const formatDateTime = (datetime:string) => {
         let d = new Date(datetime);
@@ -25,10 +29,10 @@ export default function PostComp(props:PostType){
                 <div className="d-flex flex-row w-100">
                     <strong><p className='m-0'>{props.postCreator}</p></strong>
                     <div className="d-flex w-100 justify-content-end">
-                        <Link to="#" className="linksColor d-flex align-items-center"
-                        onClick={()=>{}}><EditIcon /></Link>
-                        <Link to="#" className="linksColor d-flex align-items-center"
-                        onClick={()=>{}}><DeleteIcon /></Link>   
+                        <Link to={"editPost/" + props.postId} className="linksColor d-flex align-items-center"
+                        onClick={()=>{dispatch(toggleEditPost())}}><EditIcon /></Link>
+                        <Link to={"removePost/" + props.postId}className="linksColor d-flex align-items-center"
+                        onClick={()=>{dispatch(toggleRemovePost())}}><DeleteIcon /></Link>   
                     </div>
                     
                 </div>

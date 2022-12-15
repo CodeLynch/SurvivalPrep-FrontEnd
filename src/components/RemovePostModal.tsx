@@ -5,34 +5,23 @@ import { RootState } from "../store";
 import { Button, Modal } from "react-bootstrap";
 import "./containerStyles.css";
 import './NavBar.css';
-import { toggleAddFamilyMember, toggleRemoveMember } from "../features/FamilySlice";
-import UserService from "../services/UserService";
-import TipsService from "../services/TipsService";
 import { toggleRemovePost } from "../features/PostSlice";
 import PostService from "../services/PostService";
 
 function RemovePostModal() {
     const showState = useSelector((store:RootState) => store.post.showRemovePostModal);
-    //const userIdState = useSelector((store:RootState) => store.login.userId);
     const {postId} = useParams();
-    // const [memberFName, setFname] = useState('');
-    // const [memberLName, setLname] = useState('');
     const dispatch = useDispatch();
     const nav = useNavigate();
 
-    // useEffect(()=>{
-    //     UserService.getUserDetails(Number(memberid)).then((res)=>{
-    //         setFname(res.firstname);
-    //         setLname(res.lastname);
-    //     })
-    // },[memberid])
-
     const Deletepost = (postId: number) => {
         PostService.deletePost(postId).then((res)=>{
-            console.log(res);
-            if(res !== null){
-                alert("Post successfully deleted!");
-            }
+            alert("Post successfully deleted!");
+            dispatch(toggleRemovePost()); 
+            nav('/posts');
+        }).catch((err)=>{
+            alert("error in deleting post");
+            console.log(err);
         })
     }
 
@@ -50,7 +39,7 @@ function RemovePostModal() {
                     <Button variant="secondary" onClick={()=>{dispatch(toggleRemovePost()); nav('/profile')}}>
                         No
                     </Button>
-                    <Button variant="danger" onClick={()=>{Deletepost(Number(postId)); dispatch(toggleRemovePost()); nav('/profile')}}>
+                    <Button variant="danger" onClick={()=>{Deletepost(Number(postId)); }}>
                         Yes
                     </Button>
             </Modal.Footer>

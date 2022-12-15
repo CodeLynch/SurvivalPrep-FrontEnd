@@ -30,6 +30,7 @@ import DeleteForumModal from './components/DeleteForumModal';
 import UpdateForumModal from './components/UpdateForumModal';
 import AddThreadModal from './components/addThreadModal';
 import UpdateThreadModal from './components/UpdateThreadModal';
+import UpdatePostModal from './components/UpdatePostModal';
 
 
 
@@ -53,7 +54,9 @@ export default function App() {
                     <Route path="createThread" element={<AddThreadModal/>}></Route>
                   </Route>
                   <Route path="/posts" element={<PostsPage/>}>
-                  <Route path="editThread/:threadid" element={<UpdateThreadModal/>}></Route>
+                    <Route path="editThread/:threadid" element={<UpdateThreadModal/>}></Route>
+                    <Route path="editPost/:postid" element={<UpdatePostModal/>}></Route>
+                    <Route path="removePost/:postId" element={<RemovePostModal/>}></Route>
                   </Route>
                   <Route path="/family" element={<FamilyPage/>}>
                     <Route path="createFamily" element={<CreateFamilyModal/>}></Route>
@@ -69,7 +72,6 @@ export default function App() {
                   </Route>
                   <Route path="/profile" element={<Profilepage/>}></Route>
                   <Route path="/createPost" element={<CreatePostModal/>}></Route>
-                    <Route path="/removePost/:postId" element={<RemovePostModal/>}></Route>
                     <Route path="/editprofile" element ={<EditProfilepage/>}></Route>
                     <Route path="*" element ={<ErrorPage/>}></Route>
                 </Routes>:

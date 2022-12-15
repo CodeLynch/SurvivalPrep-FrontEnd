@@ -12,11 +12,13 @@ import { Form, Button, InputGroup } from 'react-bootstrap';
 import UserService from '../services/UserService';
 import { useDispatch } from 'react-redux';
 import { toggleEditThread } from '../features/ForumSlice';
+import ThreadService from '../services/ThreadService';
 
 export default function PostsPage(){
     const userIdState = useSelector((store:RootState)=> store.login.userId)
 
     const threadState = useSelector((store:RootState)=> store.forum.currentThreadid)
+    const [threadTitle, setTitle] = useState('');
     const [PostsArr, setPosts] = useState<PostType[]>([])
     const [firstPost, setFirst] = useState<PostType>();
     const [isLoading, setLoading] = useState(false);
@@ -24,10 +26,15 @@ export default function PostsPage(){
     const [replyCount, setCount] = useState(0);
     const nav = useNavigate();
     const dispatch = useDispatch();
-    const loc = useLocation();
 
     useEffect(()=>{
         setLoading(true);
+        ThreadService.getThread(threadState).then((res)=>{
+            setTitle(res.threadtitle);
+        }).catch((err)=>{
+            alert("Error in getting thread data");
+            console.log(err);
+        })
         PostService.getThreadPosts(threadState).then((res)=>{
             let arr = [...res]
             let count = 0;
@@ -106,7 +113,7 @@ export default function PostsPage(){
                 <div className="SecondaryContainer p-3" style={{minWidth:"100%"}}>
                     <div>
                         <div>
-                            <h1>{loc.state.title}</h1>
+                            <h1>{threadTitle}</h1>
                         </div>
                         <div className="d-flex flex-row">
                             <img className="imgFixedSize mx-4" src='profileIcon.png' alt="profile icon"></img>
@@ -114,7 +121,7 @@ export default function PostsPage(){
                                 <div className="d-flex flex-row">
                                     <p className='m-0'><strong>{firstPost?.postCreator}</strong></p>
                                     <div className="d-flex flex-row align-items-start mx-2">
-                                        <Link to={"editThread/" + threadState} state={{title: loc.state.title}} className="linksColor d-flex align-items-center"
+                                        <Link to={"editThread/" + threadState} className="linksColor d-flex align-items-center"
                                         onClick={()=>{dispatch(toggleEditThread())}}><EditIcon /></Link>
                                         <Link to="#" className="linksColor d-flex align-items-center"
                                         onClick={()=>{}}><DeleteIcon /></Link>
