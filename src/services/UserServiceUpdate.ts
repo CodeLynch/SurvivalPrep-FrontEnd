@@ -5,9 +5,28 @@ import axios from "axios";
 class UserServiceUpdate{
 
     putUsername(username: string,userId:number){
-        return axios.put(`http://localhost:8080/user/putUsername?==${userId}`,
+        return axios.put(`http://localhost:8080/user/putUsername?id=${userId}`,
         {
             username:username
+            
+        }).then((res)=>{
+            return res.data;
+        }).catch(err =>{
+            console.log(err);
+        });
+    }
+    getUserbyId(userId: number){
+        return axios.get(`http://localhost:8080/user/getUserById?id=${userId}`).then((res)=>{
+            return res.data;
+        }).catch(err =>{
+            alert(err.message);
+            console.log(err);
+        });       
+    }
+    putPassword(password: string,userId:number){
+        return axios.put(`http://localhost:8080/user/putPassword?id=${userId}`,
+        {
+            password:password
             
         }).then((res)=>{
             return res.data;
