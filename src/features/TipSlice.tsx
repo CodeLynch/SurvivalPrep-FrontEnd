@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     showAddTipModal: false,
     showRemoveTipModal: false,
+    showUpdateTipModal: false,
 }
 
 const TipSlice = createSlice({
@@ -15,8 +16,11 @@ const TipSlice = createSlice({
         toggleRemoveTip:(state) => {
             state.showRemoveTipModal = !state.showRemoveTipModal;
         },
+        toggleUpdateTip:(state) => {
+            state.showUpdateTipModal = !state.showUpdateTipModal;
+        }
     }
 });
 
 export default TipSlice.reducer
-export const { toggleAddTip, toggleRemoveTip } = TipSlice.actions;
+export const { toggleAddTip, toggleRemoveTip, toggleUpdateTip } = TipSlice.actions;

@@ -11,7 +11,6 @@ const initialState = {
     showEditThread: false,
     showDeleteThread:false,
     showEditPost: false,
-    showDeletePost: false
 }
 
 const ForumSlice = createSlice({
@@ -51,12 +50,9 @@ const ForumSlice = createSlice({
         toggleEditPost: (state) => {
             state.showEditPost = !state.showEditPost;
         },
-        toggleDeletePost: (state) => {
-            state.showDeletePost = !state.showDeletePost;
-        },
     }
 });
 
 export default ForumSlice.reducer
-export const { communityIdReducer, forumIdReducer, threadIdReducer, toggleAddForum, toggleAddThread, toggleDeleteForum, toggleDeletePost,
+export const { communityIdReducer, forumIdReducer, threadIdReducer, toggleAddForum, toggleAddThread, toggleDeleteForum,
 toggleDeleteThread, toggleEditForum, toggleEditPost, toggleEditThread} = ForumSlice.actions;
