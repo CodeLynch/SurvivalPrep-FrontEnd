@@ -12,21 +12,39 @@ import { useNavigate } from 'react-router-dom';
 function EditProfilePage(this: any){
     const[username,setUsername] = useState ('')
     const[currentpass,setCurrentpass] = useState('')
+    const [passcurrent,setPasscurrent] = useState('')
     const[newpassword,setNewpassword] = useState('')
     const [reenterpassword,setRenternewpassword] = useState('')                  
     const userIdState = useSelector((store:RootState) => store.login.userId)
     const loginState = useSelector((store:RootState) => (store.login.isLoggedIn))
     const nav = useNavigate();
     
-    useEffect(() => {
-        UserService.getUserDetails(userIdState).then((res) => {
-            setUsername(res.data);
-        // UserServiceUpdate.getUserbyId(userIdState).then((res) =>{
-        //     setUsername(res.username);
-        //     })
 
+    useEffect(() =>{
+        UserService.getUserDetails(userIdState).then((res) =>{
+            setPasscurrent(res.password)
         })
-    },[username]);
+    },[])
+
+    const passUpdate =() =>{
+        if(currentpass === passcurrent){
+            
+            if(newpassword=== reenterpassword){
+                UserServiceUpdate.putPassword(newpassword,userIdState).then((res)=>{
+                    alert("Password Successfully changed")
+                })
+
+            }else{
+                alert("Password do not matched!")
+            }
+
+        }else{
+            alert("Wrong current password")
+        }
+
+        
+    }
+
 
     const UserUpdate = () => {
         UserServiceUpdate.putUsername(username,userIdState).then((res) =>{ 
@@ -99,7 +117,7 @@ function EditProfilePage(this: any){
                         onChange={(e) => setRenternewpassword(e.target.value)}
                         />
                          <div className="d-flex justify-content-end m-2">
-                            <Button type ="submit" > confirm</Button>
+                            <Button type ="submit"  onClick={()=>{passUpdate()}}  > confirm</Button>
                             </div>
                 </div>
             </div> 
