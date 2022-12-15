@@ -11,49 +11,64 @@ import { CommentsIcon, DeleteIcon, EditIcon } from './icons';
 import { Form, Button, InputGroup } from 'react-bootstrap';
 import UserService from '../services/UserService';
 import { useDispatch } from 'react-redux';
-import { toggleEditThread } from '../features/ForumSlice';
+import { toggleDeleteThread, toggleEditThread } from '../features/ForumSlice';
 import ThreadService from '../services/ThreadService';
 
 export default function PostsPage(){
     const userIdState = useSelector((store:RootState)=> store.login.userId)
-
+    const adminState = useSelector((store:RootState)=> store.login.isAdmin)
     const threadState = useSelector((store:RootState)=> store.forum.currentThreadid)
     const [threadTitle, setTitle] = useState('');
     const [PostsArr, setPosts] = useState<PostType[]>([])
     const [firstPost, setFirst] = useState<PostType>();
     const [isLoading, setLoading] = useState(false);
+    const [isDeleted, setDeleted] = useState(false);
     const [replyInput, setInput] = useState('');
     const [replyCount, setCount] = useState(0);
-    const nav = useNavigate();
     const dispatch = useDispatch();
 
     useEffect(()=>{
         setLoading(true);
         ThreadService.getThread(threadState).then((res)=>{
-            setTitle(res.threadtitle);
+            if(res.deleted){
+                setTitle("<Deleted>");
+                setDeleted(true);
+            }else{
+                setTitle(res.threadtitle);
+            }
+            
         }).catch((err)=>{
             alert("Error in getting thread data");
             console.log(err);
         })
+
+        
+            PostService.getThreadPosts(threadState).then((res)=>{
+                let arr = [...res]
+                let count = 0;
+                arr.map((post, i)=>{
+                    count += 1;
+                })
+                if(!isDeleted){
+                setCount(count-1);
+                setFirst({
+                        postId: res[0].postid,
+                        postContent: res[0].postcontent,
+                        postCreator: res[0].creator.username,
+                        postDatetime: res[0].datetimecreated,
+                        postCreatorId: res[0].creator.userid
+                    })
+                }else{
+                setCount(count);
+                }
+            }
+            )
+        
         PostService.getThreadPosts(threadState).then((res)=>{
             let arr = [...res]
-            let count = 0;
-            arr.map((post, i)=>{
-                count += 1;
-            })
-            setCount(count-1);
-            setFirst({
-                postId: res[0].postid,
-                postContent: res[0].postcontent,
-                postCreator: res[0].creator.username,
-                postDatetime: res[0].datetimecreated,
-                postCreatorId: res[0].creator.userid
-            })
-        }
-        )
-        PostService.getThreadPosts(threadState).then((res)=>{
-            let arr = [...res]
-            arr.shift();
+            if(!isDeleted){
+                arr.shift();
+            }
             const promiseArr = arr.map((post, i)=>{
                 if(post.creator.username === undefined){
                     return (UserService.getUserDetails(post.creator).then((resp)=>{
@@ -86,7 +101,7 @@ export default function PostsPage(){
             })
         }
         )
-    },[]);
+    },[isDeleted]);
 
     const createPost = (postContent: string) =>{
         PostService.postThreadPost(postContent, threadState, userIdState).then((res)=>{
@@ -122,16 +137,38 @@ export default function PostsPage(){
                             <img className="imgFixedSize mx-4" src='profileIcon.png' alt="profile icon"></img>
                             <div className="d-flex flex-column">
                                 <div className="d-flex flex-row">
-                                    <p className='m-0'><strong>{firstPost?.postCreator}</strong></p>
+                                    <p className='m-0'><strong>{
+                                    !isDeleted?
+                                    firstPost?.postCreator:
+                                    ''}</strong></p>
                                     <div className="d-flex flex-row align-items-start mx-2">
-                                        <Link to={"editThread/" + threadState} className="linksColor d-flex align-items-center"
-                                        onClick={()=>{dispatch(toggleEditThread())}}><EditIcon /></Link>
-                                        <Link to="#" className="linksColor d-flex align-items-center"
-                                        onClick={()=>{}}><DeleteIcon /></Link>
+                                        {
+                                            userIdState === firstPost?.postCreatorId && !isDeleted?
+                                            <>
+                                                <Link to={"editThread/" + threadState} className="linksColor d-flex align-items-center"
+                                                onClick={()=>{dispatch(toggleEditThread())}}>
+                                                    <EditIcon />
+                                                </Link>
+                                            </>
+                                            :
+                                            <></>
+                                        }
+                                        {
+                                            userIdState === firstPost?.postCreatorId && !isDeleted || adminState && !isDeleted?
+                                            <>
+                                            <Link to={"removeThread/" + threadState} className="linksColor d-flex align-items-center"
+                                            onClick={()=>{dispatch(toggleDeleteThread())}}><DeleteIcon /></Link>
+                                            </>
+                                            :
+                                            <>
+                                            </>
+                                        }
+                                        
                                     </div>
                                 </div>
-                                <p className='m-0'>{firstPost? formatDateTime(firstPost.postDatetime):<></>}</p>  
-                                <p>{firstPost?.postContent}</p>  
+                                <p className='m-0'>{!isDeleted? firstPost? formatDateTime(firstPost.postDatetime):<></>:''}</p>  
+                                <p>{
+                                !isDeleted?firstPost?.postContent:'This post has been deleted'}</p>  
                                 <div className="d-flex flex-row">
                                         <CommentsIcon/>
                                         <p className="m-0">{replyCount}</p>

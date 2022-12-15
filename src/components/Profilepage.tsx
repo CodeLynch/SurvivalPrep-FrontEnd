@@ -45,7 +45,7 @@ function Profilepage() {
         UserService.getPost(userIdState).then((response)=>{
         let arr = [...response];
         arr.map((post, p)=>{
-            if(post.thread.isdeleted){
+            if(post.thread.deleted){
               arr[p] = {
                 threadTitle: "DELETED",
                 threadId: post.thread.threadid,

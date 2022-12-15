@@ -32,6 +32,7 @@ import AddThreadModal from './components/addThreadModal';
 import UpdateThreadModal from './components/UpdateThreadModal';
 import UpdatePostModal from './components/UpdatePostModal';
 import UpdateTipModal from './components/UpdateTipModal';
+import DeleteThreadModal from './components/DeleteThreadModal';
 
 
 
@@ -58,6 +59,7 @@ export default function App() {
                     <Route path="editThread/:threadid" element={<UpdateThreadModal/>}></Route>
                     <Route path="editPost/:postid" element={<UpdatePostModal/>}></Route>
                     <Route path="removePost/:postId" element={<RemovePostModal/>}></Route>
+                    <Route path="removeThread/:threadId" element={<DeleteThreadModal/>}></Route>
                   </Route>
                   <Route path="/family" element={<FamilyPage/>}>
                     <Route path="createFamily" element={<CreateFamilyModal/>}></Route>

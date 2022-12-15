@@ -19,7 +19,7 @@ export default function ProfilePost(props:ProfilePostType){
 
     return(
     <div className='MainContainer p-3 m-1' style={{width:"99%", minHeight:"20vh"}}>
-    <Link to={ props.threadTitle === "DELETED"? "/404":"/posts" }className="linksColor" onClick={()=>{dispatch(threadIdReducer(props.threadId))}}> 
+    <Link to="/posts" className="linksColor" onClick={()=>{dispatch(threadIdReducer(props.threadId))}}> 
         <div className='d-flex flex-row'>
             <h1 className="m-0 w-100">{props.threadTitle}</h1>
             <div style={{width:"80%"}}>

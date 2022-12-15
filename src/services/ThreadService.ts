@@ -50,5 +50,13 @@ class ThreadService {
         })
     }
 
+    async deleteThread(threadId:number){
+        return axios.delete(`http://localhost:8080/thread/deleteThread/${threadId}`).then((res)=>{
+            return res.data;
+        }).catch((err)=>{
+            console.log(err);
+        })
+    }
+
 }
 export default new ThreadService();
