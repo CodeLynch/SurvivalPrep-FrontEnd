@@ -43,7 +43,7 @@ export default function TipsPage() {
             <Link to="addTip" className='linksColor d-flex flex-row align-items-end justify-content-end'
               onClick={() => {dispatch(toggleAddTip()); console.log(showState)}}>
               <PlusIcon />
-              <p className='m-0' style={{ fontSize: "14px" }}>Add Tips</p>
+              <p className='m-0' style={{ fontSize: "14px" }}>Add Tip</p>
             </Link>
           </div>
           <div className='SecondaryContainer m-5 p-3' style={{ width: '90%' }}>

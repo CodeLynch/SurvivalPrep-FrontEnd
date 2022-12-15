@@ -31,6 +31,7 @@ import UpdateForumModal from './components/UpdateForumModal';
 import AddThreadModal from './components/addThreadModal';
 import UpdateThreadModal from './components/UpdateThreadModal';
 import UpdatePostModal from './components/UpdatePostModal';
+import UpdateTipModal from './components/UpdateTipModal';
 
 
 
@@ -68,6 +69,7 @@ export default function App() {
                   <Route path="/emergency" element ={<EmergencyPage/>}></Route>
                   <Route path="/tips" element={<TipsPage/>}>
                     <Route path="addTip" element={<AddTipModal/>}></Route>
+                    <Route path="editTip/:tipId" element={<UpdateTipModal/>}></Route>
                     <Route path="removeTip/:tipid" element={<RemoveTipModal/>}></Route>
                   </Route>
                   <Route path="/profile" element={<Profilepage/>}></Route>
