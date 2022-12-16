@@ -32,10 +32,11 @@ function EditProfilePage(this: any){
             if(newpassword=== reenterpassword){
                 UserServiceUpdate.putPassword(newpassword,userIdState).then((res)=>{
                     alert("Password Successfully changed")
+                    nav('/profile')
                 })
 
             }else{
-                alert("Password do not matched!")
+                alert("Passwords do not match!")
             }
 
         }else{
@@ -51,8 +52,7 @@ function EditProfilePage(this: any){
             if(res.username!== '')
              setUsername(res.username);
              alert("Username successfully changed!");
-             
-             nav("/editProfile");
+             nav('/profile')
         });
     }
 
@@ -77,8 +77,6 @@ function EditProfilePage(this: any){
                             alt="Profile Pic"
                             className="rounded-circle"
                             />
-                            <h1> {username}</h1>
-                            <h6> Change Profile </h6>
                         </div>
                     </div> 
                     <form onSubmit={handleSubmit}></form>     
@@ -92,32 +90,32 @@ function EditProfilePage(this: any){
 
                     />
                     <div className="d-flex justify-content-end m-2">
-                        <Button type = "submit" onClick={()=>{UserUpdate()}} > confirm</Button>
+                        <Button type = "submit" onClick={()=>{UserUpdate()}} > Confirm</Button>
                         </div>
                         <h6> Change Password</h6>
                         <Form.Control
-                        type="text"
+                        type="password"
                         id="inputText"
                         placeholder='Current Password'
                         className='mt-2'
                         onChange={(e) => setCurrentpass(e.target.value)}
                         />
                         <Form.Control
-                        type ="text"
+                        type ="password"
                         id ="inputText"
                         placeholder ="New Password"
                         className ="mt-2"
                         onChange={(e) => setNewpassword(e.target.value)}
                         />
                         <Form.Control
-                        type =" text"
+                        type ="password"
                         id = "inputText"
                         placeholder ="Re-Type New Password"
                         className="mt-2"
                         onChange={(e) => setRenternewpassword(e.target.value)}
                         />
                          <div className="d-flex justify-content-end m-2">
-                            <Button type ="submit"  onClick={()=>{passUpdate()}}  > confirm</Button>
+                            <Button type ="submit"  onClick={()=>{passUpdate()}}  > Confirm</Button>
                             </div>
                 </div>
             </div> 

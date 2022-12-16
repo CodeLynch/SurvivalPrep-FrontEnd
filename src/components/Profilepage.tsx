@@ -64,6 +64,8 @@ function Profilepage() {
         })
         setPostArr(arr);
         setLoading(false);
+
+        console.log("userid", userIdState)
       });},[])
 
 

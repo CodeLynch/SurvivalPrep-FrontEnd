@@ -33,17 +33,19 @@ function AddThreadModal() {
                     alert("Thread created successfully!");
                     dispatch(toggleAddThread());
                     nav('/threads')
+                    window.location.reload();
+                    
                 }).catch((err)=>{
                     alert("Error in posting the first post!")
                     console.log(err);
-                    dispatch(toggleAddThread());
+                    dispatch(toggleAddThread())
                     nav('/threads')
+                    
                 })
             }).catch((err)=>{
                 alert("Error in posting thread!")
                 console.log(err);
-                dispatch(toggleAddThread());
-                nav('/threads')
+                
             })
         }
         

@@ -10,8 +10,8 @@ import EditProfilepage from './components/EditProfilepage';
 import TipsPage from './components/TipsPage';
 import ForumsPage from './components/ForumsPage';
 import Dashboard from './components/Dashboard';
-import { useSelector } from 'react-redux';
-import { RootState } from './store';
+import {  useSelector } from 'react-redux';
+import { RootState, store } from './store';
 import NewsPage from './components/NewsPage';
 import EmergencyPage from './components/EmergencyPage';
 import ErrorPage from './components/ErrorPage';
@@ -37,10 +37,12 @@ import DeleteThreadModal from './components/DeleteThreadModal';
 
 
 
+
 export default function App() {
     const loginState = useSelector((store:RootState) => store.login.isLoggedIn)
     return (
       <div className='App'>
+
         <div className='App-container'>
             <NavBar />
               {loginState?
@@ -84,7 +86,6 @@ export default function App() {
                   <Route path="/register" element={<Registration/>}></Route>
                   <Route path="*" element ={<ErrorPage/>}></Route>
                 </Routes>}
-                
         </div>
       </div>
     );

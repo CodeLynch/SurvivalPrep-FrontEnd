@@ -106,6 +106,7 @@ export default function PostsPage(){
     const createPost = (postContent: string) =>{
         PostService.postThreadPost(postContent, threadState, userIdState).then((res)=>{
             alert("Post successfully created!")
+            window.location.reload();
         })
     }
     const formatDateTime = (datetime:string) => {

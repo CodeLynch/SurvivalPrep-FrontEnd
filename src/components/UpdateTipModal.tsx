@@ -32,7 +32,7 @@ function UpdateTipModal() {
             setLoading(false);
             alert("Tip updated successfully!")
             dispatch(toggleUpdateTip())
-            nav('/tips')
+            window.location.reload();
         })
         }
         

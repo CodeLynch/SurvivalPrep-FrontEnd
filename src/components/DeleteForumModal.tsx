@@ -21,6 +21,8 @@ function DeleteForumModal() {
         .then((res)=>{
             setLoading(false);
             alert("Forum deleted successfully!")
+            dispatch(toggleDeleteForum())
+            window.location.reload();
         })
         
     }
@@ -47,7 +49,7 @@ function DeleteForumModal() {
                     <Button variant="secondary" disabled={isLoading} onClick={()=>{dispatch(toggleDeleteForum()); nav('/forums')}}>
                         Close
                     </Button>
-                    <Button variant="danger" disabled={isLoading} onClick={()=>{deleteForum(); dispatch(toggleDeleteForum());nav('/forums')}}>
+                    <Button variant="danger" disabled={isLoading} onClick={()=>{deleteForum();}}>
                         Delete
                     </Button>
             </Modal.Footer>

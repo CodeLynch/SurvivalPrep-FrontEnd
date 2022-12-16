@@ -16,10 +16,8 @@ function CreatePostModal(){
     const CreatePost = () => {
         PostService.postPost(postcontent).then((resp) => {
             alert("Post Added!")
-            dispatch(toggleCreatePost());
-            // dispatch(familyIdReducer(familyIdFound));
-            // dispatch(toggleJoinFamily());
-            nav("/createPost")
+            dispatch(toggleCreatePost())
+            window.location.reload();
         });
     }
     return (

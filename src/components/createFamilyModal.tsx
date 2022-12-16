@@ -22,8 +22,9 @@ function CreateFamilyModal() {
             FamilyService.postFamily(familyName, userIdState).then((res) => {
                 UserService.putFamily(userIdState, res.familyid).then((resp) => {
                     dispatch(familyIdReducer(res.familyid));
-                    dispatch(toggleCreateFamily());
-                    nav("/family");
+                    dispatch(toggleCreateFamily())
+                    nav('/family')
+                    window.location.reload();
                 });
             })
         }

@@ -17,8 +17,10 @@ function RemovePostModal() {
     const Deletepost = (postId: number) => {
         PostService.deletePost(postId).then((res)=>{
             alert("Post successfully deleted!");
-            dispatch(toggleRemovePost()); 
+            dispatch(toggleRemovePost())
             nav('/posts');
+            window.location.reload();
+            
         }).catch((err)=>{
             alert("error in deleting post");
             console.log(err);

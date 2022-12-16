@@ -16,7 +16,7 @@ export default function Dashboard(){
     const [isLoading, setLoading] = useState(true);
     const familyIdState = useSelector((store:RootState) => store.family.familyId)
     const userIdState = useSelector((store:RootState) => store.login.userId)
-    //const dispatch = useDispatch()
+    const communityIdState = useSelector((store:RootState) => store.forum.communityid)
 
     useEffect(() => {
         setLoading(true);
@@ -67,12 +67,11 @@ export default function Dashboard(){
         })
       },[userIdState]);
 
-    //   useEffect(()=>{
-    //     //what
-    //     console.log("initial",initialList);
-    //     setInvites(initialList);
-    //     console.log("final",invitesList);
-    //   },[initialList])
+      useEffect(()=>{
+        console.log("family",familyIdState);
+        console.log("userid",userIdState);
+        console.log("communityid",communityIdState);
+      },[])
     
 
     return(

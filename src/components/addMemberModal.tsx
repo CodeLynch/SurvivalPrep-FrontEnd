@@ -43,7 +43,7 @@ function AddMemberModal() {
         InviteService.postInvite(familyIdState, userid, userIdState).then((res)=>{
             if(res !== null){
                 alert("Invite successfully sent!");
-                nav("/family");
+                dispatch(toggleAddFamilyMember())
             }
         });
     }

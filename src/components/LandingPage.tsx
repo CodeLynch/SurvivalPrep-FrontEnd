@@ -27,15 +27,18 @@ export default function LandingPage() {
               dispatch(loginReducer());
               dispatch(userIdReducer(Number(res)))
               UserService.getUserDetails(Number(res)).then((response)=>{
-                if(response.family !== null){
+                if(response.family !== undefined){
                   dispatch(familyIdReducer(response.family.familyid));
+                }
+                if(response.community !== undefined){
                   dispatch(communityIdReducer(response.community.communityid));
                 }
                 if(response.admin === true){
                   dispatch(adminReducer(true));
                 }
+                nav('/');
               })
-              nav('/');
+              
             }
             
         })
@@ -88,7 +91,6 @@ export default function LandingPage() {
                           onChange={(e)=>{setPass(e.target.value)}}
                       />
                     </Form.Group>
-                    <a href='/' style={{textDecoration:'none', color:'white'}}><p>Forgot password?</p></a>
                     <div style={{width:'100%'}}>
                     <Button variant="primary" style={{width:'100%'}} className="mb-3" type='submit'>LOGIN</Button>
                     <p className='text-center'>Don't have an account? <Link to='/register'  className="linksColor"><strong>Register Here</strong></Link></p>

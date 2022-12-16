@@ -37,7 +37,9 @@ function UpdatePostModal() {
             setLoading(true);
             PostService.putPost(Number(postid), Post).then((res)=>{
                 alert("Post updated successfully!");
-                nav('/posts')
+                dispatch(toggleEditPost());
+                nav("/posts")
+                window.location.reload();
             }).catch((err)=>{
                 alert("error in updating post");
                 console.log(err);

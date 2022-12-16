@@ -29,9 +29,8 @@ function AddTipModal() {
     const addTips = () => {
         TipsService.postTip(tipcategory,tipcontent).then((resp) => {
             alert("Tip Added!")
-            // dispatch(familyIdReducer(familyIdFound));
-            // dispatch(toggleJoinFamily());
-            // nav("/family")
+            dispatch(toggleAddTip())
+            window.location.reload();
         });
     }
 

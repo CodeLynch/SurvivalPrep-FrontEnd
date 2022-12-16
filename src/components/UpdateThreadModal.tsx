@@ -43,7 +43,8 @@ function UpdateThreadModal() {
                     setLoading(false);
                     alert("Thread updated successfully!");
                     dispatch(toggleEditThread());
-                    nav('/posts', {state:{title: loc.state.title}})
+                    nav('/posts')
+                    window.location.reload();
                 })
         })
         }

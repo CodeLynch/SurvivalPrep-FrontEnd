@@ -21,6 +21,16 @@ function DeleteThreadModal() {
         setLoading(true);
         PostService.getThreadPosts(Number(threadId)).then((res)=>{
             PostService.deletePost(res[0].postid).then(()=>{
+                ThreadService.deleteThread(Number(threadId)).then((res)=>{
+                    setLoading(false);
+                    alert("Thread successfully deleted!");
+                    dispatch(toggleDeleteThread())
+                    nav('/threads')
+                    window.location.reload();
+                }).catch((err)=>{
+                    alert("error in deleting thread");
+                    console.log(err);
+                })
             }).catch((err)=>{
                 alert("error in deleting first post");
                 console.log(err);
@@ -30,15 +40,7 @@ function DeleteThreadModal() {
             console.log(err);
         })
 
-        ThreadService.deleteThread(Number(threadId)).then((res)=>{
-            setLoading(false);
-            alert("Thread successfully deleted!");
-            dispatch(toggleDeleteThread());
-            nav('/forums');
-        }).catch((err)=>{
-            alert("error in deleting thread");
-            console.log(err);
-        })
+
     }
   return (
     <div className="container">

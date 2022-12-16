@@ -27,6 +27,8 @@ function AddForumModal() {
         .then((res)=>{
             setLoading(false);
             alert("Forum created successfully!")
+            dispatch(toggleAddForum());
+            window.location.reload();
         })
         }
         
@@ -71,7 +73,7 @@ function AddForumModal() {
                     <Button variant="secondary" disabled={isLoading} onClick={()=>{dispatch(toggleAddForum()); nav('/forums')}}>
                         Close
                     </Button>
-                    <Button variant="primary" disabled={isLoading} onClick={()=>{createForum(); dispatch(toggleAddForum());nav('/forums')}}>
+                    <Button variant="primary" disabled={isLoading} onClick={()=>{createForum();}}>
                         Create
                     </Button>
             </Modal.Footer>

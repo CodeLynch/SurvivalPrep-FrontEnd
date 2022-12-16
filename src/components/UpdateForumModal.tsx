@@ -32,7 +32,9 @@ function UpdateForumModal() {
             setLoading(true);
             ForumService.putForum(Number(forumId), forumTitle, forumDesc).then((res)=>{
             setLoading(false);
-            alert("Forum updated successfully!")
+            alert("Forum updated successfully!");
+            dispatch(toggleEditForum());
+            window.location.reload();
         })
         }
         
@@ -79,7 +81,7 @@ function UpdateForumModal() {
                     <Button variant="secondary" disabled={isLoading} onClick={()=>{dispatch(toggleEditForum()); nav('/forums')}}>
                         Close
                     </Button>
-                    <Button variant="primary" disabled={isLoading} onClick={()=>{editForum(); dispatch(toggleEditForum());nav('/forums')}}>
+                    <Button variant="primary" disabled={isLoading} onClick={()=>{editForum();}}>
                         Edit
                     </Button>
             </Modal.Footer>
