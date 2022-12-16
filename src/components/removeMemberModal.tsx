@@ -5,7 +5,7 @@ import { RootState } from "../store";
 import { Button, Modal } from "react-bootstrap";
 import "./containerStyles.css";
 import './NavBar.css';
-import { toggleAddFamilyMember, toggleRemoveMember } from "../features/FamilySlice";
+import { familyIdReducer, toggleAddFamilyMember, toggleRemoveMember } from "../features/FamilySlice";
 import UserService from "../services/UserService";
 
 function RemoveMemberModal() {
@@ -27,8 +27,13 @@ function RemoveMemberModal() {
     const removeMember = (userId: number) => {
         UserService.leaveFamily(userId).then((res)=>{
             console.log(res);
+            if(userIdState === userId){
+                dispatch(familyIdReducer(0));
+            }
             if(res !== null){
                 alert("User successfully removed from family!");
+                dispatch(toggleRemoveMember())
+                window.location.reload();
             }
         })
     }
@@ -53,7 +58,7 @@ function RemoveMemberModal() {
                     <Button variant="secondary" onClick={()=>{dispatch(toggleRemoveMember()); nav('/family')}}>
                         No
                     </Button>
-                    <Button variant="danger" onClick={()=>{removeMember(Number(memberid)); dispatch(toggleRemoveMember()); nav('/family')}}>
+                    <Button variant="danger" onClick={()=>{removeMember(Number(memberid));}}>
                         Yes
                     </Button>
             </Modal.Footer>
