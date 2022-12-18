@@ -33,6 +33,7 @@ import UpdateThreadModal from './components/UpdateThreadModal';
 import UpdatePostModal from './components/UpdatePostModal';
 import UpdateTipModal from './components/UpdateTipModal';
 import DeleteThreadModal from './components/DeleteThreadModal';
+import DeleteProfileModal from './components/DeleteProfileModal';
 
 
 
@@ -76,10 +77,12 @@ export default function App() {
                     <Route path="editTip/:tipId" element={<UpdateTipModal/>}></Route>
                     <Route path="removeTip/:tipid" element={<RemoveTipModal/>}></Route>
                   </Route>
-                  <Route path="/profile" element={<Profilepage/>}></Route>
+                  <Route path="/profile" element={<Profilepage/>}>
+                    <Route path="deleteAccount/:profileid" element={<DeleteProfileModal/>}></Route>
+                  </Route>
                   <Route path="/createPost" element={<CreatePostModal/>}></Route>
-                    <Route path="/editprofile" element ={<EditProfilepage/>}></Route>
-                    <Route path="*" element ={<ErrorPage/>}></Route>
+                  <Route path="/editprofile" element ={<EditProfilepage/>}></Route>
+                  <Route path="*" element ={<ErrorPage/>}></Route>
                 </Routes>:
                 <Routes>
                   <Route path="/" element={<LandingPage/>}></Route>

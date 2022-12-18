@@ -6,6 +6,14 @@
     color: white;
     text-decoration: none;
 }
+.dangerColor {
+  color: red;
+  text-decoration: none;
+}
+.dangerColor:hover {
+  color: pink;
+  text-decoration: none;
+}
 
 .linksColor:hover{
   color: greenyellow;

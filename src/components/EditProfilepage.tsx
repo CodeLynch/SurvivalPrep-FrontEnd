@@ -1,5 +1,5 @@
 import './containerStyles.css';
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import UserServiceUpdate from '../services/UserServiceUpdate';
@@ -16,7 +16,6 @@ function EditProfilePage(this: any){
     const[newpassword,setNewpassword] = useState('')
     const [reenterpassword,setRenternewpassword] = useState('')                  
     const userIdState = useSelector((store:RootState) => store.login.userId)
-    const loginState = useSelector((store:RootState) => (store.login.isLoggedIn))
     const nav = useNavigate();
     
 

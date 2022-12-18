@@ -95,6 +95,16 @@ class UserService{
         })
     }
 
+    deleteUser(userId:number){
+        return axios.delete(`http://localhost:8080/user/deleteUser/${userId}`).then((res)=>{
+            return res.data;
+        }).catch((err)=>{
+            alert(err.message);
+            console.log(err);
+        })
+
+    }
+
    
    
 }

@@ -5,8 +5,6 @@ import { RootState } from "../store";
 import { Button, Modal } from "react-bootstrap";
 import "./containerStyles.css";
 import './NavBar.css';
-import { toggleAddFamilyMember, toggleRemoveMember } from "../features/FamilySlice";
-import UserService from "../services/UserService";
 import TipsService from "../services/TipsService";
 import { toggleRemoveTip } from "../features/TipSlice";
 

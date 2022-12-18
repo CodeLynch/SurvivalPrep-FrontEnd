@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 import "./containerStyles.css";
 import ProfilePost, { ProfilePostType } from "./ProfilePost";
 import './NavBar.css';
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import UserService from "../services/UserService";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
-import { adminReducer, logoutReducer, userIdReducer } from "../features/LogInSlice";
+import { adminReducer, deleteProfileReducer, logoutReducer, userIdReducer } from "../features/LogInSlice";
 import { familyIdReducer} from "../features/FamilySlice";
-import { PlusIcon } from "./icons";
 
 
 function Profilepage() {
@@ -70,6 +69,8 @@ function Profilepage() {
 
 
   return (
+    <>
+    <Outlet/>
     <div className="container">
         <div className="d-flex justify-content-center p-3" style={{width:"100%"}}>
             <div
@@ -88,7 +89,10 @@ function Profilepage() {
                     <div className="mt-3">
                     <h2 className="m-0" ><strong>{firstname}&nbsp;{lastname}</strong></h2>
                     <h6 className="m-0">{username}</h6>
-                    <p className="m-0" style={{color:'red'}}>Delete Profile</p>
+                    <Link to={"deleteAccount/" + userIdState} className="dangerColor"
+                    onClick={()=>{dispatch(deleteProfileReducer())}}>
+                      <p className="m-0">Delete Account</p>
+                    </Link>
                     <p className="m-0"><Link to='/editprofile' className="linksColor">Edit Profile</Link></p>
                     <p className="m-0"><Link to="/" className="linksColor" onClick={logout}>Logout</Link></p>
                     </div>
@@ -117,6 +121,7 @@ function Profilepage() {
             }
         </div>
     </div>
+    </>
   );
 }
 export default Profilepage;

@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { RootState } from "../store";
 import { Button, Form, Modal } from "react-bootstrap";
 import "./containerStyles.css";
 import './NavBar.css';
 import { toggleAddThread } from "../features/ForumSlice";
-import ForumService from "../services/ForumService";
 import ThreadService from "../services/ThreadService";
 import PostService from "../services/PostService";
 

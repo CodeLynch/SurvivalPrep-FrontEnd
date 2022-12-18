@@ -5,10 +5,8 @@ import TipsService from '../services/TipsService';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { RootState } from '../store';
 import { useSelector } from 'react-redux';
-import { Button } from 'react-bootstrap';
 import { PlusIcon } from './icons';
 import { useDispatch } from 'react-redux';
-import { toggleAddFamilyMember } from '../features/FamilySlice';
 import { toggleAddTip } from '../features/TipSlice';
 
 type tipsType = { tipid: number, tipcategory: string, tipcontent: string, isdeleted: boolean }
