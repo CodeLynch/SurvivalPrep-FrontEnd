@@ -27,14 +27,19 @@ export default function LandingPage() {
               dispatch(loginReducer());
               dispatch(userIdReducer(Number(res)))
               UserService.getUserDetails(Number(res)).then((response)=>{
-                if(response.family !== undefined){
+                console.log("admin is ",response.admin)
+                if(response.family !== null){
                   dispatch(familyIdReducer(response.family.familyid));
                 }
-                if(response.community !== undefined){
+                if(response.community !== null){
                   dispatch(communityIdReducer(response.community.communityid));
+                  console.log("dispatched ",response.community.communityid)
                 }
+                
                 if(response.admin === true){
                   dispatch(adminReducer(true));
+                }else{
+                  dispatch(adminReducer(false));
                 }
                 nav('/');
               })

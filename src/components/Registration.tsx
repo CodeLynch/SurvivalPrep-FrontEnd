@@ -22,6 +22,7 @@ function Registration() {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const [contact, setContact] = useState('');
+  const [asAdmin, setAdmin] = useState(false);
   const nav = useNavigate();
   
   useEffect(()=>{
@@ -46,15 +47,30 @@ function Registration() {
       }
     setValidated(true);
     if(isValid){
-       register()
+      if(asAdmin){
+        adminRegister();
+      }else{
+        register();
+      }
+       
     }      
   };
 
   const register = () => {
     UserService.postUser(fname, lname, uname, email, selectValue, pass, contact).then((res) => {
-      if(res !== null){
         nav('/');
-      }
+    }).catch((err)=>{
+      alert("Error in registering");
+      console.log(err);
+    })
+  };
+
+  const adminRegister = () => {
+    UserService.postAdmin(fname, lname, uname, email, selectValue, pass, contact).then((res) => {
+        nav('/');
+    }).catch((err)=>{
+      alert("Error in registering");
+      console.log(err);
     })
   };
   return (
@@ -130,7 +146,13 @@ function Registration() {
                         return <option value={i + 1} key={i}>{community.communityname}</option>
                       })}
                       </FormSelect>
-                    
+                      <Form.Check 
+                      type="checkbox"
+                      id={`admin-check`}
+                      label={`Sign up as admin`}
+                      onChange={()=>{setAdmin(!asAdmin)}}
+                      />
+                   
                       <div className="d-flex justify-content-end p-2">
                       <Button variant="primary" className="mb-3" style={{width:'20vw'}} type="submit">REGISTER</Button>
                       </div>

@@ -33,6 +33,7 @@ function RemoveMemberModal() {
             if(res !== null){
                 alert("User successfully removed from family!");
                 dispatch(toggleRemoveMember())
+                nav("/family")
                 window.location.reload();
             }
         })

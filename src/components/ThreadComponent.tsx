@@ -38,14 +38,15 @@ export default function ThreadComp(props:ThreadType){
             <p className="m-0" style={{fontSize:"14px"}}>{formatDateTime(props.threadDatetime)}</p>
             <div className='d-flex flex-row'>
                 <div className='d-flex w-100 flex-column'>
-                    <Link to="/posts" state={{title: props.threadTitle}} className="linksColor w-100" onClick={()=>{dispatch(threadIdReducer(props.threadId))}}><h1 className="m-0">{props.threadTitle}</h1>
+                    <Link to="/posts" state={{title: props.threadTitle}} className="linksColor w-100" onClick={()=>{dispatch(threadIdReducer(props.threadId))}}>
+                        <h1 className="m-0 w-100">{props.threadTitle}</h1>
                     <div className="d-flex flex-row">
                         <CommentsIcon/>
                         <p className="m-0">{postCount}</p>
                     </div>
                     </Link>
                 </div>
-                <div className='d-flex w-100 justify-content-end'>
+                <div className='d-flex w-90 justify-content-end'>
                     <div className='d-flex flex-column mx-2 justify-content-center' style={{width:"7vw"}}>
                         <img className="imgFixedSize mx-4" src='profileIcon.png' alt="profile icon"></img>   
                         <p className="m-0 px-2 text-center">{props.threadCreator}</p>

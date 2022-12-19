@@ -23,6 +23,7 @@ function CreateFamilyModal() {
                 UserService.putFamily(userIdState, res.familyid).then((resp) => {
                     dispatch(familyIdReducer(res.familyid));
                     dispatch(toggleCreateFamily())
+                    alert("Family created successfully!")
                     nav('/family')
                     window.location.reload();
                 });

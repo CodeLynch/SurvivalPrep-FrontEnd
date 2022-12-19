@@ -27,6 +27,9 @@ export default function MemberInvite(props: inviteMemberType) {
           console.log("userservice response", resp);
           dispatch(familyIdReducer(props.familyid));
           alert("Successfully joined family!");
+        }).catch((err)=>{
+          alert("Error in accepting invite");
+          console.log(err);
         })
       }
     }
@@ -37,7 +40,11 @@ export default function MemberInvite(props: inviteMemberType) {
     InviteService.deleteInvite(inviteId).then((res)=>{
       if(res !== null){
         alert("Successfully rejected invite!");
+        window.location.reload();
       }
+    }).catch((err)=>{
+      alert("Error in rejecting invite");
+      console.log(err);
     })
   }
 
@@ -48,7 +55,7 @@ export default function MemberInvite(props: inviteMemberType) {
   
   return (
     <div>
-       <div className="SecondaryContainer m-1" style={{height:"180px", width:"200px"}}>
+       <div className="SecondaryContainer m-1" style={{height:"210px", width:"200px"}}>
         <p className="m-0 p-2" style={{fontSize:"12px"}}>{formatDateTime(props.datetime)}</p>
           <div className='d-flex justify-content-center align-items-center pt-2' style={{height:"20%"}}>
             <img className="imgFixedSize "src='profileIcon.png' alt="profile icon"></img>
