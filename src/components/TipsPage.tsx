@@ -17,7 +17,8 @@ export default function TipsPage() {
   const loginState = useSelector((store: RootState) => (store.login.isLoggedIn))
   const nav = useNavigate()
   const dispatch = useDispatch()
-  const showState = useSelector((store:RootState) => store.tip.showAddTipModal);
+  const showState = useSelector((store: RootState) => store.tip.showAddTipModal);
+  const adminState = useSelector((store: RootState) => store.login.isAdmin);
 
   useEffect(() => {
     if (!loginState) {
@@ -38,11 +39,14 @@ export default function TipsPage() {
         <h1><strong>Tips</strong></h1>
         <div className='MainContainer' style={{ height: 'auto', minHeight: '70vh', width: '80vw' }}>
           <div style={{ marginRight: '50px', marginTop: '20px' }}>
-            <Link to="addTip" className='linksColor d-flex flex-row align-items-end justify-content-end'
-              onClick={() => {dispatch(toggleAddTip()); console.log(showState)}}>
-              <PlusIcon />
-              <p className='m-0' style={{ fontSize: "14px" }}>Add Tip</p>
-            </Link>
+            {
+              adminState ? <><Link to="addTip" className='linksColor d-flex flex-row align-items-end justify-content-end'
+                onClick={() => { dispatch(toggleAddTip()); console.log(showState) }}>
+                <PlusIcon />
+                <p className='m-0' style={{ fontSize: "14px" }}>Add Tip</p>
+              </Link></>
+                : <></>
+            }
           </div>
           <div className='SecondaryContainer m-5 p-3' style={{ width: '90%' }}>
             <h4>Earthquake Tips</h4>
