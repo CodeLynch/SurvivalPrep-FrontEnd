@@ -28,10 +28,10 @@ export default function NewsComp(props: NewsType) {
         <a href={props.url} target="_blank" className="linksColor">
             <div className="SecondaryContainer m-1 p-2" style={{height:"300px", width:"320px"}}>
                 <div className="w-100 p-2">
-                    <img style={{objectFit: "cover"}} className="w-100" alt="article image" src={props.urlToImage? props.urlToImage:"imgnotavailable.jpg"} height="100px" />
+                    <img style={{objectFit: "cover"}} className="w-100" src={props.urlToImage? props.urlToImage:"imgnotavailable.jpg"} height="100px" />
                 </div>
                 
-                <p className="m-0" style={{fontSize:"12px"}}>{props.author? "by " + props.author: ""}</p>
+                <p className="m-0" style={{fontSize:"12px"}}>{props.author? "by " + props.author: "by unknown"}</p>
                 <p className="m-0" style={{fontSize:"12px"}}>{formatDateTime(props.publishedAt)}</p>
                 <p className="m-0" style={{fontSize:"14px"}}><strong>{props.title}</strong></p>
                 <span className="m-0" style={{display:"block", fontSize:"12px", overflow:"hidden", textOverflow:"ellipsis", width:"300px"}}>{props.description}</span>
