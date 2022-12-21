@@ -2,6 +2,7 @@ import { Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { familyIdReducer } from '../features/FamilySlice';
+import { toggleToggler } from '../features/LogInSlice';
 import InviteService from '../services/InviteService';
 import UserService from '../services/UserService';
 import { RootState } from '../store';
@@ -38,13 +39,14 @@ export default function MemberInvite(props: inviteMemberType) {
 
   const rejectInvite = (inviteId:number) => {
     InviteService.deleteInvite(inviteId).then((res)=>{
-      if(res !== null){
-        // alert("Successfully rejected invite!");
-        window.location.reload();
-      }
+      // if(res !== null){
+      //   // alert("Successfully rejected invite!");
+      //   // window.location.reload();
+      dispatch(toggleToggler());
+      // }
     }).catch((err)=>{
       alert("Error in rejecting invite");
-      console.log(err);
+      
     })
   }
 

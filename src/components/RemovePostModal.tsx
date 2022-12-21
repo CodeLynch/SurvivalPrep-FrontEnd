@@ -7,6 +7,7 @@ import "./containerStyles.css";
 import './NavBar.css';
 import { toggleRemovePost } from "../features/PostSlice";
 import PostService from "../services/PostService";
+import { toggleToggler } from "../features/LogInSlice";
 
 function RemovePostModal() {
     const showState = useSelector((store:RootState) => store.post.showRemovePostModal);
@@ -18,8 +19,9 @@ function RemovePostModal() {
         PostService.deletePost(postId).then((res)=>{
             // alert("Post successfully deleted!");
             dispatch(toggleRemovePost())
+            dispatch(toggleToggler());
             nav('/posts');
-            window.location.reload();
+            // window.location.reload();
             
         }).catch((err)=>{
             alert("error in deleting post");

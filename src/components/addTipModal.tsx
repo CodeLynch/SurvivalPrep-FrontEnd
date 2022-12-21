@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { toggleToggler } from "../features/LogInSlice";
 import { toggleAddTip } from "../features/TipSlice";
 import TipsService from "../services/TipsService";
 import { RootState } from "../store";
@@ -18,8 +19,9 @@ function AddTipModal() {
     const addTips = () => {
         TipsService.postTip(tipcategory,tipcontent).then((resp) => {
             // alert("Tip Added!")
+            dispatch(toggleToggler());
             dispatch(toggleAddTip())
-            window.location.reload();
+            // window.location.reload();
         });
     }
 

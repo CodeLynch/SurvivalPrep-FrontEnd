@@ -7,6 +7,7 @@ import "./containerStyles.css";
 import './NavBar.css';
 import { toggleUpdateTip } from "../features/TipSlice";
 import TipsService from "../services/TipsService";
+import { toggleToggler } from "../features/LogInSlice";
 
 function UpdateTipModal() {
     const showState = useSelector((store:RootState) => store.tip.showUpdateTipModal);
@@ -31,8 +32,9 @@ function UpdateTipModal() {
             TipsService.putTipContent(Number(tipId), tipContent).then((res)=>{
             setLoading(false);
             // alert("Tip updated successfully!")
+            dispatch(toggleToggler());
             dispatch(toggleUpdateTip())
-            window.location.reload();
+            // window.location.reload();
         })
         }
         

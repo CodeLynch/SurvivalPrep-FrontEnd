@@ -17,6 +17,7 @@ export default function Dashboard(){
     const familyIdState = useSelector((store:RootState) => store.family.familyId)
     const userIdState = useSelector((store:RootState) => store.login.userId)
     const communityIdState = useSelector((store:RootState) => store.forum.communityid)
+    const toggler = useSelector((store:RootState)=> store.login.toggler)
 
     useEffect(() => {
         setLoading(true);
@@ -65,7 +66,7 @@ export default function Dashboard(){
                 alert(err.message);
             })
         })
-      },[userIdState]);
+      },[userIdState, toggler]);
 
       useEffect(()=>{
         console.log("family",familyIdState);

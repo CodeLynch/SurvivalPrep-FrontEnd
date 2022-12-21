@@ -14,6 +14,7 @@ import { toggleAddThread } from '../features/ForumSlice';
 
 export default function ThreadPage(){
     const forumState = useSelector((store:RootState)=> store.forum.currentForumid)
+    const toggler = useSelector((store:RootState)=> store.login.toggler)
     const [ThreadsArr, setThreadArr] = useState<ThreadType[]>([])
     const [isLoading, setLoading] = useState(false);
     const [ForumTitle, setTitle] = useState('');
@@ -66,7 +67,7 @@ export default function ThreadPage(){
             })
         })
         
-    },[]);
+    },[toggler]);
     return(
     <>
     <Outlet/>

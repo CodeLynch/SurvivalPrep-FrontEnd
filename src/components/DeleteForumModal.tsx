@@ -7,6 +7,7 @@ import "./containerStyles.css";
 import './NavBar.css';
 import { toggleDeleteForum } from "../features/ForumSlice";
 import ForumService from "../services/ForumService";
+import { toggleToggler } from "../features/LogInSlice";
 
 function DeleteForumModal() {
     const showState = useSelector((store:RootState) => store.forum.showDeleteForum);
@@ -21,8 +22,9 @@ function DeleteForumModal() {
         .then((res)=>{
             setLoading(false);
             // alert("Forum deleted successfully!")
+            dispatch(toggleToggler());
             dispatch(toggleDeleteForum())
-            window.location.reload();
+            // window.location.reload();
         })
         
     }

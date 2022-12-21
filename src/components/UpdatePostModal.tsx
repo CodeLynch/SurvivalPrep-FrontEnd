@@ -8,6 +8,7 @@ import './NavBar.css';
 import { toggleEditPost, toggleEditThread } from "../features/ForumSlice";
 import ThreadService from "../services/ThreadService";
 import PostService from "../services/PostService";
+import { toggleToggler } from "../features/LogInSlice";
 
 function UpdatePostModal() {
     const showState = useSelector((store:RootState) => store.forum.showEditPost);
@@ -37,9 +38,10 @@ function UpdatePostModal() {
             setLoading(true);
             PostService.putPost(Number(postid), Post).then((res)=>{
                 // alert("Post updated successfully!");
+                dispatch(toggleToggler());
                 dispatch(toggleEditPost());
                 nav("/posts")
-                window.location.reload();
+                // window.location.reload();
             }).catch((err)=>{
                 alert("error in updating post");
                 console.log(err);

@@ -13,11 +13,13 @@ import UserService from '../services/UserService';
 import { useDispatch } from 'react-redux';
 import { toggleDeleteThread, toggleEditThread } from '../features/ForumSlice';
 import ThreadService from '../services/ThreadService';
+import { toggleToggler } from '../features/LogInSlice';
 
 export default function PostsPage(){
     const userIdState = useSelector((store:RootState)=> store.login.userId)
     const adminState = useSelector((store:RootState)=> store.login.isAdmin)
     const threadState = useSelector((store:RootState)=> store.forum.currentThreadid)
+    const toggler = useSelector((store:RootState)=> store.login.toggler)
     const [threadTitle, setTitle] = useState('');
     const [PostsArr, setPosts] = useState<PostType[]>([])
     const [firstPost, setFirst] = useState<PostType>();
@@ -101,12 +103,13 @@ export default function PostsPage(){
             })
         }
         )
-    },[isDeleted]);
+    },[isDeleted, toggler]);
 
     const createPost = (postContent: string) =>{
         PostService.postThreadPost(postContent, threadState, userIdState).then((res)=>{
             // alert("Post successfully created!")
-            window.location.reload();
+            dispatch(toggleToggler());
+            // window.location.reload();
         })
     }
     const formatDateTime = (datetime:string) => {

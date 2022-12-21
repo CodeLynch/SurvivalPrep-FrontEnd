@@ -7,6 +7,7 @@ import "./containerStyles.css";
 import './NavBar.css';
 import TipsService from "../services/TipsService";
 import { toggleRemoveTip } from "../features/TipSlice";
+import { toggleToggler } from "../features/LogInSlice";
 
 function RemoveTipModal() {
     const showState = useSelector((store:RootState) => store.tip.showRemoveTipModal);
@@ -30,7 +31,8 @@ function RemoveTipModal() {
             if(res !== null){
                 // alert("Tip successfully deleted!");
                 nav('/tips');
-                window.location.reload();
+                dispatch(toggleToggler());
+                // window.location.reload();
             }
         })
     }

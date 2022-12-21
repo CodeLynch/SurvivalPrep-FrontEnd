@@ -8,6 +8,7 @@ import './NavBar.css';
 import { toggleEditThread } from "../features/ForumSlice";
 import ThreadService from "../services/ThreadService";
 import PostService from "../services/PostService";
+import { toggleToggler } from "../features/LogInSlice";
 
 function UpdateThreadModal() {
     const showState = useSelector((store:RootState) => store.forum.showEditThread);
@@ -42,9 +43,10 @@ function UpdateThreadModal() {
                 PostService.putPost(firstPostId, firstPost).then((res)=>{
                     setLoading(false);
                     // alert("Thread updated successfully!");
+                    dispatch(toggleToggler());
                     dispatch(toggleEditThread());
                     nav('/posts')
-                    window.location.reload();
+                    // window.location.reload();
                 })
         })
         }

@@ -14,6 +14,7 @@ type tipsType = { tipid: number, tipcategory: string, tipcontent: string, isdele
 export default function TipsPage() {
   const [TipsList, setTipsList] = useState<tipsType[]>([
   ])
+  const toggler = useSelector((store:RootState)=> store.login.toggler)
   const loginState = useSelector((store: RootState) => (store.login.isLoggedIn))
   const nav = useNavigate()
   const dispatch = useDispatch()
@@ -30,7 +31,7 @@ export default function TipsPage() {
     TipsService.getAllTips().then((response) => {
       setTipsList(response.data)
     });
-  }, [])
+  }, [toggler])
 
   return (
     <>

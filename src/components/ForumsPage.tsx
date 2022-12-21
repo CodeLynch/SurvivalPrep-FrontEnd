@@ -3,7 +3,7 @@ import ForumComp, { ForumType } from './ForumComponent';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import ForumService from '../services/ForumService';
 import { PlusIcon } from './icons';
 import { useDispatch } from 'react-redux';
@@ -12,10 +12,9 @@ import { toggleAddForum } from '../features/ForumSlice';
 export default function ForumsPage(){
     const communityState = useSelector((store:RootState)=> store.forum.communityid)
     const adminState = useSelector((store:RootState)=> store.login.isAdmin)
-    // const toggler = useSelector((store:RootState)=> store.login.toggler)
+    const toggler = useSelector((store:RootState)=> store.login.toggler)
     const [ForumsArr, setForumArr] = useState<ForumType[]>([])
     const [isLoading, setLoading] = useState(false);
-    //const nav = useNavigate();
     const dispatch = useDispatch();
 
 
@@ -37,7 +36,7 @@ export default function ForumsPage(){
             setForumArr(arr);
         })
         
-    },[]);
+    },[toggler]);
     return(
     <>
     <Outlet/>

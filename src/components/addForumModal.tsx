@@ -7,6 +7,7 @@ import "./containerStyles.css";
 import './NavBar.css';
 import { toggleAddForum } from "../features/ForumSlice";
 import ForumService from "../services/ForumService";
+import { toggleToggler } from "../features/LogInSlice";
 
 function AddForumModal() {
     const userIdState = useSelector((store:RootState) => store.login.userId);
@@ -27,9 +28,10 @@ function AddForumModal() {
         .then((res)=>{
             setLoading(false);
             // alert("Forum created successfully!")
+            dispatch(toggleToggler());
             dispatch(toggleAddForum());
             nav("/forums")
-            window.location.reload();
+            // window.location.reload();
             
         })
         }

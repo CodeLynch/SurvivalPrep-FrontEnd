@@ -8,6 +8,7 @@ import './NavBar.css';
 import { toggleDeleteThread } from "../features/ForumSlice";
 import ThreadService from "../services/ThreadService";
 import PostService from "../services/PostService";
+import { toggleToggler } from "../features/LogInSlice";
 
 function DeleteThreadModal() {
     const showState = useSelector((store:RootState) => store.forum.showDeleteThread);
@@ -24,9 +25,10 @@ function DeleteThreadModal() {
                 ThreadService.deleteThread(Number(threadId)).then((res)=>{
                     setLoading(false);
                     // alert("Thread successfully deleted!");
+                    dispatch(toggleToggler());
                     dispatch(toggleDeleteThread())
                     nav('/threads')
-                    window.location.reload();
+                    // window.location.reload();
                 }).catch((err)=>{
                     alert("error in deleting thread");
                     console.log(err);

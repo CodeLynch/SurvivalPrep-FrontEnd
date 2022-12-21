@@ -8,6 +8,7 @@ import './NavBar.css';
 import { toggleAddThread } from "../features/ForumSlice";
 import ThreadService from "../services/ThreadService";
 import PostService from "../services/PostService";
+import { toggleToggler } from "../features/LogInSlice";
 
 function AddThreadModal() {
     const userIdState = useSelector((store:RootState) => store.login.userId);
@@ -30,9 +31,10 @@ function AddThreadModal() {
                 PostService.postThreadPost(firstPost, res.threadid, userIdState)
                 .then((res)=>{
                     // alert("Thread created successfully!");
+                    dispatch(toggleToggler());
                     dispatch(toggleAddThread());
                     nav('/threads')
-                    window.location.reload();
+                    // window.location.reload();
                     
                 }).catch((err)=>{
                     alert("Error in posting the first post!")

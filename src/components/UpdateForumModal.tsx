@@ -7,6 +7,7 @@ import "./containerStyles.css";
 import './NavBar.css';
 import { toggleEditForum } from "../features/ForumSlice";
 import ForumService from "../services/ForumService";
+import { toggleToggler } from "../features/LogInSlice";
 
 function UpdateForumModal() {
     const showState = useSelector((store:RootState) => store.forum.showEditForum);
@@ -33,8 +34,9 @@ function UpdateForumModal() {
             ForumService.putForum(Number(forumId), forumTitle, forumDesc).then((res)=>{
             setLoading(false);
             // alert("Forum updated successfully!");
+            dispatch(toggleToggler());
             dispatch(toggleEditForum());
-            window.location.reload();
+            // window.location.reload();
         })
         }
         

@@ -8,6 +8,7 @@ import './NavBar.css';
 import { toggleAddFamilyMember } from "../features/FamilySlice";
 import UserService from "../services/UserService";
 import InviteService from "../services/InviteService";
+import { toggleToggler } from "../features/LogInSlice";
 
 function AddMemberModal() {
     const showState = useSelector((store:RootState) => store.family.showAddFamilyMemberModal);

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toggleToggler } from "../features/LogInSlice";
 import { toggleCreatePost } from "../features/PostSlice";
 import PostService from "../services/PostService";
 import { RootState } from "../store";
@@ -16,8 +17,9 @@ function CreatePostModal(){
     const CreatePost = () => {
         PostService.postPost(postcontent).then((resp) => {
             // alert("Post Added!")
+            dispatch(toggleToggler());
             dispatch(toggleCreatePost())
-            window.location.reload();
+            // window.location.reload();
         });
     }
     return (
