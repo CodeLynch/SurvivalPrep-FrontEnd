@@ -15,7 +15,7 @@ function CreatePostModal(){
     
     const CreatePost = () => {
         PostService.postPost(postcontent).then((resp) => {
-            alert("Post Added!")
+            // alert("Post Added!")
             dispatch(toggleCreatePost())
             window.location.reload();
         });

@@ -23,7 +23,7 @@ function DeleteThreadModal() {
             PostService.deletePost(res[0].postid).then(()=>{
                 ThreadService.deleteThread(Number(threadId)).then((res)=>{
                     setLoading(false);
-                    alert("Thread successfully deleted!");
+                    // alert("Thread successfully deleted!");
                     dispatch(toggleDeleteThread())
                     nav('/threads')
                     window.location.reload();

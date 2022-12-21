@@ -30,7 +30,7 @@ function UpdateTipModal() {
             setLoading(true);
             TipsService.putTipContent(Number(tipId), tipContent).then((res)=>{
             setLoading(false);
-            alert("Tip updated successfully!")
+            // alert("Tip updated successfully!")
             dispatch(toggleUpdateTip())
             window.location.reload();
         })

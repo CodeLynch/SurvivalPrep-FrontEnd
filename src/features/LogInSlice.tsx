@@ -5,6 +5,7 @@ const initialState = {
     userId: 0,
     isAdmin: false,
     showDeleteProfile: false,
+    toggler: false,
 }
 
 const LogInSlice = createSlice({
@@ -27,9 +28,12 @@ const LogInSlice = createSlice({
         },
         deleteProfileReducer: (state) =>{
             state.showDeleteProfile = !state.showDeleteProfile;
+        },
+        toggleToggler: (state) =>{
+            state.toggler = !state.toggler;
         }
     }
 });
 
 export default LogInSlice.reducer
-export const { loginReducer, logoutReducer,userIdReducer, adminReducer, deleteProfileReducer} = LogInSlice.actions;
+export const { loginReducer, logoutReducer,userIdReducer, adminReducer, deleteProfileReducer, toggleToggler} = LogInSlice.actions;

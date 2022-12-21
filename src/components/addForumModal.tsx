@@ -26,9 +26,11 @@ function AddForumModal() {
             ForumService.postForum(forumTitle, forumDesc, communityIdState, userIdState)
         .then((res)=>{
             setLoading(false);
-            alert("Forum created successfully!")
+            // alert("Forum created successfully!")
             dispatch(toggleAddForum());
+            nav("/forums")
             window.location.reload();
+            
         })
         }
         

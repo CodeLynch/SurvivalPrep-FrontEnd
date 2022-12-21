@@ -29,7 +29,7 @@ function AddThreadModal() {
                 console.log("res in Modal", res);
                 PostService.postThreadPost(firstPost, res.threadid, userIdState)
                 .then((res)=>{
-                    alert("Thread created successfully!");
+                    // alert("Thread created successfully!");
                     dispatch(toggleAddThread());
                     nav('/threads')
                     window.location.reload();

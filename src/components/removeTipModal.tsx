@@ -28,7 +28,9 @@ function RemoveTipModal() {
         TipsService.deleteTip(tipId).then((res)=>{
             console.log(res);
             if(res !== null){
-                alert("Tip successfully deleted!");
+                // alert("Tip successfully deleted!");
+                nav('/tips');
+                window.location.reload();
             }
         })
     }

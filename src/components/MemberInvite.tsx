@@ -26,7 +26,7 @@ export default function MemberInvite(props: inviteMemberType) {
         UserService.putFamily(userIdState, props.familyid).then((resp) => {
           console.log("userservice response", resp);
           dispatch(familyIdReducer(props.familyid));
-          alert("Successfully joined family!");
+          // alert("Successfully joined family!");
         }).catch((err)=>{
           alert("Error in accepting invite");
           console.log(err);
@@ -39,7 +39,7 @@ export default function MemberInvite(props: inviteMemberType) {
   const rejectInvite = (inviteId:number) => {
     InviteService.deleteInvite(inviteId).then((res)=>{
       if(res !== null){
-        alert("Successfully rejected invite!");
+        // alert("Successfully rejected invite!");
         window.location.reload();
       }
     }).catch((err)=>{

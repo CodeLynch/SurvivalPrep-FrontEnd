@@ -32,7 +32,7 @@ function UpdateForumModal() {
             setLoading(true);
             ForumService.putForum(Number(forumId), forumTitle, forumDesc).then((res)=>{
             setLoading(false);
-            alert("Forum updated successfully!");
+            // alert("Forum updated successfully!");
             dispatch(toggleEditForum());
             window.location.reload();
         })

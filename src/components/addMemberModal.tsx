@@ -44,6 +44,7 @@ function AddMemberModal() {
             if(res !== null){
                 alert("Invite successfully sent!");
                 dispatch(toggleAddFamilyMember())
+                nav("/family");
             }
         });
     }

@@ -31,10 +31,10 @@ function RemoveMemberModal() {
                 dispatch(familyIdReducer(0));
             }
             if(res !== null){
-                alert("User successfully removed from family!");
+                // alert("User successfully removed from family!");
                 dispatch(toggleRemoveMember())
                 nav("/family")
-                window.location.reload();
+                // window.location.reload();
             }
         })
     }

@@ -12,10 +12,12 @@ import { toggleAddForum } from '../features/ForumSlice';
 export default function ForumsPage(){
     const communityState = useSelector((store:RootState)=> store.forum.communityid)
     const adminState = useSelector((store:RootState)=> store.login.isAdmin)
+    // const toggler = useSelector((store:RootState)=> store.login.toggler)
     const [ForumsArr, setForumArr] = useState<ForumType[]>([])
     const [isLoading, setLoading] = useState(false);
-    const nav = useNavigate();
+    //const nav = useNavigate();
     const dispatch = useDispatch();
+
 
     useEffect(()=>{
         setLoading(true);

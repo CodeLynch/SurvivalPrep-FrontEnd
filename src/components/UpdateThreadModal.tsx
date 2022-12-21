@@ -41,7 +41,7 @@ function UpdateThreadModal() {
             ThreadService.putThreadtitle(Number(threadid), ThreadTitle).then((res)=>{
                 PostService.putPost(firstPostId, firstPost).then((res)=>{
                     setLoading(false);
-                    alert("Thread updated successfully!");
+                    // alert("Thread updated successfully!");
                     dispatch(toggleEditThread());
                     nav('/posts')
                     window.location.reload();

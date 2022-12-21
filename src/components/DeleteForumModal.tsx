@@ -20,7 +20,7 @@ function DeleteForumModal() {
         ForumService.deleteForum(Number(forumId))
         .then((res)=>{
             setLoading(false);
-            alert("Forum deleted successfully!")
+            // alert("Forum deleted successfully!")
             dispatch(toggleDeleteForum())
             window.location.reload();
         })

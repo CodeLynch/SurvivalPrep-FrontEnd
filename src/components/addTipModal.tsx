@@ -15,20 +15,9 @@ function AddTipModal() {
     //const nav = useNavigate();
     //const loc = useLocation();
 
-    // useEffect(()=>{
-    //     FamilyService.getFamily(loc.state.code).then((res)=>{
-    //         if(res === ''){
-    //             setFound(false);
-    //         }else{
-    //             setFound(true);
-    //             setFamilyName(res.familyname);
-    //             setFoundId(res.familyid);
-    //         }
-    //     })
-    // },[]);
     const addTips = () => {
         TipsService.postTip(tipcategory,tipcontent).then((resp) => {
-            alert("Tip Added!")
+            // alert("Tip Added!")
             dispatch(toggleAddTip())
             window.location.reload();
         });
