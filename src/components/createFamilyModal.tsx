@@ -25,7 +25,7 @@ function CreateFamilyModal() {
                     dispatch(toggleCreateFamily())
                     alert("Family created successfully!")
                     nav('/family')
-                    window.location.reload();
+                    // window.location.reload();
                 });
             })
         }
